@@ -14,6 +14,28 @@
 		F5AD9DB62933B2FE00E33AD6 /* teamup_iosappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DB52933B2FE00E33AD6 /* teamup_iosappTests.swift */; };
 		F5AD9DC02933B2FE00E33AD6 /* teamup_iosappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DBF2933B2FE00E33AD6 /* teamup_iosappUITests.swift */; };
 		F5AD9DC22933B2FE00E33AD6 /* teamup_iosappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DC12933B2FE00E33AD6 /* teamup_iosappUITestsLaunchTests.swift */; };
+		F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DD12933B7E000E33AD6 /* AuthService.swift */; };
+		F5AD9DD82933B7E100E33AD6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DD22933B7E000E33AD6 /* UserService.swift */; };
+		F5AD9DD92933B7E100E33AD6 /* APIRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DD32933B7E000E33AD6 /* APIRequestDelegate.swift */; };
+		F5AD9DDA2933B7E100E33AD6 /* APIRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DD42933B7E000E33AD6 /* APIRequestError.swift */; };
+		F5AD9DDB2933B7E100E33AD6 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DD52933B7E000E33AD6 /* APIRequest.swift */; };
+		F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DD62933B7E100E33AD6 /* APIModel.swift */; };
+		F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DE02933B86500E33AD6 /* ViewExtensions.swift */; };
+		F5AD9DEE2933B86500E33AD6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DE12933B86500E33AD6 /* Array.swift */; };
+		F5AD9DEF2933B86500E33AD6 /* EnvironmentValueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DE22933B86500E33AD6 /* EnvironmentValueExtensions.swift */; };
+		F5AD9DF02933B86500E33AD6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DE32933B86500E33AD6 /* StringExtensions.swift */; };
+		F5AD9DF12933B86500E33AD6 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DE42933B86500E33AD6 /* DateExtensions.swift */; };
+		F5AD9DF22933B86500E33AD6 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DE52933B86500E33AD6 /* UIColorExtensions.swift */; };
+		F5AD9DF32933B86500E33AD6 /* academies.json in Resources */ = {isa = PBXBuildFile; fileRef = F5AD9DE72933B86500E33AD6 /* academies.json */; };
+		F5AD9DF42933B86500E33AD6 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DE92933B86500E33AD6 /* JsonLoader.swift */; };
+		F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DEA2933B86500E33AD6 /* Validator.swift */; };
+		F5AD9DF62933B86500E33AD6 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DEB2933B86500E33AD6 /* Formatter.swift */; };
+		F5AD9DF92933B8A700E33AD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DF82933B8A700E33AD6 /* User.swift */; };
+		F5AD9DFE2933B91E00E33AD6 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9DFD2933B91E00E33AD6 /* CachedAsyncImage */; };
+		F5AD9E012933B94300E33AD6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E002933B94300E33AD6 /* Alamofire */; };
+		F5AD9E042933B95F00E33AD6 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E032933B95F00E33AD6 /* JWTDecode */; };
+		F5AD9E072933B97D00E33AD6 /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */; };
+		F5AD9E0A2933B9D800E33AD6 /* HandyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E092933B9D800E33AD6 /* HandyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +66,23 @@
 		F5AD9DBB2933B2FE00E33AD6 /* teamup_iosappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = teamup_iosappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5AD9DBF2933B2FE00E33AD6 /* teamup_iosappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamup_iosappUITests.swift; sourceTree = "<group>"; };
 		F5AD9DC12933B2FE00E33AD6 /* teamup_iosappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamup_iosappUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F5AD9DD12933B7E000E33AD6 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		F5AD9DD22933B7E000E33AD6 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F5AD9DD32933B7E000E33AD6 /* APIRequestDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestDelegate.swift; sourceTree = "<group>"; };
+		F5AD9DD42933B7E000E33AD6 /* APIRequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestError.swift; sourceTree = "<group>"; };
+		F5AD9DD52933B7E000E33AD6 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		F5AD9DD62933B7E100E33AD6 /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		F5AD9DE02933B86500E33AD6 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		F5AD9DE12933B86500E33AD6 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		F5AD9DE22933B86500E33AD6 /* EnvironmentValueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentValueExtensions.swift; sourceTree = "<group>"; };
+		F5AD9DE32933B86500E33AD6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		F5AD9DE42933B86500E33AD6 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		F5AD9DE52933B86500E33AD6 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		F5AD9DE72933B86500E33AD6 /* academies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = academies.json; sourceTree = "<group>"; };
+		F5AD9DE92933B86500E33AD6 /* JsonLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
+		F5AD9DEA2933B86500E33AD6 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		F5AD9DEB2933B86500E33AD6 /* Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		F5AD9DF82933B8A700E33AD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +90,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5AD9DFE2933B91E00E33AD6 /* CachedAsyncImage in Frameworks */,
+				F5AD9E012933B94300E33AD6 /* Alamofire in Frameworks */,
+				F5AD9E072933B97D00E33AD6 /* SwiftUIFlow in Frameworks */,
+				F5AD9E0A2933B9D800E33AD6 /* HandyJSON in Frameworks */,
+				F5AD9E042933B95F00E33AD6 /* JWTDecode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,10 +138,16 @@
 		F5AD9DA32933B2FB00E33AD6 /* teamup_iosapp */ = {
 			isa = PBXGroup;
 			children = (
-				F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */,
-				F5AD9DA62933B2FB00E33AD6 /* ContentView.swift */,
-				F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */,
 				F5AD9DAA2933B2FD00E33AD6 /* Preview Content */,
+				F5AD9DE62933B86500E33AD6 /* StaticData */,
+				F5AD9DDF2933B86500E33AD6 /* Extension */,
+				F5AD9DE82933B86500E33AD6 /* Util */,
+				F5AD9DDD2933B7E900E33AD6 /* API */,
+				F5AD9DFA2933B8AC00E33AD6 /* Entity */,
+				F5AD9DDE2933B7FC00E33AD6 /* Service */,
+				F5AD9DFB2933B8E700E33AD6 /* UI */,
+				F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */,
+				F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */,
 			);
 			path = teamup_iosapp;
 			sourceTree = "<group>";
@@ -127,6 +177,73 @@
 			path = teamup_iosappUITests;
 			sourceTree = "<group>";
 		};
+		F5AD9DDD2933B7E900E33AD6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DD62933B7E100E33AD6 /* APIModel.swift */,
+				F5AD9DD52933B7E000E33AD6 /* APIRequest.swift */,
+				F5AD9DD32933B7E000E33AD6 /* APIRequestDelegate.swift */,
+				F5AD9DD42933B7E000E33AD6 /* APIRequestError.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		F5AD9DDE2933B7FC00E33AD6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DD12933B7E000E33AD6 /* AuthService.swift */,
+				F5AD9DD22933B7E000E33AD6 /* UserService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		F5AD9DDF2933B86500E33AD6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DE02933B86500E33AD6 /* ViewExtensions.swift */,
+				F5AD9DE12933B86500E33AD6 /* Array.swift */,
+				F5AD9DE22933B86500E33AD6 /* EnvironmentValueExtensions.swift */,
+				F5AD9DE32933B86500E33AD6 /* StringExtensions.swift */,
+				F5AD9DE42933B86500E33AD6 /* DateExtensions.swift */,
+				F5AD9DE52933B86500E33AD6 /* UIColorExtensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		F5AD9DE62933B86500E33AD6 /* StaticData */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DE72933B86500E33AD6 /* academies.json */,
+			);
+			path = StaticData;
+			sourceTree = "<group>";
+		};
+		F5AD9DE82933B86500E33AD6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DE92933B86500E33AD6 /* JsonLoader.swift */,
+				F5AD9DEA2933B86500E33AD6 /* Validator.swift */,
+				F5AD9DEB2933B86500E33AD6 /* Formatter.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		F5AD9DFA2933B8AC00E33AD6 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DF82933B8A700E33AD6 /* User.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		F5AD9DFB2933B8E700E33AD6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DA62933B2FB00E33AD6 /* ContentView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +261,13 @@
 			dependencies = (
 			);
 			name = teamup_iosapp;
+			packageProductDependencies = (
+				F5AD9DFD2933B91E00E33AD6 /* CachedAsyncImage */,
+				F5AD9E002933B94300E33AD6 /* Alamofire */,
+				F5AD9E032933B95F00E33AD6 /* JWTDecode */,
+				F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */,
+				F5AD9E092933B9D800E33AD6 /* HandyJSON */,
+			);
 			productName = teamup_iosapp;
 			productReference = F5AD9DA12933B2FB00E33AD6 /* teamup_iosapp.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +341,11 @@
 			);
 			mainGroup = F5AD9D982933B2FB00E33AD6;
 			packageReferences = (
+				F5AD9DFC2933B91E00E33AD6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+				F5AD9DFF2933B94300E33AD6 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
+				F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */,
 			);
 			productRefGroup = F5AD9DA22933B2FB00E33AD6 /* Products */;
 			projectDirPath = "";
@@ -234,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5AD9DF32933B86500E33AD6 /* academies.json in Resources */,
 				F5AD9DAC2933B2FD00E33AD6 /* Preview Assets.xcassets in Resources */,
 				F5AD9DA92933B2FD00E33AD6 /* Assets.xcassets in Resources */,
 			);
@@ -280,8 +410,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */,
+				F5AD9DF02933B86500E33AD6 /* StringExtensions.swift in Sources */,
+				F5AD9DF22933B86500E33AD6 /* UIColorExtensions.swift in Sources */,
+				F5AD9DD82933B7E100E33AD6 /* UserService.swift in Sources */,
+				F5AD9DEE2933B86500E33AD6 /* Array.swift in Sources */,
+				F5AD9DF42933B86500E33AD6 /* JsonLoader.swift in Sources */,
+				F5AD9DDB2933B7E100E33AD6 /* APIRequest.swift in Sources */,
+				F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */,
 				F5AD9DA72933B2FB00E33AD6 /* ContentView.swift in Sources */,
+				F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */,
+				F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */,
+				F5AD9DF62933B86500E33AD6 /* Formatter.swift in Sources */,
+				F5AD9DD92933B7E100E33AD6 /* APIRequestDelegate.swift in Sources */,
+				F5AD9DEF2933B86500E33AD6 /* EnvironmentValueExtensions.swift in Sources */,
+				F5AD9DF92933B8A700E33AD6 /* User.swift in Sources */,
 				F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */,
+				F5AD9DDA2933B7E100E33AD6 /* APIRequestError.swift in Sources */,
+				F5AD9DF12933B86500E33AD6 /* DateExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +760,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F5AD9DFC2933B91E00E33AD6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		F5AD9DFF2933B94300E33AD6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alibaba/HandyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F5AD9DFD2933B91E00E33AD6 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5AD9DFC2933B91E00E33AD6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+		F5AD9E002933B94300E33AD6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5AD9DFF2933B94300E33AD6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		F5AD9E032933B95F00E33AD6 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
+		};
+		F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
+			productName = SwiftUIFlow;
+		};
+		F5AD9E092933B9D800E33AD6 /* HandyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */;
+			productName = HandyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F5AD9D992933B2FB00E33AD6 /* Project object */;
 }
