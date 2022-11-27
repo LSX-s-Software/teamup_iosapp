@@ -1,6 +1,6 @@
 //
 //  TokenService.swift
-//  zq_recruitment_iosapp
+//  teamup_iosapp
 //
 //  Created by 林思行 on 2022/9/5.
 //
@@ -47,7 +47,7 @@ class AuthService {
         var refresh: String?
     }
     
-    static func register(phone: String, verifyCode: String, password: String) async throws {
+    class func register(phone: String, verifyCode: String, password: String) async throws {
         let data: TokenResponse = try await APIRequest()
             .url("/users/")
             .method(.post)
@@ -64,7 +64,7 @@ class AuthService {
         }
     }
 
-    static func login(phone: String, password: String) async throws {
+    class func login(phone: String, password: String) async throws {
         let data: TokenResponse = try await APIRequest()
             .url("/auth/login/")
             .method(.post)
@@ -81,7 +81,7 @@ class AuthService {
         }
     }
 
-    static func refresh() async throws {
+    class func refresh() async throws {
         if refreshToken == nil {
             let storedRefreshToken = UserDefaults.standard.string(forKey: "refreshToken")
             if storedRefreshToken == nil {
@@ -113,7 +113,7 @@ class AuthService {
         }
     }
 
-    static func getToken() async -> String? {
+    class func getToken() async -> String? {
         if accessToken == nil {
             let storedAccessToken = UserDefaults.standard.string(forKey: "accessToken")
             if let storedAccessToken = storedAccessToken,
@@ -142,7 +142,7 @@ class AuthService {
         return accessToken
     }
     
-    static func clearToken() {
+    class func clearToken() {
         accessToken = nil
         refreshToken = nil
         registered = false

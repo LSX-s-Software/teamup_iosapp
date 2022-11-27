@@ -1,6 +1,6 @@
 //
 //  UserService.swift
-//  zq_recruitment_iosapp
+//  teamup_iosapp
 //
 //  Created by 林思行 on 2022/9/14.
 //
@@ -70,7 +70,7 @@ class UserService {
     
     /// 从服务器获取用户信息
     /// - Returns: 用户信息
-    static func getUserInfoFromServer() async throws -> User {
+    class func getUserInfoFromServer() async throws -> User {
         if !AuthService.registered || userId == nil {
             throw UserServiceError.UserNotLoggedin
         }
@@ -80,14 +80,14 @@ class UserService {
     
     /// 修改用户信息
     /// - Parameter contents: 用户信息字段
-    static func editUserInfo(contents: [String: Any]) async throws {
+    class func editUserInfo(contents: [String: Any]) async throws {
         if !AuthService.registered || userId == nil {
             throw UserServiceError.UserNotLoggedin
         }
         userInfo = try await APIRequest().url("/users/").method(.put).params(contents).request()
     }
     
-    static func uploadAvatar(data: Data) async throws {
+    class func uploadAvatar(data: Data) async throws {
         if !AuthService.registered || userId == nil {
             throw UserServiceError.UserNotLoggedin
         }
@@ -103,7 +103,7 @@ class UserService {
     /*
     /// 删除文件
     /// - Parameter id: 文件ID
-    static func deleteFile(id: Int) async throws {
+    class func deleteFile(id: Int) async throws {
         if !TokenService.registered || userId == nil {
             throw UserServiceError.UserNotLoggedin
         }
@@ -120,7 +120,7 @@ class UserService {
     ///   - type: 文件类型（简历/作品）
     ///   - delegate: 上传进度代理
     /// - Returns: 文件对象
-    static func uploadFile(file: Data,
+    class func uploadFile(file: Data,
                            filename: String,
                            type: UserFileType,
                            delegate: APIRequestDelegate? = nil) async throws -> UserFile {
@@ -142,7 +142,7 @@ class UserService {
     ///   - type: 文件类型（简历/作品）
     ///   - callback: 上传进度回调
     /// - Returns: 文件对象
-    static func uploadFile(file: Data,
+    class func uploadFile(file: Data,
                            filename: String,
                            type: UserFileType,
                            callback: @escaping (Double) -> Void) async throws -> UserFile {
@@ -154,7 +154,7 @@ class UserService {
     ///   - id: 文件ID
     ///   - filename: 文件名
     /// - Returns: 文件对象
-    static func renameFile(file old: UserFile, newName: String) async throws -> UserFile {
+    class func renameFile(file old: UserFile, newName: String) async throws -> UserFile {
         if !TokenService.registered || userId == nil {
             throw UserServiceError.UserNotLoggedin
         }
@@ -175,7 +175,7 @@ class UserService {
     ///   - file: 文件对象
     ///   - delegate: 下载进度代理
     /// - Returns: 文件URL
-    static func downloadFile(file: UserFile, delegate: APIRequestDelegate? = nil) async throws -> URL {
+    class func downloadFile(file: UserFile, delegate: APIRequestDelegate? = nil) async throws -> URL {
         return try await APIRequest()
             .url(file.file)
             .fileName("\(file.name!).\(file.ext!)")
@@ -189,11 +189,11 @@ class UserService {
     ///   - file: 文件对象
     ///   - callback: 下载进度回调
     /// - Returns: 文件URL
-    static func downloadFile(file: UserFile, callback: @escaping (Double) -> Void) async throws -> URL {
+    class func downloadFile(file: UserFile, callback: @escaping (Double) -> Void) async throws -> URL {
         return try await downloadFile(file: file, delegate: NetworkProgressHandler(callback: callback))
     }
     
-    static func localFileURL(of file: UserFile) -> URL? {
+    class func localFileURL(of file: UserFile) -> URL? {
         if !TokenService.registered || userId == nil {
             return nil
         }
@@ -205,7 +205,7 @@ class UserService {
     /// 检查用户文件是否存在
     /// - Parameter file: 文件对象
     /// - Returns: 是否存在（未登录返回false）
-    static func fileExist(file: UserFile) -> Bool {
+    class func fileExist(file: UserFile) -> Bool {
         if file.id == nil {
             return false
         }
@@ -217,7 +217,7 @@ class UserService {
      */
     
     /// 退出登录
-    static func logout() {
+    class func logout() {
         if FileManager.default.fileExists(atPath: userFileDirectory!.path) {
             try? FileManager.default.removeItem(at: userFileDirectory!)
         }
