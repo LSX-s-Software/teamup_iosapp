@@ -12,7 +12,7 @@ class APIModel<T>: HandyJSON {
     /// 状态码
     var code: String!
     /// 提示信息
-    var msg: String!
+    var message: String!
     /// 数据
     var data: T?
     
@@ -32,7 +32,7 @@ class APIEmptyResponseModel: HandyJSON {
     /// 状态码
     var code: String?
     /// 提示信息
-    var msg: String?
+    var message: String?
     
     required init() {}
 }

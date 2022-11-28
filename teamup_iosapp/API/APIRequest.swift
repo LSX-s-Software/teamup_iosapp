@@ -11,7 +11,7 @@ import HandyJSON
 
 class APIRequest {
     
-    static let BASE_URL = "https://api.teamup.nagico.cn"
+    static let BASE_URL = "http://localhost:8080" // "https://api.teamup.nagico.cn"
     
     private weak var delegate: APIRequestDelegate?
     
@@ -241,7 +241,7 @@ extension APIRequest {
     /// 请求
     func request<T>() async throws -> T {
         let response: APIModel<T> = try await afRequest()
-        try checkResponse(code: response.code, msg: response.msg)
+        try checkResponse(code: response.code, msg: response.message)
         return response.data!
     }
     
@@ -249,7 +249,7 @@ extension APIRequest {
     func requestIgnoringResponse() async throws {
         let response: APIEmptyResponseModel = try await afRequest()
         if let code = response.code, code != "00000" {
-            throw APIRequestError.RequestError(code: code, msg: response.msg ?? "未知错误")
+            throw APIRequestError.RequestError(code: code, msg: response.message ?? "未知错误")
         }
         return
     }
@@ -257,7 +257,7 @@ extension APIRequest {
     /// 上传
     func upload<T>(formFileName: String = "file") async throws -> T {
         let response: APIModel<T> = try await afUpload(formFileName: formFileName)
-        try checkResponse(code: response.code, msg: response.msg)
+        try checkResponse(code: response.code, msg: response.message)
         return response.data!
     }
     
@@ -276,7 +276,7 @@ extension APIRequest {
             self.params = ["page": page, "page_size": pageSize]
         }
         let response: PagedAPIModel<T> = try await afRequest()
-        try checkResponse(code: response.code, msg: response.msg)
+        try checkResponse(code: response.code, msg: response.message)
         return (data: response.data!.results, hasNext: response.data!.next != nil)
     }
     

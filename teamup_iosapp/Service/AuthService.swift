@@ -43,41 +43,61 @@ class AuthService {
     }
 
     struct TokenResponse: HandyJSON {
+        var id: Int!
         var access: String!
         var refresh: String?
     }
     
     class func register(phone: String, verifyCode: String, password: String) async throws {
+        if !Validator.validatePhone(phone: phone) {
+            throw AuthServiceError.PhoneInvalid
+        }
+        if verifyCode.count != 6 {
+            throw AuthServiceError.VerifyCodeInvalid
+        }
+        if password.isEmpty {
+            throw AuthServiceError.PasswordInvalid
+        }
         let data: TokenResponse = try await APIRequest()
             .url("/users/")
             .method(.post)
             .params(["phone": phone, "verifyCode": verifyCode, "password": password])
             .noAuth()
             .request()
+        if data.id != nil {
+            UserService.userId = data.id
+            registered = true
+        }
         if data.access != nil {
             accessToken = data.access!
-            registered = true
         }
         if data.refresh != nil {
             refreshToken = data.refresh!
-            registered = true
         }
     }
 
     class func login(phone: String, password: String) async throws {
+        if !Validator.validatePhone(phone: phone) {
+            throw AuthServiceError.PhoneInvalid
+        }
+        if password.isEmpty {
+            throw AuthServiceError.PasswordInvalid
+        }
         let data: TokenResponse = try await APIRequest()
             .url("/auth/login/")
             .method(.post)
             .params(["phone": phone, "password": password])
             .noAuth()
             .request()
+        if data.id != nil {
+            UserService.userId = data.id
+            registered = true
+        }
         if data.access != nil {
             accessToken = data.access!
-            registered = true
         }
         if data.refresh != nil {
             refreshToken = data.refresh!
-            registered = true
         }
     }
 
@@ -85,12 +105,12 @@ class AuthService {
         if refreshToken == nil {
             let storedRefreshToken = UserDefaults.standard.string(forKey: "refreshToken")
             if storedRefreshToken == nil {
-                throw TokenServiceError.RefreshTokenInvalid
+                throw AuthServiceError.RefreshTokenInvalid
             } else {
                 if let jwt = try? decode(jwt: storedRefreshToken!), !jwt.expired {
                     refreshToken = storedRefreshToken
                 } else {
-                    throw TokenServiceError.RefreshTokenExpired
+                    throw AuthServiceError.RefreshTokenExpired
                 }
             }
         }
@@ -105,11 +125,11 @@ class AuthService {
                 accessToken = data.access!
             } else {
                 refreshToken = nil
-                throw TokenServiceError.RefreshTokenInvalid
+                throw AuthServiceError.RefreshTokenInvalid
             }
         } catch APIRequestError.TokenInvalid {
             refreshToken = nil
-            throw TokenServiceError.RefreshTokenInvalid
+            throw AuthServiceError.RefreshTokenInvalid
         }
     }
 
@@ -125,7 +145,7 @@ class AuthService {
                 print("AccessToken过期")
                 do {
                     try await refresh()
-                } catch TokenServiceError.RefreshTokenExpired, TokenServiceError.RefreshTokenInvalid {
+                } catch AuthServiceError.RefreshTokenExpired, AuthServiceError.RefreshTokenInvalid {
                     print("RefreshToken过期")
 //                    do {
 //                        try await login()
@@ -142,6 +162,13 @@ class AuthService {
         return accessToken
     }
     
+    class func getVerifyCode(phone: String) async throws {
+        if !Validator.validatePhone(phone: phone) {
+            throw AuthServiceError.PhoneInvalid
+        }
+        try await APIRequest().url("/sms/verifyCodes/").params(["phone": phone]).noAuth().requestIgnoringResponse()
+    }
+    
     class func clearToken() {
         accessToken = nil
         refreshToken = nil
@@ -149,15 +176,19 @@ class AuthService {
     }
 }
 
-enum TokenServiceError: Error {
+enum AuthServiceError: Error {
     case AccessTokenInvalid
     case AccessTokenExpired
     case RefreshTokenInvalid
     case RefreshTokenExpired
     case NotLoggedIn
+    
+    case PhoneInvalid
+    case PasswordInvalid
+    case VerifyCodeInvalid
 }
 
-extension TokenServiceError: LocalizedError {
+extension AuthServiceError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .AccessTokenInvalid:
@@ -170,6 +201,12 @@ extension TokenServiceError: LocalizedError {
             return NSLocalizedString("RefreshToken已过期", comment: "")
         case .NotLoggedIn:
             return NSLocalizedString("用户未登录", comment: "")
+        case .PhoneInvalid:
+            return NSLocalizedString("手机号格式错误", comment: "")
+        case .PasswordInvalid:
+            return NSLocalizedString("密码不能为空", comment: "")
+        case .VerifyCodeInvalid:
+            return NSLocalizedString("验证码格式错误", comment: "")
         }
     }
 }
