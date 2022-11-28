@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F50CF7AC2934C89300264013 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7AB2934C89300264013 /* MainView.swift */; };
+		F50CF7AE2934C90500264013 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7AD2934C90500264013 /* HomeView.swift */; };
+		F50CF7B02934C91800264013 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7AF2934C91800264013 /* ChatListView.swift */; };
+		F50CF7B22934C92200264013 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7B12934C92200264013 /* MeView.swift */; };
 		F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */; };
-		F5AD9DA72933B2FB00E33AD6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DA62933B2FB00E33AD6 /* ContentView.swift */; };
 		F5AD9DA92933B2FD00E33AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */; };
 		F5AD9DAC2933B2FD00E33AD6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5AD9DAB2933B2FD00E33AD6 /* Preview Assets.xcassets */; };
 		F5AD9DB62933B2FE00E33AD6 /* teamup_iosappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DB52933B2FE00E33AD6 /* teamup_iosappTests.swift */; };
@@ -64,9 +67,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F50CF7AB2934C89300264013 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F50CF7AD2934C90500264013 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F50CF7AF2934C91800264013 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		F50CF7B12934C92200264013 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		F5AD9DA12933B2FB00E33AD6 /* teamup_iosapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teamup_iosapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamupApp.swift; sourceTree = "<group>"; };
-		F5AD9DA62933B2FB00E33AD6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5AD9DAB2933B2FD00E33AD6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F5AD9DB12933B2FE00E33AD6 /* teamup_iosappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = teamup_iosappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,7 +269,10 @@
 		F5AD9DFB2933B8E700E33AD6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				F5AD9DA62933B2FB00E33AD6 /* ContentView.swift */,
+				F50CF7AB2934C89300264013 /* MainView.swift */,
+				F50CF7AD2934C90500264013 /* HomeView.swift */,
+				F50CF7AF2934C91800264013 /* ChatListView.swift */,
+				F50CF7B12934C92200264013 /* MeView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F50CF7AE2934C90500264013 /* HomeView.swift in Sources */,
 				F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */,
 				F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */,
 				F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */,
@@ -442,13 +452,13 @@
 				F5AD9E142934708700E33AD6 /* Team.swift in Sources */,
 				F5AD9DF22933B86500E33AD6 /* UIColorExtensions.swift in Sources */,
 				F5AD9DD82933B7E100E33AD6 /* UserService.swift in Sources */,
+				F50CF7B22934C92200264013 /* MeView.swift in Sources */,
 				F5AD9DEE2933B86500E33AD6 /* Array.swift in Sources */,
 				F5AD9DF42933B86500E33AD6 /* JsonLoader.swift in Sources */,
 				F5AD9E182934708700E33AD6 /* Role.swift in Sources */,
 				F5AD9E162934708700E33AD6 /* Requirement.swift in Sources */,
 				F5AD9DDB2933B7E100E33AD6 /* APIRequest.swift in Sources */,
 				F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */,
-				F5AD9DA72933B2FB00E33AD6 /* ContentView.swift in Sources */,
 				F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */,
 				F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */,
 				F5AD9E1B2934708700E33AD6 /* Competition.swift in Sources */,
@@ -458,7 +468,9 @@
 				F5AD9DF92933B8A700E33AD6 /* User.swift in Sources */,
 				F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */,
 				F5AD9E152934708700E33AD6 /* Message.swift in Sources */,
+				F50CF7B02934C91800264013 /* ChatListView.swift in Sources */,
 				F5AD9DDA2933B7E100E33AD6 /* APIRequestError.swift in Sources */,
+				F50CF7AC2934C89300264013 /* MainView.swift in Sources */,
 				F5AD9DF12933B86500E33AD6 /* DateExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
