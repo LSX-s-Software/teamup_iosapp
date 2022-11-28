@@ -36,6 +36,14 @@
 		F5AD9E042933B95F00E33AD6 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E032933B95F00E33AD6 /* JWTDecode */; };
 		F5AD9E072933B97D00E33AD6 /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */; };
 		F5AD9E0A2933B9D800E33AD6 /* HandyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E092933B9D800E33AD6 /* HandyJSON */; };
+		F5AD9E142934708700E33AD6 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0B2934708600E33AD6 /* Team.swift */; };
+		F5AD9E152934708700E33AD6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0C2934708600E33AD6 /* Message.swift */; };
+		F5AD9E162934708700E33AD6 /* Requirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0D2934708600E33AD6 /* Requirement.swift */; };
+		F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0E2934708600E33AD6 /* TeamTag.swift */; };
+		F5AD9E182934708700E33AD6 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0F2934708600E33AD6 /* Role.swift */; };
+		F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E102934708600E33AD6 /* TeamMember.swift */; };
+		F5AD9E1B2934708700E33AD6 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E122934708700E33AD6 /* Competition.swift */; };
+		F5AD9E1C2934708700E33AD6 /* Recruitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E132934708700E33AD6 /* Recruitment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +91,14 @@
 		F5AD9DEA2933B86500E33AD6 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		F5AD9DEB2933B86500E33AD6 /* Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		F5AD9DF82933B8A700E33AD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F5AD9E0B2934708600E33AD6 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		F5AD9E0C2934708600E33AD6 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F5AD9E0D2934708600E33AD6 /* Requirement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requirement.swift; sourceTree = "<group>"; };
+		F5AD9E0E2934708600E33AD6 /* TeamTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTag.swift; sourceTree = "<group>"; };
+		F5AD9E0F2934708600E33AD6 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		F5AD9E102934708600E33AD6 /* TeamMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMember.swift; sourceTree = "<group>"; };
+		F5AD9E122934708700E33AD6 /* Competition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
+		F5AD9E132934708700E33AD6 /* Recruitment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recruitment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +248,14 @@
 			isa = PBXGroup;
 			children = (
 				F5AD9DF82933B8A700E33AD6 /* User.swift */,
+				F5AD9E122934708700E33AD6 /* Competition.swift */,
+				F5AD9E0C2934708600E33AD6 /* Message.swift */,
+				F5AD9E132934708700E33AD6 /* Recruitment.swift */,
+				F5AD9E0D2934708600E33AD6 /* Requirement.swift */,
+				F5AD9E0F2934708600E33AD6 /* Role.swift */,
+				F5AD9E0B2934708600E33AD6 /* Team.swift */,
+				F5AD9E102934708600E33AD6 /* TeamMember.swift */,
+				F5AD9E0E2934708600E33AD6 /* TeamTag.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -411,21 +435,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */,
+				F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */,
+				F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */,
 				F5AD9DF02933B86500E33AD6 /* StringExtensions.swift in Sources */,
+				F5AD9E1C2934708700E33AD6 /* Recruitment.swift in Sources */,
+				F5AD9E142934708700E33AD6 /* Team.swift in Sources */,
 				F5AD9DF22933B86500E33AD6 /* UIColorExtensions.swift in Sources */,
 				F5AD9DD82933B7E100E33AD6 /* UserService.swift in Sources */,
 				F5AD9DEE2933B86500E33AD6 /* Array.swift in Sources */,
 				F5AD9DF42933B86500E33AD6 /* JsonLoader.swift in Sources */,
+				F5AD9E182934708700E33AD6 /* Role.swift in Sources */,
+				F5AD9E162934708700E33AD6 /* Requirement.swift in Sources */,
 				F5AD9DDB2933B7E100E33AD6 /* APIRequest.swift in Sources */,
 				F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */,
 				F5AD9DA72933B2FB00E33AD6 /* ContentView.swift in Sources */,
 				F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */,
 				F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */,
+				F5AD9E1B2934708700E33AD6 /* Competition.swift in Sources */,
 				F5AD9DF62933B86500E33AD6 /* Formatter.swift in Sources */,
 				F5AD9DD92933B7E100E33AD6 /* APIRequestDelegate.swift in Sources */,
 				F5AD9DEF2933B86500E33AD6 /* EnvironmentValueExtensions.swift in Sources */,
 				F5AD9DF92933B8A700E33AD6 /* User.swift in Sources */,
 				F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */,
+				F5AD9E152934708700E33AD6 /* Message.swift in Sources */,
 				F5AD9DDA2933B7E100E33AD6 /* APIRequestError.swift in Sources */,
 				F5AD9DF12933B86500E33AD6 /* DateExtensions.swift in Sources */,
 			);

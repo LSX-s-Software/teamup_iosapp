@@ -10,7 +10,6 @@ import HandyJSON
 
 /// 用户
 struct User: HandyJSON, Codable {
-    
     var id: Int!
     
     /// 用户名
