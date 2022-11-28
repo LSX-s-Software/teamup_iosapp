@@ -11,7 +11,7 @@ import HandyJSON
 
 class APIRequest {
     
-    static let BASE_URL = "http://localhost:8080" // "https://api.teamup.nagico.cn"
+    static let BASE_URL = "https://api.teamup.nagico.cn"
     
     private weak var delegate: APIRequestDelegate?
     
