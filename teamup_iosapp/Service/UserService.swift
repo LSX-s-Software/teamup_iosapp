@@ -79,12 +79,33 @@ class UserService {
     }
     
     /// 修改用户信息
-    /// - Parameter contents: 用户信息字段
-    class func editUserInfo(contents: [String: Any]) async throws {
+    /// - Parameter newInfo: 新用户信息
+    class func editUserInfo(newInfo: UserViewModel) async throws {
         if !AuthService.registered || userId == nil {
             throw UserServiceError.UserNotLoggedin
         }
-        userInfo = try await APIRequest().url("/users/").method(.put).params(contents).request()
+        // 验证信息
+        if newInfo.username.isEmpty {
+            throw UserServiceError.UsernameEmpty
+        }
+        if newInfo.realName.isEmpty {
+            throw UserServiceError.RealNameEmpty
+        }
+        if !Validator.validatePhone(phone: newInfo.phone) {
+            throw UserServiceError.PhoneInvalid
+        }
+        if newInfo.studentId.count != 13 {
+            throw UserServiceError.StudentIdInvalid
+        }
+        if newInfo.faculty.isEmpty {
+            throw UserServiceError.FacultyEmpty
+        }
+        if newInfo.grade.count != 4 {
+            throw UserServiceError.GradeInvalid
+        }
+        // 发送请求
+        userInfo = try await APIRequest().url("/users/").method(.put).params(newInfo.jsonDict).request()
+        NotificationCenter.default.post(name: NSNotification.UserInfoUpdated, object: nil)
     }
     
     class func uploadAvatar(data: Data) async throws {
@@ -242,6 +263,12 @@ class NetworkProgressHandler: APIRequestDelegate {
 
 enum UserServiceError: Error {
     case UserNotLoggedin
+    case UsernameEmpty
+    case RealNameEmpty
+    case PhoneInvalid
+    case StudentIdInvalid
+    case FacultyEmpty
+    case GradeInvalid
 }
 
 extension UserServiceError: LocalizedError {
@@ -249,11 +276,23 @@ extension UserServiceError: LocalizedError {
         switch self {
         case .UserNotLoggedin:
             return NSLocalizedString("用户未登录", comment: "")
+        case .UsernameEmpty:
+            return NSLocalizedString("用户名不能为空", comment: "")
+        case .RealNameEmpty:
+            return NSLocalizedString("真实姓名不能为空", comment: "")
+        case .PhoneInvalid:
+            return NSLocalizedString("手机号码格式不正确", comment: "")
+        case .StudentIdInvalid:
+            return NSLocalizedString("学号格式不正确", comment: "")
+        case .FacultyEmpty:
+            return NSLocalizedString("学院不能为空", comment: "")
+        case .GradeInvalid:
+            return NSLocalizedString("年级格式不正确", comment: "")
         }
     }
 }
 
 extension NSNotification {
     static let UserLogout = Notification.Name("UserLogout")
-    static let BindDepartment = Notification.Name("BindDepartment")
+    static let UserInfoUpdated = Notification.Name("UserInfoUpdated")
 }

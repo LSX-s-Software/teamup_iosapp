@@ -15,6 +15,8 @@
 		F50CF7B02934C91800264013 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7AF2934C91800264013 /* ChatListView.swift */; };
 		F50CF7B22934C92200264013 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7B12934C92200264013 /* MeView.swift */; };
 		F50CF7B42934EF2400264013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7B32934EF2400264013 /* AppDelegate.swift */; };
+		F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5262935C0EB00FC7C9C /* ProfileView.swift */; };
+		F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5292935CF9C00FC7C9C /* Academy.swift */; };
 		F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */; };
 		F5AD9DA92933B2FD00E33AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */; };
 		F5AD9DAC2933B2FD00E33AD6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5AD9DAB2933B2FD00E33AD6 /* Preview Assets.xcassets */; };
@@ -85,6 +87,8 @@
 		F50CF7AF2934C91800264013 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		F50CF7B12934C92200264013 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		F50CF7B32934EF2400264013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F528B5262935C0EB00FC7C9C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F528B5292935CF9C00FC7C9C /* Academy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.swift; sourceTree = "<group>"; };
 		F5AD9DA12933B2FB00E33AD6 /* teamup_iosapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teamup_iosapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamupApp.swift; sourceTree = "<group>"; };
 		F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,6 +166,15 @@
 				47594137A6CAD589974C8883 /* Pods_teamup_iosappTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F528B5282935C0F100FC7C9C /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				F50CF7B12934C92200264013 /* MeView.swift */,
+				F528B5262935C0EB00FC7C9C /* ProfileView.swift */,
+			);
+			path = Me;
 			sourceTree = "<group>";
 		};
 		F5AD9D982933B2FB00E33AD6 = {
@@ -292,6 +305,7 @@
 				F5AD9E0B2934708600E33AD6 /* Team.swift */,
 				F5AD9E102934708600E33AD6 /* TeamMember.swift */,
 				F5AD9E0E2934708600E33AD6 /* TeamTag.swift */,
+				F528B5292935CF9C00FC7C9C /* Academy.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -302,7 +316,7 @@
 				F50CF7AB2934C89300264013 /* MainView.swift */,
 				F50CF7AD2934C90500264013 /* HomeView.swift */,
 				F50CF7AF2934C91800264013 /* ChatListView.swift */,
-				F50CF7B12934C92200264013 /* MeView.swift */,
+				F528B5282935C0F100FC7C9C /* Me */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -317,7 +331,6 @@
 				BB72AD19BDBB996641ACED98 /* Pods-teamup_iosappTests.debug.xcconfig */,
 				172F1189043190020364B131 /* Pods-teamup_iosappTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -425,9 +438,9 @@
 			packageReferences = (
 				F5AD9DFC2933B91E00E33AD6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				F5AD9DFF2933B94300E33AD6 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
-				F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow.git" */,
-				F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON.git" */,
+				F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
+				F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */,
 			);
 			productRefGroup = F5AD9DA22933B2FB00E33AD6 /* Products */;
 			projectDirPath = "";
@@ -610,6 +623,7 @@
 				F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */,
 				F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */,
 				F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */,
+				F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */,
 				F50CF7B42934EF2400264013 /* AppDelegate.swift in Sources */,
 				F5AD9E1B2934708700E33AD6 /* Competition.swift in Sources */,
 				F5AD9DF62933B86500E33AD6 /* Formatter.swift in Sources */,
@@ -619,6 +633,7 @@
 				F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */,
 				F5AD9E152934708700E33AD6 /* Message.swift in Sources */,
 				F50CF7B02934C91800264013 /* ChatListView.swift in Sources */,
+				F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */,
 				F5AD9DDA2933B7E100E33AD6 /* APIRequestError.swift in Sources */,
 				F50CF7AC2934C89300264013 /* MainView.swift in Sources */,
 				F5AD9DF12933B86500E33AD6 /* DateExtensions.swift in Sources */,
@@ -978,7 +993,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
+		F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
 			requirement = {
@@ -986,7 +1001,7 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow.git" */ = {
+		F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow.git";
 			requirement = {
@@ -994,7 +1009,7 @@
 				kind = branch;
 			};
 		};
-		F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON.git" */ = {
+		F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alibaba/HandyJSON.git";
 			requirement = {
@@ -1017,17 +1032,17 @@
 		};
 		F5AD9E032933B95F00E33AD6 /* JWTDecode */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
+			package = F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */;
 			productName = JWTDecode;
 		};
 		F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow.git" */;
+			package = F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
 			productName = SwiftUIFlow;
 		};
 		F5AD9E092933B9D800E33AD6 /* HandyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON.git" */;
+			package = F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */;
 			productName = HandyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */

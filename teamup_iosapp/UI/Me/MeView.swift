@@ -92,13 +92,13 @@ struct MeView: View {
                             .padding(EdgeInsets(top: 40, leading: 32, bottom: 20, trailing: 32))
                         Spacer(minLength: 28)
                     }
-                    
+
                     // MARK: - 下部内容
                     VStack {
                         if registered {
                             VStack(spacing: 16) {
                                 NavigationLink {
-                                    EmptyView()
+                                    ProfileView()
                                 } label: {
                                     HStack {
                                         Label("个人信息", systemImage: "person.text.rectangle")
@@ -154,7 +154,7 @@ struct MeView: View {
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
                             Spacer()
-                            
+
                             Group {
                                 TextField("手机号", text: $phone)
                                     .keyboardType(.numberPad)
@@ -183,7 +183,7 @@ struct MeView: View {
                             }
                             Spacer()
                                 .frame(height: 20)
-                            
+
                             Button {
                                 handleLoginRegister()
                             } label: {
@@ -215,6 +215,13 @@ struct MeView: View {
                     .frame(maxWidth: .infinity)
                     .background(.background)
                     .cornerRadius(32, corners: [.topLeft, .topRight])
+                }
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.UserLogout)) { _ in
+                    registered = false
+                    userInfo = nil
+                }
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.UserInfoUpdated)) { _ in
+                    userInfo = UserService.userInfo
                 }
             }
         }

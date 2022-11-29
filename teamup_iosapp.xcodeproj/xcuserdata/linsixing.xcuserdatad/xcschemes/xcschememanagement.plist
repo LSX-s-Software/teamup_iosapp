@@ -7,49 +7,49 @@
 		<key>JWTDecode (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>13</integer>
 		</dict>
 		<key>JWTDecode (Playground) 2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>14</integer>
 		</dict>
 		<key>JWTDecode (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>11</integer>
 		</dict>
 		<key>SWXMLHashPlayground (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<key>SWXMLHashPlayground (Playground) 2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>5</integer>
 		</dict>
 		<key>SWXMLHashPlayground (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>teamup_iosapp.xcscheme_^#shared#^_</key>
+		<key>teamup_iosapp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>10</integer>
 		</dict>
 	</dict>
 </dict>

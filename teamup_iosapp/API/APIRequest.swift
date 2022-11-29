@@ -107,7 +107,7 @@ extension APIRequest {
             httpRequest = AF.request(Self.BASE_URL + url!,
                                      method: method ?? .get,
                                      parameters: params,
-                                     encoding: method == .post || method == .patch ? JSONEncoding.default : URLEncoding.default,
+                                     encoding: method == .post || method == .put ? JSONEncoding.default : URLEncoding.default,
                                      headers: requestHeaders)
                 .responseString { response in
                     if let err = response.error {
