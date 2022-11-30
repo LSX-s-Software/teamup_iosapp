@@ -53,6 +53,8 @@
 		F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E102934708600E33AD6 /* TeamMember.swift */; };
 		F5AD9E1B2934708700E33AD6 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E122934708700E33AD6 /* Competition.swift */; };
 		F5AD9E1C2934708700E33AD6 /* Recruitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E132934708700E33AD6 /* Recruitment.swift */; };
+		F5B587DB2937B60B007ECC2E /* AuthServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B587DA2937B60B007ECC2E /* AuthServiceError.swift */; };
+		F5B587DD2937B646007ECC2E /* UserServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B587DC2937B646007ECC2E /* UserServiceError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		F5AD9E102934708600E33AD6 /* TeamMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMember.swift; sourceTree = "<group>"; };
 		F5AD9E122934708700E33AD6 /* Competition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		F5AD9E132934708700E33AD6 /* Recruitment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recruitment.swift; sourceTree = "<group>"; };
+		F5B587DA2937B60B007ECC2E /* AuthServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceError.swift; sourceTree = "<group>"; };
+		F5B587DC2937B646007ECC2E /* UserServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,9 +210,10 @@
 				F5AD9DE62933B86500E33AD6 /* StaticData */,
 				F5AD9DDF2933B86500E33AD6 /* Extension */,
 				F5AD9DE82933B86500E33AD6 /* Util */,
-				F5AD9DDD2933B7E900E33AD6 /* API */,
+				F5AD9DDD2933B7E900E33AD6 /* Networking */,
 				F5AD9DFA2933B8AC00E33AD6 /* Entity */,
 				F5AD9DDE2933B7FC00E33AD6 /* Service */,
+				F5B587D92937B5CE007ECC2E /* Exception */,
 				F5AD9DFB2933B8E700E33AD6 /* UI */,
 				F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */,
 				F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */,
@@ -242,15 +247,14 @@
 			path = teamup_iosappUITests;
 			sourceTree = "<group>";
 		};
-		F5AD9DDD2933B7E900E33AD6 /* API */ = {
+		F5AD9DDD2933B7E900E33AD6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				F5AD9DD62933B7E100E33AD6 /* APIModel.swift */,
 				F5AD9DD52933B7E000E33AD6 /* APIRequest.swift */,
 				F5AD9DD32933B7E000E33AD6 /* APIRequestDelegate.swift */,
-				F5AD9DD42933B7E000E33AD6 /* APIRequestError.swift */,
 			);
-			path = API;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		F5AD9DDE2933B7FC00E33AD6 /* Service */ = {
@@ -296,7 +300,7 @@
 		F5AD9DFA2933B8AC00E33AD6 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				F5AD9DF82933B8A700E33AD6 /* User.swift */,
+				F528B5292935CF9C00FC7C9C /* Academy.swift */,
 				F5AD9E122934708700E33AD6 /* Competition.swift */,
 				F5AD9E0C2934708600E33AD6 /* Message.swift */,
 				F5AD9E132934708700E33AD6 /* Recruitment.swift */,
@@ -305,7 +309,7 @@
 				F5AD9E0B2934708600E33AD6 /* Team.swift */,
 				F5AD9E102934708600E33AD6 /* TeamMember.swift */,
 				F5AD9E0E2934708600E33AD6 /* TeamTag.swift */,
-				F528B5292935CF9C00FC7C9C /* Academy.swift */,
+				F5AD9DF82933B8A700E33AD6 /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -313,12 +317,22 @@
 		F5AD9DFB2933B8E700E33AD6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				F50CF7AB2934C89300264013 /* MainView.swift */,
-				F50CF7AD2934C90500264013 /* HomeView.swift */,
 				F50CF7AF2934C91800264013 /* ChatListView.swift */,
+				F50CF7AD2934C90500264013 /* HomeView.swift */,
+				F50CF7AB2934C89300264013 /* MainView.swift */,
 				F528B5282935C0F100FC7C9C /* Me */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		F5B587D92937B5CE007ECC2E /* Exception */ = {
+			isa = PBXGroup;
+			children = (
+				F5AD9DD42933B7E000E33AD6 /* APIRequestError.swift */,
+				F5B587DA2937B60B007ECC2E /* AuthServiceError.swift */,
+				F5B587DC2937B646007ECC2E /* UserServiceError.swift */,
+			);
+			path = Exception;
 			sourceTree = "<group>";
 		};
 		FE1E1D60815FC772F803E8E9 /* Pods */ = {
@@ -622,7 +636,9 @@
 				F5AD9DDB2933B7E100E33AD6 /* APIRequest.swift in Sources */,
 				F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */,
 				F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */,
+				F5B587DD2937B646007ECC2E /* UserServiceError.swift in Sources */,
 				F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */,
+				F5B587DB2937B60B007ECC2E /* AuthServiceError.swift in Sources */,
 				F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */,
 				F50CF7B42934EF2400264013 /* AppDelegate.swift in Sources */,
 				F5AD9E1B2934708700E33AD6 /* Competition.swift in Sources */,
