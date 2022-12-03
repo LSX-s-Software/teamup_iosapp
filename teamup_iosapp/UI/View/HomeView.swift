@@ -14,11 +14,9 @@ struct HomeView: View {
     let bannerTimer = Timer.publish(every: 7.5, on: .main, in: .common).autoconnect()
     @State var bannerItems = [Color.red, Color.yellow, Color.blue, Color.green]
     // 角色
-    @State var rawTeamRoles = [Role]()
     @State var teamRoles = ["全部角色"]
     @State var selectedRole = 0
     // 比赛
-    @State var rawCompetitions = [Competition]()
     @State var competitions = ["全部"]
     @State var selectedCompetition = 0
     // 组队信息
@@ -78,6 +76,9 @@ struct HomeView: View {
                                 }
                                 .padding(.horizontal, 10)
                             }
+                            .onChange(of: selectedCompetition) { _ in
+                                loadTeamList(reload: true)
+                            }
                             HStack(spacing: 0) {
                                 TabMenu(items: teamRoles, selection: $selectedRole)
                                 Button {
@@ -88,6 +89,9 @@ struct HomeView: View {
                                 }
                                 .padding(.horizontal, 10)
                             }
+                            .onChange(of: selectedRole) { _ in
+                                loadTeamList(reload: true)
+                            }
                         }
                         .background(.regularMaterial)
                     }
@@ -96,7 +100,7 @@ struct HomeView: View {
             .navigationTitle("组队")
             .task {
                 do {
-                    rawTeamRoles = try await RoleService.getRoleList(flattened: true)
+                    let rawTeamRoles = try await RoleService.getRoleList(flattened: true)
                     teamRoles.append(contentsOf: rawTeamRoles.map { $0.name! })
                 } catch {
                     print(error.localizedDescription)
@@ -104,7 +108,7 @@ struct HomeView: View {
             }
             .task {
                 do {
-                    rawCompetitions = try await CompetitionService.getCompetitionList()
+                    let rawCompetitions = try await CompetitionService.getCompetitionList()
                     competitions.append(contentsOf: rawCompetitions.map { $0.name! })
                 } catch {
                     print(error.localizedDescription)
@@ -124,12 +128,21 @@ extension HomeView {
         alertShown = true
     }
     
-    func loadTeamList() {
-        if pagedListVM.loading || !pagedListVM.hasNextPage { return }
+    func loadTeamList(reload: Bool = false) {
+        if pagedListVM.loading || !reload && !pagedListVM.hasNextPage { return }
+        if reload {
+            pagedListVM.currentPage = 0
+            pagedListVM.hasNextPage = true
+            teams.removeAll()
+        }
         pagedListVM.loading = true
+        let targetCompetition = selectedCompetition > 0 ? competitions[selectedCompetition] : nil
+        let targetRole = selectedRole > 0 ? teamRoles[selectedRole] : nil
         Task {
             do {
-                let response = try await TeamService.getTeamList(page: pagedListVM.currentPage + 1)
+                let response = try await TeamService.getTeamList(competition: targetCompetition,
+                                                                 role: targetRole,
+                                                                 page: pagedListVM.currentPage + 1)
                 teams.append(contentsOf: response.data)
                 pagedListVM.currentPage += 1
                 pagedListVM.hasNextPage = response.hasNext

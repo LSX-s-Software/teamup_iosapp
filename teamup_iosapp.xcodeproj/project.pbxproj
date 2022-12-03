@@ -286,10 +286,10 @@
 			isa = PBXGroup;
 			children = (
 				F5AD9DD12933B7E000E33AD6 /* AuthService.swift */,
-				F5AD9DD22933B7E000E33AD6 /* UserService.swift */,
-				AD64CF7A65DE9B5D8B58B734 /* RoleService.swift */,
 				AD64C16034A88027CC99B54A /* CompetitionService.swift */,
+				AD64CF7A65DE9B5D8B58B734 /* RoleService.swift */,
 				AD64CBF5C62986067709740B /* TeamService.swift */,
+				F5AD9DD22933B7E000E33AD6 /* UserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";

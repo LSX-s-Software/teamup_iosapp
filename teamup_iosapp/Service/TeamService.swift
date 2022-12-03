@@ -5,11 +5,21 @@
 import Foundation
 
 class TeamService {
-    class func getTeamList(page: Int, pageSize: Int = 20) async throws -> (data: [Team], hasNext: Bool) {
-        try await APIRequest().url("/home/teams").pagedRequest(page: page, pageSize: pageSize)
+    class func getTeamList(competition: String? = nil,
+                           role: String? = nil,
+                           page: Int,
+                           pageSize: Int = 20) async throws -> (data: [Team], hasNext: Bool) {
+        var params = [String: String]()
+        if let competition = competition, !competition.isEmpty {
+            params["competition"] = competition
+        }
+        if let role = role, !role.isEmpty {
+            params["role"] = role
+        }
+        return try await APIRequest().url("/home/teams").params(params).pagedRequest(page: page, pageSize: pageSize)
     }
 
     class func getTeamDetail(id: Int) async throws -> Team {
-        try await APIRequest().url("/teams/\(id)").request()
+        return try await APIRequest().url("/teams/\(id)").request()
     }
 }
