@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "ipages",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/benjaminsage/iPages.git",
+      "state" : {
+        "revision" : "f57e3cba2cf4bd0a689236254cde361e54315720",
+        "version" : "0.0.13"
+      }
+    },
+    {
       "identity" : "jwtdecode.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/JWTDecode.swift",

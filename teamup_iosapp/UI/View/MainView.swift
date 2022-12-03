@@ -12,7 +12,7 @@ struct MainView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("比赛", systemImage: "flag.2.crossed")
+                    Label("组队", systemImage: "flag.2.crossed")
                 }
             
             ChatListView()
@@ -28,7 +28,7 @@ struct MainView: View {
     }
 }
 
-struct TabView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }

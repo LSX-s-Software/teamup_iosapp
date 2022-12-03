@@ -16,4 +16,7 @@ struct Role: HandyJSON {
 
     /// 父角色ID
     var pid: Int?
+
+    /// 子角色
+    var children: [Role]!
 }

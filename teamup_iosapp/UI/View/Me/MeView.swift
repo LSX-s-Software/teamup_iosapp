@@ -146,7 +146,7 @@ struct MeView: View {
                         } else {
                             // MARK: - 注册登录
                             Text("赛道友你")
-                                .font(.system(size: 36, weight: .semibold))
+                                .font(.system(size: 36, weight: .medium))
                                 .foregroundColor(.accentColor)
                             Spacer()
                                 .frame(height: 12)
@@ -170,7 +170,7 @@ struct MeView: View {
                                             handleSendVerifyCode()
                                         } label: {
                                             Text(stopWatch.countdown > 0 ? "已发送验证码(\(stopWatch.countdown))" : "获取验证码")
-                                                .fontWeight(.semibold)
+                                                .fontWeight(.medium)
                                                 .padding(5)
                                                 .fixedSize(horizontal: true, vertical: false)
                                         }
@@ -193,7 +193,7 @@ struct MeView: View {
                                             .tint(.white)
                                     } else {
                                         Text(login ? "立即登录" : "立即注册")
-                                            .fontWeight(.semibold)
+                                            .fontWeight(.medium)
                                     }
                                 }
                                 .padding(8)
