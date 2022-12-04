@@ -5,8 +5,12 @@
 import Foundation
 
 class RoleService {
+    static var roleList: [Role]?
+    
     class func getRoleList(flattened: Bool = false) async throws -> [Role] {
-        let result: [Role] = try await APIRequest().url("/teams/roles/").request()
-        return flattened ? result.flatMap { $0.children ?? [$0] } : result
+        if roleList == nil {
+            roleList = try await APIRequest().url("/teams/roles/").request()
+        }
+        return flattened ? roleList!.flatMap { $0.children ?? [$0] } : roleList!
     }
 }

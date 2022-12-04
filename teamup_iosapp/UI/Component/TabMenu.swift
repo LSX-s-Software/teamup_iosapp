@@ -12,22 +12,28 @@ struct TabMenu: View {
     @Binding var selection: Int
     
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack(spacing: 12) {
-                ForEach(Array(items.enumerated()), id: \.offset) { index, item in
-                    Text(item)
-                        .fontWeight(selection == index ? .medium : .regular)
-                        .foregroundColor(selection == index ? .accentColor : .secondary)
-                        .font(.system(size: 20))
-                        .onTapGesture {
-                            withAnimation {
+        ScrollViewReader { reader in
+            ScrollView(.horizontal) {
+                HStack(spacing: 12) {
+                    ForEach(Array(items.enumerated()), id: \.offset) { index, item in
+                        Text(item)
+                            .fontWeight(selection == index ? .medium : .regular)
+                            .foregroundColor(selection == index ? .accentColor : .secondary)
+                            .font(.system(size: 20))
+                            .onTapGesture {
                                 selection = index
                             }
-                        }
+                            .tag(index)
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+            }
+            .onChange(of: selection) { newValue in
+                withAnimation {
+                    reader.scrollTo(newValue, anchor: .center)
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
         }
     }
 }

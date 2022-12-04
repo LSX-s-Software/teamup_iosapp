@@ -17,6 +17,8 @@ struct HomeView: View {
     // 角色
     @State var teamRoles = ["全部角色"]
     @State var selectedRole = 0
+    @State var roleViewShown = false
+    @State var roleViewSelction = Role(id: 0)
     // 比赛
     @State var competitions = ["全部"]
     @State var selectedCompetition = 0
@@ -83,7 +85,7 @@ struct HomeView: View {
                             HStack(spacing: 0) {
                                 TabMenu(items: teamRoles, selection: $selectedRole)
                                 Button {
-                                    
+                                    roleViewShown.toggle()
                                 } label: {
                                     Image(systemName: "line.3.horizontal.circle")
                                         .imageScale(.large)
@@ -92,6 +94,14 @@ struct HomeView: View {
                             }
                             .onChange(of: selectedRole) { _ in
                                 loadTeamList(reload: true)
+                            }
+                            .sheet(isPresented: $roleViewShown) {
+                                RoleView(selection: $roleViewSelction)
+                            }
+                            .onChange(of: roleViewSelction) { newSelection in
+                                if let name = newSelection.name {
+                                    selectedRole = teamRoles.firstIndex(of: name) ?? 0
+                                }
                             }
                         }
                         .background(.regularMaterial)

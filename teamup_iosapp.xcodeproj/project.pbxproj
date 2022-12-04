@@ -21,6 +21,7 @@
 		F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5262935C0EB00FC7C9C /* ProfileView.swift */; };
 		F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5292935CF9C00FC7C9C /* Academy.swift */; };
 		F5878EB4293C8C16006B8A75 /* CompetitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB3293C8C16006B8A75 /* CompetitionView.swift */; };
+		F5878EB6293C8FA1006B8A75 /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB5293C8FA1006B8A75 /* RoleView.swift */; };
 		F59F5360293B4D43000A1BD5 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F535E293B4D43000A1BD5 /* VisualEffectView.swift */; };
 		F59F5361293B4D43000A1BD5 /* PagedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F535F293B4D43000A1BD5 /* PagedListViewModel.swift */; };
 		F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */; };
@@ -104,6 +105,7 @@
 		F528B5262935C0EB00FC7C9C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F528B5292935CF9C00FC7C9C /* Academy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.swift; sourceTree = "<group>"; };
 		F5878EB3293C8C16006B8A75 /* CompetitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionView.swift; sourceTree = "<group>"; };
+		F5878EB5293C8FA1006B8A75 /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		F59F535E293B4D43000A1BD5 /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		F59F535F293B4D43000A1BD5 /* PagedListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedListViewModel.swift; sourceTree = "<group>"; };
 		F5AD9DA12933B2FB00E33AD6 /* teamup_iosapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teamup_iosapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,15 @@
 				F528B5262935C0EB00FC7C9C /* ProfileView.swift */,
 			);
 			path = Me;
+			sourceTree = "<group>";
+		};
+		F5878EB7293C8FBD006B8A75 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F50CF7AD2934C90500264013 /* HomeView.swift */,
+				F5878EB5293C8FA1006B8A75 /* RoleView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		F59F535D293B4CFB000A1BD5 /* ViewModel */ = {
@@ -367,9 +378,9 @@
 			isa = PBXGroup;
 			children = (
 				F50CF7AF2934C91800264013 /* ChatListView.swift */,
-				F50CF7AD2934C90500264013 /* HomeView.swift */,
-				F50CF7AB2934C89300264013 /* MainView.swift */,
 				F5878EB3293C8C16006B8A75 /* CompetitionView.swift */,
+				F50CF7AB2934C89300264013 /* MainView.swift */,
+				F5878EB7293C8FBD006B8A75 /* Home */,
 				F528B5282935C0F100FC7C9C /* Me */,
 			);
 			path = View;
@@ -677,6 +688,7 @@
 				F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */,
 				F5AD9DF02933B86500E33AD6 /* StringExtensions.swift in Sources */,
 				F59F5360293B4D43000A1BD5 /* VisualEffectView.swift in Sources */,
+				F5878EB6293C8FA1006B8A75 /* RoleView.swift in Sources */,
 				F5AD9E1C2934708700E33AD6 /* Recruitment.swift in Sources */,
 				F5AD9E142934708700E33AD6 /* Team.swift in Sources */,
 				F5AD9DF22933B86500E33AD6 /* UIColorExtensions.swift in Sources */,
