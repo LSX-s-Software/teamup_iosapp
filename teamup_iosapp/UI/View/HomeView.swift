@@ -9,6 +9,7 @@ import SwiftUI
 import iPages
 
 struct HomeView: View {
+    @Binding var tabbarSelection: Int
     // Banner
     @State var currentPage = 0
     let bannerTimer = Timer.publish(every: 7.5, on: .main, in: .common).autoconnect()
@@ -69,9 +70,9 @@ struct HomeView: View {
                             HStack(spacing: 0) {
                                 TabMenu(items: competitions, selection: $selectedCompetition)
                                 Button {
-                                    
+                                    tabbarSelection = Tab.competition.rawValue
                                 } label: {
-                                    Image(systemName: "line.3.horizontal.circle")
+                                    Image(systemName: "arrow.up.forward.circle")
                                         .imageScale(.large)
                                 }
                                 .padding(.horizontal, 10)
@@ -157,7 +158,7 @@ extension HomeView {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         TabView {
-            HomeView()
+            HomeView(tabbarSelection: .constant(0))
                 .tabItem {
                     Label("组队", systemImage: "flag.2.crossed")
                 }
