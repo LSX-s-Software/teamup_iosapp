@@ -24,6 +24,8 @@ struct TeamDetailView: View {
     @State var alertShown = false
     @State var alertTitle = ""
     @State var alertMsg: String?
+    // Team member sheet
+    @State var teamMemberSheetShown = false
     
     var body: some View {
         ScrollView {
@@ -78,12 +80,25 @@ struct TeamDetailView: View {
                             .modifier(SectionTitleStyle())
                         Spacer()
                         Button {
-                            
+                            teamMemberSheetShown.toggle()
                         } label: {
                             Text("共\(team.members?.count ?? 0)人")
                                 .foregroundColor(.secondary)
                                 .font(.callout)
                             Image(systemName: "chevron.right")
+                        }
+                        .sheet(isPresented: $teamMemberSheetShown) {
+                            NavigationView {
+                                TeamMemberDetailView(teamMembers: team.members ?? [])
+                                    .toolbar {
+                                        ToolbarItem(placement: .confirmationAction) {
+                                            Button("关闭") {
+                                                teamMemberSheetShown = false
+                                            }
+                                        }
+                                    }
+                                    .navigationTitle("所有队员")
+                            }
                         }
                     }
                     ForEach(Array((team.members ?? []).enumerated()), id: \.offset) { index, member in
