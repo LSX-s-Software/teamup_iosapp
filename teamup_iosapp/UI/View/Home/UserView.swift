@@ -9,7 +9,7 @@ import SwiftUI
 import CachedAsyncImage
 import SwiftUIFlow
 
-fileprivate struct BriefInfoStyle: ViewModifier {
+private struct BriefInfoStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
@@ -34,7 +34,7 @@ struct UserView: View {
                             .font(.largeTitle)
                         Text("\(user.faculty ?? "未填写学院") \(user.grade ?? "未填写年")级")
                             .foregroundColor(.white)
-                        if let span = (Date.now - user.lastLogin!).day {
+                        if let lastLogin = user.lastLogin, let span = (Date.now - lastLogin).day {
                             Group {
                                 if span > 0 {
                                     Text("\(span)天前来过")
@@ -144,6 +144,9 @@ struct UserView: View {
         }
         .navigationTitle("队长信息")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(Color.accentColor, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .task {
             do {
                 user = try await UserService.getUserInfo(id: userId)
@@ -156,6 +159,8 @@ struct UserView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView(userId: 11, user: PreviewData.leader)
+        NavigationView {
+            UserView(userId: 11, user: PreviewData.leader)
+        }
     }
 }

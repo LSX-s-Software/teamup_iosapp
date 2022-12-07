@@ -66,6 +66,7 @@ struct RoleView: View {
             }
             .navigationTitle("选择角色")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("确定") {

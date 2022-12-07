@@ -224,6 +224,7 @@ struct MeView: View {
                     userInfo = UserService.userInfo
                 }
             }
+            .toolbarColorScheme(.dark, for: .navigationBar)
         }
         .alert(alertTitle, isPresented: $alertShown, actions: {}, message: {
             if let alertMsg = alertMsg {

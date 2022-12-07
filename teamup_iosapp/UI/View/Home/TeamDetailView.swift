@@ -24,8 +24,9 @@ struct TeamDetailView: View {
     @State var alertShown = false
     @State var alertTitle = ""
     @State var alertMsg: String?
-    // Team member sheet
+    // Sheet
     @State var teamMemberSheetShown = false
+    @State var leaderSheetShown = false
     
     var body: some View {
         ScrollView {
@@ -37,8 +38,8 @@ struct TeamDetailView: View {
                 VStack(alignment: .leading) {
                     Text("队长信息")
                         .modifier(SectionTitleStyle())
-                    NavigationLink {
-                        UserView(userId: team.leader!.id, user: team.leader!)
+                    Button {
+                        leaderSheetShown.toggle()
                     } label: {
                         VStack(alignment: .leading) {
                             HStack(spacing: 0) {
@@ -69,6 +70,19 @@ struct TeamDetailView: View {
                         .padding()
                         .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(10)
+                    }
+                    .sheet(isPresented: $leaderSheetShown) {
+                        NavigationView {
+                            UserView(userId: team.leader!.id, user: team.leader!)
+                                .toolbar {
+                                    ToolbarItem(placement: .confirmationAction) {
+                                        Button("关闭") {
+                                            leaderSheetShown = false
+                                        }
+                                        .tint(.white)
+                                    }
+                                }
+                        }
                     }
                 }
                 
@@ -218,7 +232,7 @@ extension TeamDetailView {
 struct TeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            TeamDetailView(teamId: 113, team: PreviewData.team)
+            TeamDetailView(teamId: 112, team: PreviewData.team)
         }
     }
 }
