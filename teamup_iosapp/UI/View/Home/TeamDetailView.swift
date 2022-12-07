@@ -143,7 +143,7 @@ struct TeamDetailView: View {
                                     } else {
                                         Text("\(index + 1)")
                                     }
-                                    Text(requirement.content)
+                                    Text(requirement)
                                 }
                             }
                         }

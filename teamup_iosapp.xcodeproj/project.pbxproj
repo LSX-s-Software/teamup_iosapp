@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D5909771F5E60CD6738993E /* Pods_teamup_iosapp_teamup_iosappUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08ECBE9825A2E9D683E5E6FD /* Pods_teamup_iosapp_teamup_iosappUITests.framework */; };
+		7F1A02422940916C0023214D /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1A02412940916C0023214D /* UserView.swift */; };
 		7FA1BB9E2940844800B1DF25 /* TeamMemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */; };
 		916928F25C819C72745F4E64 /* Pods_teamup_iosappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47594137A6CAD589974C8883 /* Pods_teamup_iosappTests.framework */; };
 		AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CBF5C62986067709740B /* TeamService.swift */; };
@@ -58,7 +59,6 @@
 		F5AD9E0A2933B9D800E33AD6 /* HandyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F5AD9E092933B9D800E33AD6 /* HandyJSON */; };
 		F5AD9E142934708700E33AD6 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0B2934708600E33AD6 /* Team.swift */; };
 		F5AD9E152934708700E33AD6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0C2934708600E33AD6 /* Message.swift */; };
-		F5AD9E162934708700E33AD6 /* Requirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0D2934708600E33AD6 /* Requirement.swift */; };
 		F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0E2934708600E33AD6 /* TeamTag.swift */; };
 		F5AD9E182934708700E33AD6 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E0F2934708600E33AD6 /* Role.swift */; };
 		F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD9E102934708600E33AD6 /* TeamMember.swift */; };
@@ -95,6 +95,7 @@
 		3141F1C825F0A083C0A6051D /* Pods-teamup_iosapp-teamup_iosappUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-teamup_iosapp-teamup_iosappUITests.debug.xcconfig"; path = "Target Support Files/Pods-teamup_iosapp-teamup_iosappUITests/Pods-teamup_iosapp-teamup_iosappUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EF86DD038F5EC6684189FDB /* Pods-teamup_iosapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-teamup_iosapp.debug.xcconfig"; path = "Target Support Files/Pods-teamup_iosapp/Pods-teamup_iosapp.debug.xcconfig"; sourceTree = "<group>"; };
 		47594137A6CAD589974C8883 /* Pods_teamup_iosappTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_teamup_iosappTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F1A02412940916C0023214D /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberDetailView.swift; sourceTree = "<group>"; };
 		AD64C16034A88027CC99B54A /* CompetitionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitionService.swift; sourceTree = "<group>"; };
 		AD64CBF5C62986067709740B /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
@@ -144,7 +145,6 @@
 		F5AD9DF82933B8A700E33AD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F5AD9E0B2934708600E33AD6 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		F5AD9E0C2934708600E33AD6 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		F5AD9E0D2934708600E33AD6 /* Requirement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requirement.swift; sourceTree = "<group>"; };
 		F5AD9E0E2934708600E33AD6 /* TeamTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTag.swift; sourceTree = "<group>"; };
 		F5AD9E0F2934708600E33AD6 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		F5AD9E102934708600E33AD6 /* TeamMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMember.swift; sourceTree = "<group>"; };
@@ -214,6 +214,7 @@
 			children = (
 				F50CF7AD2934C90500264013 /* HomeView.swift */,
 				F5878EB8293CF876006B8A75 /* TeamDetailView.swift */,
+				7F1A02412940916C0023214D /* UserView.swift */,
 				7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */,
 				F5878EB5293C8FA1006B8A75 /* RoleView.swift */,
 			);
@@ -356,7 +357,6 @@
 				F5AD9E122934708700E33AD6 /* Competition.swift */,
 				F5AD9E0C2934708600E33AD6 /* Message.swift */,
 				F5AD9E132934708700E33AD6 /* Recruitment.swift */,
-				F5AD9E0D2934708600E33AD6 /* Requirement.swift */,
 				F5AD9E0F2934708600E33AD6 /* Role.swift */,
 				F5AD9E0B2934708600E33AD6 /* Team.swift */,
 				F5AD9E102934708600E33AD6 /* TeamMember.swift */,
@@ -713,9 +713,9 @@
 				7FA1BB9E2940844800B1DF25 /* TeamMemberDetailView.swift in Sources */,
 				F5AD9DF42933B86500E33AD6 /* JsonLoader.swift in Sources */,
 				F5878EB9293CF876006B8A75 /* TeamDetailView.swift in Sources */,
+				7F1A02422940916C0023214D /* UserView.swift in Sources */,
 				F5579F5229402DDE008371B2 /* PreviewData.swift in Sources */,
 				F5AD9E182934708700E33AD6 /* Role.swift in Sources */,
-				F5AD9E162934708700E33AD6 /* Requirement.swift in Sources */,
 				F5AD9DDB2933B7E100E33AD6 /* APIRequest.swift in Sources */,
 				F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */,
 				F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */,

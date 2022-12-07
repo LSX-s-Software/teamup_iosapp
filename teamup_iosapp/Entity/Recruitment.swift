@@ -9,5 +9,5 @@ struct Recruitment: HandyJSON {
     var role: Role!
 
     /// 需求
-    var requirements: [Requirement]!
+    var requirements: [String]!
 }
