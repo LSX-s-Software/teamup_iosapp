@@ -59,7 +59,7 @@ struct TeamInfoView: View {
                 }
                 
                 Text("队伍简介：\(team.description ?? "")")
-                    .foregroundColor(.primary)
+                    .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                 
