@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @Environment(\.dismiss) var dismiss
+    
     @StateObject var userInfo = UserViewModel()!
     @State var editing = false
     @State var saving = false
     let currentYear = Calendar.current.dateComponents([.year], from: Date()).year!
     let academyList: [Academy] = loadJSON("academies")
+    // Alert
     @State var alertShown = false
     @State var alertTitle = ""
     @State var alertMsg: String?
+    @State var logoutConfirmShown = false
     
     var body: some View {
         Form {
@@ -102,6 +106,20 @@ struct ProfileView: View {
                     }
                 }
             }
+            
+            if !editing {
+                Button("退出登录", role: .destructive) {
+                    logoutConfirmShown = true
+                }
+                .confirmationDialog("确定要退出登录吗", isPresented: $logoutConfirmShown, titleVisibility: .visible) {
+                    Button("退出登录", role: .destructive) {
+                        UserService.logout()
+                        dismiss()
+                    }
+                } message: {
+                    Text("退出登录将清除保存在本地的所有用户信息。服务器保存上的信息不受影响")
+                }
+            }
         }
         .navigationTitle("个人信息")
         .navigationBarBackButtonHidden(editing)
@@ -136,9 +154,9 @@ struct ProfileView: View {
                 showAlert(title: "获取用户信息失败", msg: error.localizedDescription)
             }
         }
-        .alert(isPresented: $alertShown, content: {
+        .alert(isPresented: $alertShown) {
             Alert(title: Text(alertTitle), message: Text(alertMsg ?? ""), dismissButton: .default(Text("确定")))
-        })
+        }
     }
 }
 

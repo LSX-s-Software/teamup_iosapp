@@ -239,7 +239,7 @@ class UserService {
     
     /// 退出登录
     class func logout() {
-        if FileManager.default.fileExists(atPath: userFileDirectory!.path) {
+        if userFileDirectory != nil && FileManager.default.fileExists(atPath: userFileDirectory!.path) {
             try? FileManager.default.removeItem(at: userFileDirectory!)
         }
         userId = nil
