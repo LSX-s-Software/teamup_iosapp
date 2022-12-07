@@ -38,6 +38,9 @@ struct User: HandyJSON, Codable {
 
     /// 上次在线时间
     var lastLogin: Date?
+    
+    /// 自我介绍
+    var introduction: String?
 }
 
 /// 用户

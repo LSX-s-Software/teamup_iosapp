@@ -109,6 +109,9 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("组队")
+            .alert(isPresented: $alertShown) {
+                Alert(title: Text(alertTitle), message: Text(alertMsg ?? ""), dismissButton: .default(Text("确定")))
+            }
             .task {
                 do {
                     let rawTeamRoles = try await RoleService.getRoleList(flattened: true)

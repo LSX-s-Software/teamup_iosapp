@@ -13,7 +13,7 @@ struct TeamInfoView: View {
     
     var body: some View {
         NavigationLink {
-            EmptyView()
+            TeamDetailView(teamId: team.id, team: team)
         } label: {
             VStack(alignment: .leading, spacing: 6) {
                 HStack {
@@ -71,12 +71,7 @@ struct TeamInfoView: View {
 }
 
 struct TeamInfoView_Previews: PreviewProvider {
-    static let competition = Competition(id: 1, name: "测试比赛", description: "测试比赛", verified: true, startTime: Date.now, endTime: Date.now)
-    static let team = Team(name: "互联网+队伍招队友",
-                           competition: competition,
-                           leader: User(username: "张三", faculty: "计算机学院"),
-                           description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae rem quibusdam nihil…")
     static var previews: some View {
-        TeamInfoView(team: team)
+        TeamInfoView(team: PreviewData.team)
     }
 }
