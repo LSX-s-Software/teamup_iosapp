@@ -9,11 +9,13 @@ import SwiftUI
 import CachedAsyncImage
 import SwiftUIFlow
 
-private struct BriefInfoStyle: ViewModifier {
+struct BriefInfoStyle: ViewModifier {
+    var width: CGFloat = 100, height: CGFloat = 100
+    
     func body(content: Content) -> some View {
         content
             .padding()
-            .frame(width: 100, height: 100)
+            .frame(width: width, height: height)
             .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(10)
     }

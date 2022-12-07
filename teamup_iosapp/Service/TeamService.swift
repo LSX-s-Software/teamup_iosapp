@@ -5,6 +5,13 @@
 import Foundation
 
 class TeamService {
+    enum SortMethod: String, CaseIterable {
+        case date = "按创建日期从新到旧"
+        case dateAsc = "按创建日期从旧到新"
+        case popular = "按人气降序"
+        case popularAsc = "按人气升序"
+    }
+    
     class func getTeamList(competition: String? = nil,
                            role: String? = nil,
                            page: Int,

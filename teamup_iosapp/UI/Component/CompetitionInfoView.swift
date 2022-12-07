@@ -13,7 +13,7 @@ struct CompetitionInfoView: View {
     
     var body: some View {
         NavigationLink {
-            
+            CompetitionDetailView(competitionId: competition.id, competition: competition)
         } label: {
             HStack(spacing: 0) {
                 CachedAsyncImage(url: URL(string: competition.logo ?? "")) { image in
@@ -38,14 +38,14 @@ struct CompetitionInfoView: View {
                     }
                     HStack {
                         if let startTime = competition.startTime {
-                            Text("\(Formatter.formatDate(date: startTime, compact: true))")
+                            Text("\(Formatter.formatDate(date: startTime, format: "yyyy-MM-dd"))")
                                 .lineLimit(1)
                                 .foregroundColor(.primary)
                         }
                         Image(systemName: "arrowshape.right")
                             .foregroundColor(.primary)
                         if let endTime = competition.endTime {
-                            Text("\(Formatter.formatDate(date: endTime, compact: true))")
+                            Text("\(Formatter.formatDate(date: endTime, format: "yyyy-MM-dd"))")
                                 .lineLimit(1)
                                 .foregroundColor(.primary)
                         }

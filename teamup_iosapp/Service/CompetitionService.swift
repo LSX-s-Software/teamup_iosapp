@@ -6,6 +6,18 @@ import Foundation
 
 class CompetitionService {
     class func getCompetitionList() async throws -> [Competition] {
-        try await APIRequest().url("/competitions").request()
+        return try await APIRequest().url("/competitions").request()
+    }
+    
+    class func getCompetition(id: Int) async throws -> Competition {
+        do {
+            return try await APIRequest().url("/competitions/\(id)").request()
+        } catch APIRequestError.RequestError(let code, let msg) {
+            if code == "A0514" {
+                throw CompetitionServiceError.CompetitionNotFound
+            } else {
+                throw APIRequestError.RequestError(code: code, msg: msg)
+            }
+        }
     }
 }
