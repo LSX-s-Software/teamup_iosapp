@@ -121,6 +121,10 @@ class UserService {
         userInfo?.avatar = newUserInfo.avatar
     }
     
+    class func getUserInfo(id: Int) async throws -> User {
+        return try await APIRequest().url("/users/\(id)").request()
+    }
+    
     /*
     /// 删除文件
     /// - Parameter id: 文件ID

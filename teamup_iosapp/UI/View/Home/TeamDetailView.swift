@@ -8,16 +8,16 @@
 import SwiftUI
 import CachedAsyncImage
 
-struct TeamDetailView: View {
-    struct SectionTitleStyle: ViewModifier {
-        func body(content: Content) -> some View {
-            content
-                .font(.title2)
-                .fontWeight(.medium)
-                .foregroundColor(.accentColor)
-        }
+struct SectionTitleStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title2)
+            .fontWeight(.medium)
+            .foregroundColor(.accentColor)
     }
-    
+}
+
+struct TeamDetailView: View {
     var teamId: Int
     @State var team = Team()
     // Alert
@@ -37,33 +37,39 @@ struct TeamDetailView: View {
                 VStack(alignment: .leading) {
                     Text("队长信息")
                         .modifier(SectionTitleStyle())
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 0) {
-                            CachedAsyncImage(url: URL(string: team.leader?.avatar ?? "")) { image in
-                                image.resizable().scaledToFit()
-                            } placeholder: {
-                                ProgressView()
+                    NavigationLink {
+                        UserView(userId: team.leader!.id, user: team.leader!)
+                    } label: {
+                        VStack(alignment: .leading) {
+                            HStack(spacing: 0) {
+                                CachedAsyncImage(url: URL(string: team.leader?.avatar ?? "")) { image in
+                                    image.resizable().scaledToFit()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 40, height: 40)
+                                .cornerRadius(5)
+                                Spacer()
+                                    .frame(width: 12)
+                                VStack(alignment: .leading) {
+                                    Text(team.leader?.username ?? "")
+                                        .font(.title3)
+                                        .foregroundColor(.primary)
+                                    Text(team.leader?.faculty ?? "")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
                             }
-                            .frame(width: 40, height: 40)
-                            .cornerRadius(5)
-                            Spacer()
-                                .frame(width: 12)
-                            VStack(alignment: .leading) {
-                                Text(team.leader?.username ?? "")
-                                    .font(.title3)
-                                    .foregroundColor(.primary)
-                                Text(team.leader?.faculty ?? "")
-                                    .font(.caption)
-                            }
-                            Spacer()
-                            Image(systemName: "chevron.right")
+                            Text(nilOrEmpty(team.leader?.introduction) ? "这个人很懒，没有写自我介绍" : team.leader!.introduction!)
+                                .lineLimit(3)
+                                .foregroundColor(.primary)
                         }
-                        Text(nilOrEmpty(team.leader?.introduction) ? "这个人很懒，没有写自我介绍" : team.leader!.introduction!)
-                            .lineLimit(3)
+                        .padding()
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(10)
                     }
-                    .padding()
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(10)
                 }
                 
                 // MARK: - 队伍介绍

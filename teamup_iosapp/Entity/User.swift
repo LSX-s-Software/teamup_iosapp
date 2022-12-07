@@ -41,6 +41,12 @@ struct User: HandyJSON, Codable {
     
     /// 自我介绍
     var introduction: String?
+    
+    /// 获奖记录
+    var awards: [String]?
+    
+    /// 团队数量
+    var teamCount: Int?
 }
 
 /// 用户
