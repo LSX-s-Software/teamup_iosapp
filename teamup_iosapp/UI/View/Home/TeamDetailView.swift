@@ -154,9 +154,13 @@ struct TeamDetailView: View {
                         .modifier(SectionTitleStyle())
                     ForEach(team.recruitments ?? [], id: \.id) { recruitment in
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(recruitment.role.name ?? "")
-                                .fontWeight(.medium)
-                                .lineLimit(1)
+                            HStack {
+                                Text(recruitment.role.name ?? "")
+                                    .fontWeight(.medium)
+                                    .lineLimit(1)
+                                Spacer()
+                                Text("\(recruitment.count ?? 0)人")
+                            }
                             Divider()
                             ForEach(Array((recruitment.requirements ?? []).enumerated()), id: \.offset) { index, requirement in
                                 HStack {
