@@ -128,6 +128,7 @@ struct HomeView: View {
                 Alert(title: Text(alertTitle), message: Text(alertMsg ?? ""), dismissButton: .default(Text("确定")))
             }
             .task {
+                if competitions.count > 1 { return }
                 do {
                     let rawTeamRoles = try await RoleService.getRoleList(flattened: true)
                     teamRoles.append(contentsOf: rawTeamRoles.map { $0.name! })
@@ -136,6 +137,7 @@ struct HomeView: View {
                 }
             }
             .task {
+                if teamRoles.count > 1 { return }
                 do {
                     let rawCompetitions = try await CompetitionService.getCompetitionList()
                     competitions.append(contentsOf: rawCompetitions.map { $0.abbreviation ?? $0.name })
