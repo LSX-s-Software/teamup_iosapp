@@ -14,6 +14,7 @@
 		7FA1BB9E2940844800B1DF25 /* TeamMemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */; };
 		916928F25C819C72745F4E64 /* Pods_teamup_iosappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47594137A6CAD589974C8883 /* Pods_teamup_iosappTests.framework */; };
 		AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CBF5C62986067709740B /* TeamService.swift */; };
+		AD64C08C21A9F64D983616ED /* CompetitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64C8BC77A557A39078EB8C /* CompetitionViewModel.swift */; };
 		AD64C0EC072AA5E6F1166A85 /* CompetitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64C16034A88027CC99B54A /* CompetitionService.swift */; };
 		AD64C5A8F081B9391881058A /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */; };
 		AD64C7AC87B8777ABB6A7DE0 /* RoleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CF7A65DE9B5D8B58B734 /* RoleService.swift */; };
@@ -23,6 +24,7 @@
 		F50CF7B02934C91800264013 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7AF2934C91800264013 /* ChatListView.swift */; };
 		F50CF7B22934C92200264013 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7B12934C92200264013 /* MeView.swift */; };
 		F50CF7B42934EF2400264013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7B32934EF2400264013 /* AppDelegate.swift */; };
+		F51029EF2942027200A357B6 /* CompetitionApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51029EE2942027200A357B6 /* CompetitionApplicationView.swift */; };
 		F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5262935C0EB00FC7C9C /* ProfileView.swift */; };
 		F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5292935CF9C00FC7C9C /* Academy.swift */; };
 		F5579F5229402DDE008371B2 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F5129402DDE008371B2 /* PreviewData.swift */; };
@@ -111,6 +113,7 @@
 		7F507CAB2941D7DB001B8566 /* RecruitmentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentInfoView.swift; sourceTree = "<group>"; };
 		7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberDetailView.swift; sourceTree = "<group>"; };
 		AD64C16034A88027CC99B54A /* CompetitionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitionService.swift; sourceTree = "<group>"; };
+		AD64C8BC77A557A39078EB8C /* CompetitionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitionViewModel.swift; sourceTree = "<group>"; };
 		AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
 		AD64CBF5C62986067709740B /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 		AD64CF7A65DE9B5D8B58B734 /* RoleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleService.swift; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		F50CF7AF2934C91800264013 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		F50CF7B12934C92200264013 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		F50CF7B32934EF2400264013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F51029EE2942027200A357B6 /* CompetitionApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionApplicationView.swift; sourceTree = "<group>"; };
 		F528B5262935C0EB00FC7C9C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F528B5292935CF9C00FC7C9C /* Academy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.swift; sourceTree = "<group>"; };
 		F5579F5129402DDE008371B2 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
@@ -232,6 +236,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F51029ED2942024E00A357B6 /* Competition */ = {
+			isa = PBXGroup;
+			children = (
+				F5878EB3293C8C16006B8A75 /* CompetitionView.swift */,
+				F51029EE2942027200A357B6 /* CompetitionApplicationView.swift */,
+				F5579F552940D213008371B2 /* CompetitionDetailView.swift */,
+			);
+			path = Competition;
+			sourceTree = "<group>";
+		};
 		F528B5282935C0F100FC7C9C /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,7 +258,6 @@
 		F5878EB7293C8FBD006B8A75 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F5579F552940D213008371B2 /* CompetitionDetailView.swift */,
 				F50CF7AD2934C90500264013 /* HomeView.swift */,
 				F5878EB5293C8FA1006B8A75 /* RoleView.swift */,
 				F5878EB8293CF876006B8A75 /* TeamDetailView.swift */,
@@ -263,6 +276,7 @@
 				F55B0C2129417C3A006D2ECA /* TeamMemberViewModel.swift */,
 				F55B0C1F29417B8D006D2ECA /* TeamViewModel.swift */,
 				F55B0C1D29417B6C006D2ECA /* UserViewModel.swift */,
+				AD64C8BC77A557A39078EB8C /* CompetitionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -428,8 +442,8 @@
 			isa = PBXGroup;
 			children = (
 				F50CF7AF2934C91800264013 /* ChatListView.swift */,
-				F5878EB3293C8C16006B8A75 /* CompetitionView.swift */,
 				F50CF7AB2934C89300264013 /* MainView.swift */,
+				F51029ED2942024E00A357B6 /* Competition */,
 				AD64C4067A0C722C25C9F852 /* CreateTeam */,
 				F5878EB7293C8FBD006B8A75 /* Home */,
 				F528B5282935C0F100FC7C9C /* Me */,
@@ -567,7 +581,7 @@
 			packageReferences = (
 				F5AD9DFC2933B91E00E33AD6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				F5AD9DFF2933B94300E33AD6 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
 				F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 				F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */,
 				F5B587E329384B31007ECC2E /* XCRemoteSwiftPackageReference "iPages" */,
@@ -737,6 +751,7 @@
 			files = (
 				F50CF7AE2934C90500264013 /* HomeView.swift in Sources */,
 				F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */,
+				F51029EF2942027200A357B6 /* CompetitionApplicationView.swift in Sources */,
 				7F507CAA2941CC19001B8566 /* CreateRecruitmentView.swift in Sources */,
 				F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */,
 				F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */,
@@ -793,6 +808,7 @@
 				F5579F562940D213008371B2 /* CompetitionDetailView.swift in Sources */,
 				F55B0C2529417FA8006D2ECA /* RecruitmentViewModel.swift in Sources */,
 				AD64C5A8F081B9391881058A /* CreateTeamView.swift in Sources */,
+				AD64C08C21A9F64D983616ED /* CompetitionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1153,7 +1169,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+		F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
 			requirement = {
@@ -1200,7 +1216,7 @@
 		};
 		F5AD9E032933B95F00E33AD6 /* JWTDecode */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			package = F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
 			productName = JWTDecode;
 		};
 		F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */ = {

@@ -20,4 +20,8 @@ class CompetitionService {
             }
         }
     }
+
+    class func createCompetition(_ competition: Competition) async throws -> Competition {
+        return try await APIRequest().url("/competitions").method(.post).params(competition.toJSON()).request()
+    }
 }

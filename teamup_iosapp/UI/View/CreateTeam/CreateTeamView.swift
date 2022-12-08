@@ -19,6 +19,8 @@ struct CreateTeamView: View {
     // Recruitment Sheet
     @State var recruitmentViewShown = false
     @State var editingRecruitment = -1
+    // Competition Sheet
+    @State var competitionAppViewShown = false
     
     var body: some View {
         NavigationView {
@@ -35,10 +37,19 @@ struct CreateTeamView: View {
                         }
                     }
                     .pickerStyle(.navigationLink)
+                    Button("建议新比赛") {
+                        competitionAppViewShown.toggle()
+                    }
+                    .sheet(isPresented: $competitionAppViewShown) {
+                        CompetitionApplicationView { newCompetition in
+                            competitions.append(newCompetition)
+                            teamVM.competitionId = newCompetition.id!
+                        }
+                    }
                 } header: {
                     Text("参加的比赛")
                 } footer: {
-                    Text("选择该团队参加的比赛，如果需要参加多场比赛，请分别在每个比赛下创建团队")
+                    Text("选择该团队参加的比赛，如果需要参加多场比赛，请分别在每个比赛下创建团队。如果想参加的比赛不在列表中，可以点击“建议新比赛”按钮向我们提交新比赛的建议")
                 }
 
                 Section {

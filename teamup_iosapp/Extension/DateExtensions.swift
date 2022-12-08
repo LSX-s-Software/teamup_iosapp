@@ -53,7 +53,7 @@ extension Date: HandyJSONCustomTransformable {
     }
     
     public func _plainValue() -> Any? {
-        return DateTransform().transformToJSON(self)
+        return self.ISO8601Format()
     }
 
 }
