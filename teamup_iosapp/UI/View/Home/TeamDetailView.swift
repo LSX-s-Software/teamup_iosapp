@@ -83,6 +83,7 @@ struct TeamDetailView: View {
                                     }
                                 }
                         }
+                        .presentationDetents([.medium, .large])
                     }
                 }
                 
@@ -119,6 +120,7 @@ struct TeamDetailView: View {
                                     }
                                     .navigationTitle("所有队员")
                             }
+                            .presentationDetents([.medium, .large])
                         }
                     }
                     ForEach(Array((team.members ?? []).enumerated()), id: \.offset) { index, member in
