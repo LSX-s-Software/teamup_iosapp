@@ -38,7 +38,7 @@ struct CompetitionInfoView: View {
                     .frame(width: 12)
                 VStack(alignment: .leading) {
                     HStack(spacing: 4) {
-                        Text(competition.name ?? "")
+                        Text(competition.name.count < 10 ? competition.name : competition.abbreviation)
                             .font(.title2)
                             .foregroundColor(.primary)
                             .lineLimit(1)
