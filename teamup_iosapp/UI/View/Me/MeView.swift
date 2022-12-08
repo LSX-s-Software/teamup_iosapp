@@ -130,17 +130,6 @@ struct MeView: View {
                                     }
                                     .modifier(NavLinkStyle())
                                 }
-                                NavigationLink {
-                                    EmptyView()
-                                } label: {
-                                    HStack {
-                                        Label("设置", systemImage: "gear")
-                                            .font(.title3)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                    }
-                                    .modifier(NavLinkStyle())
-                                }
                             }
                             Spacer()
                         } else {
