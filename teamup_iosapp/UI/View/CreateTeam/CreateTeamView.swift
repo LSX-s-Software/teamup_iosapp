@@ -147,7 +147,7 @@ struct CreateTeamView: View {
                     Button("创建") {
                         submit()
                     }
-                    .disabled(teamVM.competitionId == 0 || teamVM.recruitments.isEmpty)
+                    .disabled(!formValid)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("取消") {
@@ -160,6 +160,10 @@ struct CreateTeamView: View {
 }
 
 extension CreateTeamView {
+    var formValid: Bool {
+        return !(teamVM.name.isEmpty || teamVM.description.isEmpty || teamVM.competitionId == 0 || teamVM.recruitments.isEmpty)
+    }
+    
     func submit() {
         Task {
             do {
@@ -174,10 +178,10 @@ extension CreateTeamView {
 
 struct CreateTeamView_Previews: PreviewProvider {
     static var previews: some View {
-//        Rectangle()
-//            .fill(.background)
-//            .sheet(isPresented: .constant(true)) {
+        Rectangle()
+            .fill(.background)
+            .sheet(isPresented: .constant(true)) {
                 CreateTeamView()
-//            }
+            }
     }
 }
