@@ -7,6 +7,9 @@ struct Competition: HandyJSON {
 
     /// 名称
     var name: String!
+    
+    /// 简称
+    var abbreviation: String!
 
     /// 描述
     var description: String!

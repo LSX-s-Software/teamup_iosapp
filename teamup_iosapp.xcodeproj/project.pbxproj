@@ -13,6 +13,7 @@
 		916928F25C819C72745F4E64 /* Pods_teamup_iosappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47594137A6CAD589974C8883 /* Pods_teamup_iosappTests.framework */; };
 		AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CBF5C62986067709740B /* TeamService.swift */; };
 		AD64C0EC072AA5E6F1166A85 /* CompetitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64C16034A88027CC99B54A /* CompetitionService.swift */; };
+		AD64C5A8F081B9391881058A /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */; };
 		AD64C7AC87B8777ABB6A7DE0 /* RoleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CF7A65DE9B5D8B58B734 /* RoleService.swift */; };
 		EB3E7C3CCB8D0FA9770C8867 /* Pods_teamup_iosapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1E029C6B76AADA28DA6401 /* Pods_teamup_iosapp.framework */; };
 		F50CF7AC2934C89300264013 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7AB2934C89300264013 /* MainView.swift */; };
@@ -25,6 +26,12 @@
 		F5579F5229402DDE008371B2 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F5129402DDE008371B2 /* PreviewData.swift */; };
 		F5579F562940D213008371B2 /* CompetitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F552940D213008371B2 /* CompetitionDetailView.swift */; };
 		F5579F582940F9CE008371B2 /* CompetitionServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F572940F9CE008371B2 /* CompetitionServiceError.swift */; };
+		F55B0C1E29417B6C006D2ECA /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C1D29417B6C006D2ECA /* UserViewModel.swift */; };
+		F55B0C2029417B8D006D2ECA /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C1F29417B8D006D2ECA /* TeamViewModel.swift */; };
+		F55B0C2229417C3A006D2ECA /* TeamMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2129417C3A006D2ECA /* TeamMemberViewModel.swift */; };
+		F55B0C2529417FA8006D2ECA /* RecruitmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2329417FA8006D2ECA /* RecruitmentViewModel.swift */; };
+		F55B0C2629417FA8006D2ECA /* RoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2429417FA8006D2ECA /* RoleViewModel.swift */; };
+		F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */; };
 		F5878EB4293C8C16006B8A75 /* CompetitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB3293C8C16006B8A75 /* CompetitionView.swift */; };
 		F5878EB6293C8FA1006B8A75 /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB5293C8FA1006B8A75 /* RoleView.swift */; };
 		F5878EB9293CF876006B8A75 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB8293CF876006B8A75 /* TeamDetailView.swift */; };
@@ -100,6 +107,7 @@
 		7F1A02412940916C0023214D /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberDetailView.swift; sourceTree = "<group>"; };
 		AD64C16034A88027CC99B54A /* CompetitionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitionService.swift; sourceTree = "<group>"; };
+		AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
 		AD64CBF5C62986067709740B /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 		AD64CF7A65DE9B5D8B58B734 /* RoleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleService.swift; sourceTree = "<group>"; };
 		BB72AD19BDBB996641ACED98 /* Pods-teamup_iosappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-teamup_iosappTests.debug.xcconfig"; path = "Target Support Files/Pods-teamup_iosappTests/Pods-teamup_iosappTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +123,12 @@
 		F5579F5129402DDE008371B2 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		F5579F552940D213008371B2 /* CompetitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionDetailView.swift; sourceTree = "<group>"; };
 		F5579F572940F9CE008371B2 /* CompetitionServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionServiceError.swift; sourceTree = "<group>"; };
+		F55B0C1D29417B6C006D2ECA /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		F55B0C1F29417B8D006D2ECA /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
+		F55B0C2129417C3A006D2ECA /* TeamMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberViewModel.swift; sourceTree = "<group>"; };
+		F55B0C2329417FA8006D2ECA /* RecruitmentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentViewModel.swift; sourceTree = "<group>"; };
+		F55B0C2429417FA8006D2ECA /* RoleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleViewModel.swift; sourceTree = "<group>"; };
+		F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamMemberView.swift; sourceTree = "<group>"; };
 		F5878EB3293C8C16006B8A75 /* CompetitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionView.swift; sourceTree = "<group>"; };
 		F5878EB5293C8FA1006B8A75 /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		F5878EB8293CF876006B8A75 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
@@ -194,6 +208,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD64C4067A0C722C25C9F852 /* CreateTeam */ = {
+			isa = PBXGroup;
+			children = (
+				AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */,
+				F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */,
+			);
+			path = CreateTeam;
+			sourceTree = "<group>";
+		};
 		EDD1453DBC1CB8E095D25F60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,8 +239,8 @@
 		F5878EB7293C8FBD006B8A75 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F50CF7AD2934C90500264013 /* HomeView.swift */,
 				F5579F552940D213008371B2 /* CompetitionDetailView.swift */,
+				F50CF7AD2934C90500264013 /* HomeView.swift */,
 				F5878EB5293C8FA1006B8A75 /* RoleView.swift */,
 				F5878EB8293CF876006B8A75 /* TeamDetailView.swift */,
 				7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */,
@@ -230,6 +253,11 @@
 			isa = PBXGroup;
 			children = (
 				F59F535F293B4D43000A1BD5 /* PagedListViewModel.swift */,
+				F55B0C2329417FA8006D2ECA /* RecruitmentViewModel.swift */,
+				F55B0C2429417FA8006D2ECA /* RoleViewModel.swift */,
+				F55B0C2129417C3A006D2ECA /* TeamMemberViewModel.swift */,
+				F55B0C1F29417B8D006D2ECA /* TeamViewModel.swift */,
+				F55B0C1D29417B6C006D2ECA /* UserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -397,6 +425,7 @@
 				F50CF7AF2934C91800264013 /* ChatListView.swift */,
 				F5878EB3293C8C16006B8A75 /* CompetitionView.swift */,
 				F50CF7AB2934C89300264013 /* MainView.swift */,
+				AD64C4067A0C722C25C9F852 /* CreateTeam */,
 				F5878EB7293C8FBD006B8A75 /* Home */,
 				F528B5282935C0F100FC7C9C /* Me */,
 			);
@@ -703,6 +732,7 @@
 				F50CF7AE2934C90500264013 /* HomeView.swift in Sources */,
 				F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */,
 				F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */,
+				F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */,
 				F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */,
 				F5AD9DF02933B86500E33AD6 /* StringExtensions.swift in Sources */,
 				F59F5360293B4D43000A1BD5 /* VisualEffectView.swift in Sources */,
@@ -713,7 +743,9 @@
 				F5AD9DF22933B86500E33AD6 /* UIColorExtensions.swift in Sources */,
 				F5AD9DD82933B7E100E33AD6 /* UserService.swift in Sources */,
 				F50CF7B22934C92200264013 /* MeView.swift in Sources */,
+				F55B0C2229417C3A006D2ECA /* TeamMemberViewModel.swift in Sources */,
 				F5579F582940F9CE008371B2 /* CompetitionServiceError.swift in Sources */,
+				F55B0C2629417FA8006D2ECA /* RoleViewModel.swift in Sources */,
 				F59F5361293B4D43000A1BD5 /* PagedListViewModel.swift in Sources */,
 				F5878EB4293C8C16006B8A75 /* CompetitionView.swift in Sources */,
 				F5AD9DEE2933B86500E33AD6 /* Array.swift in Sources */,
@@ -721,6 +753,7 @@
 				F5AD9DF42933B86500E33AD6 /* JsonLoader.swift in Sources */,
 				F5878EB9293CF876006B8A75 /* TeamDetailView.swift in Sources */,
 				7F1A02422940916C0023214D /* UserView.swift in Sources */,
+				F55B0C2029417B8D006D2ECA /* TeamViewModel.swift in Sources */,
 				F5579F5229402DDE008371B2 /* PreviewData.swift in Sources */,
 				F5AD9E182934708700E33AD6 /* Role.swift in Sources */,
 				F5AD9DDB2933B7E100E33AD6 /* APIRequest.swift in Sources */,
@@ -730,6 +763,7 @@
 				F5B587E229384582007ECC2E /* TeamInfoView.swift in Sources */,
 				F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */,
 				F5B587E729384EE0007ECC2E /* TabMenu.swift in Sources */,
+				F55B0C1E29417B6C006D2ECA /* UserViewModel.swift in Sources */,
 				F5B587DB2937B60B007ECC2E /* AuthServiceError.swift in Sources */,
 				F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */,
 				F50CF7B42934EF2400264013 /* AppDelegate.swift in Sources */,
@@ -749,6 +783,8 @@
 				AD64C0EC072AA5E6F1166A85 /* CompetitionService.swift in Sources */,
 				AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */,
 				F5579F562940D213008371B2 /* CompetitionDetailView.swift in Sources */,
+				F55B0C2529417FA8006D2ECA /* RecruitmentViewModel.swift in Sources */,
+				AD64C5A8F081B9391881058A /* CreateTeamView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

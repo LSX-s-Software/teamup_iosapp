@@ -7,6 +7,9 @@ struct Recruitment: HandyJSON {
 
     /// 角色
     var role: Role!
+    
+    /// 数量
+    var count: Int!
 
     /// 需求
     var requirements: [String]!

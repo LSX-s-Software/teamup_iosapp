@@ -5,9 +5,6 @@ import HandyJSON
 struct TeamMember: HandyJSON {
     var id: Int!
 
-    /// 所属队伍
-    var team: Team?
-
     /// 角色
     var roles: [Role]?
 
