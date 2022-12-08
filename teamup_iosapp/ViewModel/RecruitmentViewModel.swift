@@ -11,13 +11,13 @@ class RecruitmentViewModel: ObservableObject, Identifiable {
     var id = UUID()
 
     /// 招募人数
-    @Published var count = 0
+    @Published var count = 1
     
     /// 招募角色
     @Published var role = RoleViewModel()
     
     /// 招募需求
-    @Published var requirements: [String]!
+    @Published var requirements = [String]()
     
     init() { }
     

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3D5909771F5E60CD6738993E /* Pods_teamup_iosapp_teamup_iosappUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08ECBE9825A2E9D683E5E6FD /* Pods_teamup_iosapp_teamup_iosappUITests.framework */; };
 		7F1A02422940916C0023214D /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1A02412940916C0023214D /* UserView.swift */; };
+		7F507CAA2941CC19001B8566 /* CreateRecruitmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507CA92941CC18001B8566 /* CreateRecruitmentView.swift */; };
+		7F507CAC2941D7DB001B8566 /* RecruitmentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507CAB2941D7DB001B8566 /* RecruitmentInfoView.swift */; };
 		7FA1BB9E2940844800B1DF25 /* TeamMemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */; };
 		916928F25C819C72745F4E64 /* Pods_teamup_iosappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47594137A6CAD589974C8883 /* Pods_teamup_iosappTests.framework */; };
 		AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64CBF5C62986067709740B /* TeamService.swift */; };
@@ -105,6 +107,8 @@
 		3EF86DD038F5EC6684189FDB /* Pods-teamup_iosapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-teamup_iosapp.debug.xcconfig"; path = "Target Support Files/Pods-teamup_iosapp/Pods-teamup_iosapp.debug.xcconfig"; sourceTree = "<group>"; };
 		47594137A6CAD589974C8883 /* Pods_teamup_iosappTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_teamup_iosappTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F1A02412940916C0023214D /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		7F507CA92941CC18001B8566 /* CreateRecruitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecruitmentView.swift; sourceTree = "<group>"; };
+		7F507CAB2941D7DB001B8566 /* RecruitmentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentInfoView.swift; sourceTree = "<group>"; };
 		7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberDetailView.swift; sourceTree = "<group>"; };
 		AD64C16034A88027CC99B54A /* CompetitionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitionService.swift; sourceTree = "<group>"; };
 		AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
@@ -211,8 +215,9 @@
 		AD64C4067A0C722C25C9F852 /* CreateTeam */ = {
 			isa = PBXGroup;
 			children = (
-				AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */,
+				7F507CA92941CC18001B8566 /* CreateRecruitmentView.swift */,
 				F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */,
+				AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */,
 			);
 			path = CreateTeam;
 			sourceTree = "<group>";
@@ -435,10 +440,11 @@
 		F5B587E0293844E6007ECC2E /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				F59F535E293B4D43000A1BD5 /* VisualEffectView.swift */,
-				F5B587E129384582007ECC2E /* TeamInfoView.swift */,
-				F5B587E629384EE0007ECC2E /* TabMenu.swift */,
 				F5878EBD293D92CE006B8A75 /* CompetitionInfoView.swift */,
+				7F507CAB2941D7DB001B8566 /* RecruitmentInfoView.swift */,
+				F5B587E629384EE0007ECC2E /* TabMenu.swift */,
+				F5B587E129384582007ECC2E /* TeamInfoView.swift */,
+				F59F535E293B4D43000A1BD5 /* VisualEffectView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -731,6 +737,7 @@
 			files = (
 				F50CF7AE2934C90500264013 /* HomeView.swift in Sources */,
 				F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */,
+				7F507CAA2941CC19001B8566 /* CreateRecruitmentView.swift in Sources */,
 				F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */,
 				F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */,
 				F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */,
@@ -780,6 +787,7 @@
 				F50CF7AC2934C89300264013 /* MainView.swift in Sources */,
 				F5AD9DF12933B86500E33AD6 /* DateExtensions.swift in Sources */,
 				AD64C7AC87B8777ABB6A7DE0 /* RoleService.swift in Sources */,
+				7F507CAC2941D7DB001B8566 /* RecruitmentInfoView.swift in Sources */,
 				AD64C0EC072AA5E6F1166A85 /* CompetitionService.swift in Sources */,
 				AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */,
 				F5579F562940D213008371B2 /* CompetitionDetailView.swift in Sources */,

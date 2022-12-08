@@ -13,14 +13,30 @@ struct CreateTeamView: View {
 
     @StateObject var teamVM = TeamViewModel()
     // Member Sheet
-    @State var createMemberViewShown = false
+    @State var memberViewShown = false
     @State var editingTeamMember = -1
+    // Recruitment Sheet
+    @State var recruitmentViewShown = false
+    @State var editingRecruitment = -1
     
     var body: some View {
         NavigationView {
             Form {
                 Section("队伍名称") {
                     TextField("队伍名称", text: $teamVM.name)
+                }
+                
+                Section {
+                    Picker("比赛", selection: $teamVM.competitionId) {
+                        Text("未选择比赛").tag(0)
+                        Text("中国“互联网+”大学生创新创业大赛").tag(13)
+                        Text("测试").tag(14)
+                    }
+                    .pickerStyle(.navigationLink)
+                } header: {
+                    Text("参加的比赛")
+                } footer: {
+                    Text("选择该团队参加的比赛，如果需要参加多场比赛，请分别在每个比赛下创建团队")
                 }
 
                 Section {
@@ -35,13 +51,13 @@ struct CreateTeamView: View {
                     ForEach(Array(teamVM.members.enumerated()), id: \.offset) { index, member in
                         Button {
                             editingTeamMember = index
-                            createMemberViewShown.toggle()
+                            memberViewShown.toggle()
                         } label: {
                             VStack {
                                 HStack {
                                     Text("队员\(index + 1)")
                                         .fontWeight(.medium)
-                                        .foregroundColor(.accentColor)
+                                        .foregroundColor(.primary)
                                         .lineLimit(1)
                                     Spacer()
                                     Text(member.faculty)
@@ -66,9 +82,9 @@ struct CreateTeamView: View {
                     .onMove { teamVM.members.move(fromOffsets: $0, toOffset: $1) }
                     Button("添加队员") {
                         editingTeamMember = -1
-                        createMemberViewShown.toggle()
+                        memberViewShown.toggle()
                     }
-                    .sheet(isPresented: $createMemberViewShown) {
+                    .sheet(isPresented: $memberViewShown) {
                         CreateTeamMemberView(
                             memberVM: editingTeamMember >= 0 ? teamVM.members[editingTeamMember] : TeamMemberViewModel(),
                             create: editingTeamMember == -1
@@ -80,19 +96,39 @@ struct CreateTeamView: View {
                                 teamVM.members.append(newTeamMember)
                             }
                         }
+                        .interactiveDismissDisabled()
                     }
                 }
 
                 Section("招募信息") {
-                    ForEach(teamVM.recruitments) { recruitment in
-//                        NavigationLink(destination: CreateRecruitmentView(recruitmentVM: recruitment)) {
-                            Text(recruitment.role.name)
-//                        }
+                    ForEach(Array(teamVM.recruitments.enumerated()), id: \.offset) { index, recruitment in
+                        Button {
+                            editingRecruitment = index
+                            recruitmentViewShown.toggle()
+                        } label: {
+                            RecruitmentInfoView(recruitment: recruitment.recruitment)
+                                .foregroundColor(.primary)
+                        }
                     }
                     .onDelete { teamVM.recruitments.remove(atOffsets: $0) }
                     .onMove { teamVM.recruitments.move(fromOffsets: $0, toOffset: $1) }
                     Button("添加招募信息") {
-                        teamVM.recruitments.append(RecruitmentViewModel())
+                        editingRecruitment = -1
+                        recruitmentViewShown.toggle()
+                    }
+                    .sheet(isPresented: $recruitmentViewShown) {
+                        CreateRecruitmentView(
+                            recruitmentVM: editingRecruitment >= 0 ? teamVM.recruitments[editingRecruitment] : RecruitmentViewModel(),
+                            create: editingRecruitment == -1
+                        ) { newRecruitment in
+                            if editingRecruitment >= 0 {
+                                teamVM.recruitments[editingRecruitment] = newRecruitment
+                                editingRecruitment = -1
+                            } else {
+                                teamVM.recruitments.append(newRecruitment)
+                            }
+                        }
+                        .interactiveDismissDisabled()
                     }
                 }
 
@@ -109,14 +145,28 @@ struct CreateTeamView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("创建") {
-                        print(teamVM.team)
+                        submit()
                     }
+                    .disabled(teamVM.competitionId == 0 || teamVM.recruitments.isEmpty)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("取消") {
                         dismiss()
                     }
                 }
+            }
+        }
+    }
+}
+
+extension CreateTeamView {
+    func submit() {
+        Task {
+            do {
+                try await TeamService.createTeam(team: teamVM)
+                dismiss()
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }

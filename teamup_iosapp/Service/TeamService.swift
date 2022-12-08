@@ -12,6 +12,13 @@ class TeamService {
         case popularAsc = "按人气升序"
     }
     
+    /// 获取团队列表
+    /// - Parameters:
+    ///   - competition: 比赛名
+    ///   - role: 角色名
+    ///   - page: 页码
+    ///   - pageSize: 分页大小
+    /// - Returns: 符合条件的团队列表
     class func getTeamList(competition: String? = nil,
                            role: String? = nil,
                            page: Int,
@@ -25,8 +32,18 @@ class TeamService {
         }
         return try await APIRequest().url("/home/teams").params(params).pagedRequest(page: page, pageSize: pageSize)
     }
-
+    
+    /// 获取团队详情
+    /// - Parameter id: 团队ID
+    /// - Returns: 团队详情
     class func getTeamDetail(id: Int) async throws -> Team {
         return try await APIRequest().url("/teams/\(id)").request()
+    }
+    
+    /// 创建团队
+    /// - Parameter team: 团队ViewModel
+    /// - Returns: 新团队
+    class func createTeam(team: TeamViewModel) async throws -> Team {
+        return try await APIRequest().url("/teams/").method(.post).params(team.team.toJSON()).request()
     }
 }

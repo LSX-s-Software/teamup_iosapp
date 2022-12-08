@@ -47,9 +47,9 @@ class PreviewData {
                                         faculty: "计算机学院",
                                         description: "123123")
     
-    static let recruitment1 = Recruitment(id: 1, role: Role(id: 1, name: "前端"), requirements: ["有项目经历", "吃苦耐闹"])
+    static let recruitment1 = Recruitment(id: 1, role: Role(id: 1, name: "前端"), count: 2, requirements: ["有项目经历", "吃苦耐闹"])
     
-    static let recruitment2 = Recruitment(id: 2, role: Role(id: 3, name: "后端"), requirements: ["有项目经历", "吃苦耐闹"])
+    static let recruitment2 = Recruitment(id: 2, role: Role(id: 3, name: "后端"), count: 4, requirements: ["有项目经历", "吃苦耐闹"])
     
     static let team = Team(id: 113,
                            name: "互联网+队伍招队友",

@@ -153,29 +153,10 @@ struct TeamDetailView: View {
                     Text("招募信息")
                         .modifier(SectionTitleStyle())
                     ForEach(team.recruitments ?? [], id: \.id) { recruitment in
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack {
-                                Text(recruitment.role.name ?? "")
-                                    .fontWeight(.medium)
-                                    .lineLimit(1)
-                                Spacer()
-                                Text("\(recruitment.count ?? 0)人")
-                            }
-                            Divider()
-                            ForEach(Array((recruitment.requirements ?? []).enumerated()), id: \.offset) { index, requirement in
-                                HStack {
-                                    if index < 50 {
-                                        Image(systemName: "\(index + 1).circle")
-                                    } else {
-                                        Text("\(index + 1)")
-                                    }
-                                    Text(requirement)
-                                }
-                            }
-                        }
-                        .padding()
-                        .background(Color(UIColor.secondarySystemBackground))
-                        .cornerRadius(10)
+                        RecruitmentInfoView(recruitment: recruitment)
+                            .padding()
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .cornerRadius(10)
                     }
                     if team.recruitments == nil || team.recruitments!.isEmpty {
                         Text("该团队暂无招募信息")

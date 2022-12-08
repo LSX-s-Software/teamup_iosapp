@@ -65,6 +65,7 @@ struct CreateTeamMemberView: View {
                         didUpdate(memberVM)
                         dismiss()
                     }
+                    .disabled(memberVM.roles.isEmpty)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("取消") {

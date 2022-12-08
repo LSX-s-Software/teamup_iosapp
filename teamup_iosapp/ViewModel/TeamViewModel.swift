@@ -12,7 +12,7 @@ class TeamViewModel: ObservableObject {
     @Published var name = ""
 
     /// 竞赛
-    @Published var competition = Competition(id: 0)
+    @Published var competitionId = 0
 
     /// 队伍描述
     @Published var description = ""
@@ -30,7 +30,7 @@ class TeamViewModel: ObservableObject {
 
     init(team: Team) {
         self.name = team.name
-        self.competition = team.competition!
+        self.competitionId = team.competition!.id
         self.description = team.description!
         self.members = team.members!.map { TeamMemberViewModel(member: $0) }
         self.recruitments = team.recruitments!.map { RecruitmentViewModel(recruitment: $0) }
@@ -40,7 +40,7 @@ class TeamViewModel: ObservableObject {
     var team: Team {
         return Team(
             name: name,
-            competition: competition,
+            competition: Competition(id: competitionId),
             description: description,
             members: members.map { $0.teamMember },
             recruitments: recruitments.map { $0.recruitment },

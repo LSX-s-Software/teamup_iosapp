@@ -26,6 +26,6 @@ class RoleViewModel: ObservableObject, Identifiable {
     }
     
     var role: Role {
-        return Role(id: id)
+        return Role(id: id, name: name)
     }
 }

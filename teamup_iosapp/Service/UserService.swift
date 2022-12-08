@@ -243,9 +243,9 @@ class UserService {
     
     /// 退出登录
     class func logout() {
-        if userFileDirectory != nil && FileManager.default.fileExists(atPath: userFileDirectory!.path) {
-            try? FileManager.default.removeItem(at: userFileDirectory!)
-        }
+//        if userFileDirectory != nil && FileManager.default.fileExists(atPath: userFileDirectory!.path) {
+//            try? FileManager.default.removeItem(at: userFileDirectory!)
+//        }
         userId = nil
         userInfo = nil
         AuthService.clearToken()
