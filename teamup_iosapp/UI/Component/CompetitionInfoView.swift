@@ -31,6 +31,7 @@ struct CompetitionInfoView: View {
                         Text(competition.name ?? "")
                             .font(.title2)
                             .foregroundColor(.primary)
+                            .lineLimit(1)
                         if let verified = competition.verified, verified {
                             Image(systemName: "checkmark.seal.fill")
                                 .foregroundColor(.accentColor)
