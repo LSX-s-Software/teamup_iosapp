@@ -33,7 +33,7 @@ struct MainView: View {
             
             ChatListView()
                 .tabItem {
-                    Label("聊天", systemImage: "bubble.left.and.bubble.right")
+                    Label("消息", systemImage: "bubble.left.and.bubble.right")
                 }
                 .tag(Tab.chat.rawValue)
             
