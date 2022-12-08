@@ -138,7 +138,7 @@ struct HomeView: View {
             .task {
                 do {
                     let rawCompetitions = try await CompetitionService.getCompetitionList()
-                    competitions.append(contentsOf: rawCompetitions.map { $0.name! })
+                    competitions.append(contentsOf: rawCompetitions.map { $0.abbreviation ?? $0.name })
                 } catch {
                     print(error.localizedDescription)
                 }

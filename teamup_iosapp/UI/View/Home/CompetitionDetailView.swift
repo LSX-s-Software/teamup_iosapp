@@ -30,6 +30,11 @@ struct CompetitionDetailView: View {
                         Text(competition.name ?? "")
                             .font(.title)
                             .multilineTextAlignment(.center)
+                        if let abbreviation = competition.abbreviation {
+                            Text("“\(abbreviation)”")
+                                .font(.title3)
+                                .foregroundColor(.secondary)
+                        }
                         HStack {
                             if let startTime = competition.startTime {
                                 Text("\(Formatter.formatDate(date: startTime, format: "yyyy-MM-dd"))")
