@@ -16,24 +16,7 @@ struct CompetitionInfoView: View {
             CompetitionDetailView(competitionId: competition.id, competition: competition)
         } label: {
             HStack(spacing: 0) {
-                if nilOrEmpty(competition.logo) {
-                    Text(competition.abbreviation)
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
-                        .lineLimit(2)
-                        .frame(width: 60, height: 60)
-                        .background(.blue)
-                        .cornerRadius(5)
-                } else {
-                    CachedAsyncImage(url: URL(string: competition.logo!)) { image in
-                        image.resizable().scaledToFit()
-                    } placeholder: {
-                        ProgressView()
-                            .tint(.secondary)
-                    }
-                    .frame(width: 60, height: 60)
-                    .cornerRadius(5)
-                }
+                CompetitionLogo(logo: competition.logo, abbreviation: competition.abbreviation)
                 Spacer()
                     .frame(width: 12)
                 VStack(alignment: .leading) {

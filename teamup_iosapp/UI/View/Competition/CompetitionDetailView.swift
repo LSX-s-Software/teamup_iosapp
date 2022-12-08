@@ -120,12 +120,7 @@ struct CompetitionDetailView: View {
                     VStack {
                         Spacer()
                             .frame(height: 75)
-                        CachedAsyncImage(url: URL(string: competition.logo ?? "")) { image in
-                            image.resizable().scaledToFit()
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .frame(width: 150, height: 150)
+                        CompetitionLogo(logo: competition.logo, abbreviation: competition.abbreviation, size: 150)
                         .background()
                         .cornerRadius(15)
                         .shadow(color: .black.opacity(0.12), radius: 10, y: 4)

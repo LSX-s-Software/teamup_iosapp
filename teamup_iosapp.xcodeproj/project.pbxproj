@@ -25,6 +25,7 @@
 		F50CF7B22934C92200264013 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7B12934C92200264013 /* MeView.swift */; };
 		F50CF7B42934EF2400264013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50CF7B32934EF2400264013 /* AppDelegate.swift */; };
 		F51029EF2942027200A357B6 /* CompetitionApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51029EE2942027200A357B6 /* CompetitionApplicationView.swift */; };
+		F51029F12942116F00A357B6 /* CompetitionLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51029F02942116F00A357B6 /* CompetitionLogo.swift */; };
 		F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5262935C0EB00FC7C9C /* ProfileView.swift */; };
 		F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5292935CF9C00FC7C9C /* Academy.swift */; };
 		F5579F5229402DDE008371B2 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F5129402DDE008371B2 /* PreviewData.swift */; };
@@ -126,6 +127,7 @@
 		F50CF7B12934C92200264013 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		F50CF7B32934EF2400264013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F51029EE2942027200A357B6 /* CompetitionApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionApplicationView.swift; sourceTree = "<group>"; };
+		F51029F02942116F00A357B6 /* CompetitionLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionLogo.swift; sourceTree = "<group>"; };
 		F528B5262935C0EB00FC7C9C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F528B5292935CF9C00FC7C9C /* Academy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.swift; sourceTree = "<group>"; };
 		F5579F5129402DDE008371B2 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				F5878EBD293D92CE006B8A75 /* CompetitionInfoView.swift */,
+				F51029F02942116F00A357B6 /* CompetitionLogo.swift */,
 				7F507CAB2941D7DB001B8566 /* RecruitmentInfoView.swift */,
 				F5B587E629384EE0007ECC2E /* TabMenu.swift */,
 				F5B587E129384582007ECC2E /* TeamInfoView.swift */,
@@ -581,7 +584,7 @@
 			packageReferences = (
 				F5AD9DFC2933B91E00E33AD6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				F5AD9DFF2933B94300E33AD6 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
+				F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */,
 				F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 				F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */,
 				F5B587E329384B31007ECC2E /* XCRemoteSwiftPackageReference "iPages" */,
@@ -802,6 +805,7 @@
 				F50CF7AC2934C89300264013 /* MainView.swift in Sources */,
 				F5AD9DF12933B86500E33AD6 /* DateExtensions.swift in Sources */,
 				AD64C7AC87B8777ABB6A7DE0 /* RoleService.swift in Sources */,
+				F51029F12942116F00A357B6 /* CompetitionLogo.swift in Sources */,
 				7F507CAC2941D7DB001B8566 /* RecruitmentInfoView.swift in Sources */,
 				AD64C0EC072AA5E6F1166A85 /* CompetitionService.swift in Sources */,
 				AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */,
@@ -1169,7 +1173,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
+		F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
 			requirement = {
@@ -1216,7 +1220,7 @@
 		};
 		F5AD9E032933B95F00E33AD6 /* JWTDecode */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
+			package = F5AD9E022933B95F00E33AD6 /* XCRemoteSwiftPackageReference "JWTDecode" */;
 			productName = JWTDecode;
 		};
 		F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */ = {
