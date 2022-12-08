@@ -12,6 +12,7 @@ struct CreateTeamView: View {
     @Environment(\.dismiss) var dismiss
 
     @StateObject var teamVM = TeamViewModel()
+    @State var competitions = [Competition]()
     // Member Sheet
     @State var memberViewShown = false
     @State var editingTeamMember = -1
@@ -29,8 +30,9 @@ struct CreateTeamView: View {
                 Section {
                     Picker("比赛", selection: $teamVM.competitionId) {
                         Text("未选择比赛").tag(0)
-                        Text("中国“互联网+”大学生创新创业大赛").tag(13)
-                        Text("测试").tag(14)
+                        ForEach(competitions, id: \.id) { competition in
+                            Text(competition.name).tag(competition.id!)
+                        }
                     }
                     .pickerStyle(.navigationLink)
                 } header: {
@@ -153,6 +155,13 @@ struct CreateTeamView: View {
                     Button("取消") {
                         dismiss()
                     }
+                }
+            }
+            .task {
+                do {
+                    competitions = try await CompetitionService.getCompetitionList()
+                } catch {
+                    print(error.localizedDescription)
                 }
             }
         }
