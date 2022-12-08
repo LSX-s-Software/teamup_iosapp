@@ -25,6 +25,7 @@ struct HomeView: View {
     // 组队信息
     @StateObject var pagedListVM = PagedListViewModel()
     @State var teams = [Team]()
+    @State var createTeamSheetShown = false
     // Alert
     @State var alertShown = false
     @State var alertTitle = ""
@@ -96,7 +97,9 @@ struct HomeView: View {
                                 loadTeamList(reload: true)
                             }
                             .sheet(isPresented: $roleViewShown) {
-                                RoleView(selection: $roleViewSelction)
+                                RoleView { newRole in
+                                    roleViewSelction = newRole
+                                }
                             }
                             .onChange(of: roleViewSelction) { newSelection in
                                 if let name = newSelection.name {
@@ -109,6 +112,18 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("组队")
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        createTeamSheetShown.toggle()
+                    } label: {
+                        Label("创建队伍", systemImage: "plus")
+                    }
+                    .sheet(isPresented: $createTeamSheetShown) {
+                        CreateTeamView()
+                    }
+                }
+            }
             .alert(isPresented: $alertShown) {
                 Alert(title: Text(alertTitle), message: Text(alertMsg ?? ""), dismissButton: .default(Text("确定")))
             }

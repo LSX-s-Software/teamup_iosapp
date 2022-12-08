@@ -10,11 +10,12 @@ import SwiftUI
 struct RoleView: View {
     @Environment(\.dismiss) var dismiss
     
-    @Binding var selection: Role
     @State var innerSelection = Role(id: 0, name: "全部角色")
     @State var roles = [Role(id: 0, name: "全部角色")]
     @State var leftSelection = Role(children: [Role]())
     @State var allRole = Role(id: 0, name: "全部角色", children: [Role]())
+    
+    var didUpdate: ((Role) -> Void)?
     
     var body: some View {
         NavigationView {
@@ -70,7 +71,7 @@ struct RoleView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("确定") {
-                        selection = innerSelection
+                        didUpdate?(innerSelection)
                         dismiss()
                     }
                 }
@@ -96,6 +97,6 @@ struct RoleView: View {
 
 struct RoleView_Previews: PreviewProvider {
     static var previews: some View {
-        RoleView(selection: .constant(Role(id: 0)))
+        RoleView()
     }
 }
