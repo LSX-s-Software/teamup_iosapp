@@ -35,3 +35,18 @@ struct Competition: HandyJSON {
     /// 队伍数量
     var teamCount: Int!
 }
+
+struct CompetitionTeamHistory: HandyJSON {
+    /// 日期
+    var date: String!
+    
+    /// 数量
+    var count: Int!
+
+    enum Scale: String, CaseIterable {
+        case month = "一个月"
+        case quarter = "三个月"
+        case halfYear = "半年"
+        case year = "一年"
+    }
+}

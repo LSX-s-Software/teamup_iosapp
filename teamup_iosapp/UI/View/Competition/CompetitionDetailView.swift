@@ -12,6 +12,24 @@ import Charts
 struct CompetitionDetailView: View {
     var competitionId: Int
     @State var competition = Competition()
+    // 团队数量历史
+    @State var teamCountHistory = [CompetitionTeamHistory]()
+    @State var teamCountScale = CompetitionTeamHistory.Scale.quarter
+    var xAxisMarkInterval: Int {
+        var interval: Int
+        switch teamCountScale {
+        case .month:
+            interval = 5
+        case .quarter:
+            interval = 5
+        case .halfYear:
+            interval = 2
+        case .year:
+            interval = 1
+        }
+        return interval
+    }
+    // 团队
     @State var teams = [Team]()
     @StateObject var pagedListVM = PagedListViewModel()
     // Filter
@@ -55,10 +73,30 @@ struct CompetitionDetailView: View {
                         // MARK: - 组队情况
                         Text("组队情况")
                             .modifier(SectionTitleStyle())
-                        Chart(Array(PreviewData.teamCountHistory.enumerated()), id: \.offset) { index, element in
-                            BarMark(x: .value("index", index), y: .value("count", element))
+                        VStack {
+                            Picker("时间跨度", selection: $teamCountScale) {
+                                ForEach(CompetitionTeamHistory.Scale.allCases, id: \.self) { scale in
+                                    Text(scale.rawValue).tag(scale)
+                                }
+                            }
+                            .pickerStyle(.segmented)
+                            .onChange(of: teamCountScale) { _ in
+                                loadHistory()
+                            }
+                            Chart(teamCountHistory, id: \.date) { element in
+                                BarMark(x: .value("日期", element.date), y: .value("数量", element.count))
+                            }
+                            .chartYAxisLabel("队伍数量")
+                            .chartXAxis {
+                                AxisMarks { value in
+                                    AxisTick()
+                                    if value.index % xAxisMarkInterval == 0 {
+                                        AxisGridLine()
+                                        AxisValueLabel(collisionResolution: .greedy)
+                                    }
+                                }
+                            }
                         }
-                        .chartYAxisLabel("队伍数量")
                         .padding()
                         .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(10)
@@ -144,6 +182,7 @@ struct CompetitionDetailView: View {
         .toolbarColorScheme(.dark, for: .navigationBar)
         .onAppear {
             loadTeamList()
+            loadHistory()
         }
         .task {
             do {
@@ -173,12 +212,25 @@ extension CompetitionDetailView {
             pagedListVM.loading = false
         }
     }
+    
+    func loadHistory() {
+        Task {
+            do {
+                let result = try await CompetitionService.getCompetitionTeamHistory(id: competitionId, scale: teamCountScale)
+                withAnimation {
+                    teamCountHistory = result
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 struct CompetitionDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CompetitionDetailView(competitionId: 13, competition: PreviewData.competition)
+            CompetitionDetailView(competitionId: 14, competition: PreviewData.competition)
         }
     }
 }
