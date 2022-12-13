@@ -121,6 +121,7 @@ struct HomeView: View {
                     }
                     .sheet(isPresented: $createTeamSheetShown) {
                         CreateTeamView()
+                            .environment(\.modalMode, $createTeamSheetShown)
                     }
                 }
             }

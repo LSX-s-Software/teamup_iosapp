@@ -28,6 +28,8 @@
 		F51029F12942116F00A357B6 /* CompetitionLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51029F02942116F00A357B6 /* CompetitionLogo.swift */; };
 		F528B5272935C0EB00FC7C9C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5262935C0EB00FC7C9C /* ProfileView.swift */; };
 		F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5292935CF9C00FC7C9C /* Academy.swift */; };
+		F5474B102948B425006F48B3 /* TeamRecruitmentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5474B0F2948B425006F48B3 /* TeamRecruitmentEditView.swift */; };
+		F5474B122948BC28006F48B3 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5474B112948BC28006F48B3 /* EnvironmentValues.swift */; };
 		F5579F5229402DDE008371B2 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F5129402DDE008371B2 /* PreviewData.swift */; };
 		F5579F562940D213008371B2 /* CompetitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F552940D213008371B2 /* CompetitionDetailView.swift */; };
 		F5579F582940F9CE008371B2 /* CompetitionServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F572940F9CE008371B2 /* CompetitionServiceError.swift */; };
@@ -130,6 +132,8 @@
 		F51029F02942116F00A357B6 /* CompetitionLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionLogo.swift; sourceTree = "<group>"; };
 		F528B5262935C0EB00FC7C9C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F528B5292935CF9C00FC7C9C /* Academy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.swift; sourceTree = "<group>"; };
+		F5474B0F2948B425006F48B3 /* TeamRecruitmentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentEditView.swift; sourceTree = "<group>"; };
+		F5474B112948BC28006F48B3 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		F5579F5129402DDE008371B2 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		F5579F552940D213008371B2 /* CompetitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionDetailView.swift; sourceTree = "<group>"; };
 		F5579F572940F9CE008371B2 /* CompetitionServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionServiceError.swift; sourceTree = "<group>"; };
@@ -224,6 +228,7 @@
 				7F507CA92941CC18001B8566 /* CreateRecruitmentView.swift */,
 				F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */,
 				AD64CA82FF9D01F89CBEA661 /* CreateTeamView.swift */,
+				F5474B0F2948B425006F48B3 /* TeamRecruitmentEditView.swift */,
 			);
 			path = CreateTeam;
 			sourceTree = "<group>";
@@ -449,6 +454,7 @@
 				AD64C4067A0C722C25C9F852 /* CreateTeam */,
 				F5878EB7293C8FBD006B8A75 /* Home */,
 				F528B5282935C0F100FC7C9C /* Me */,
+				F5474B112948BC28006F48B3 /* EnvironmentValues.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -759,6 +765,7 @@
 				F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */,
 				F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */,
 				F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */,
+				F5474B122948BC28006F48B3 /* EnvironmentValues.swift in Sources */,
 				F5AD9DF02933B86500E33AD6 /* StringExtensions.swift in Sources */,
 				F59F5360293B4D43000A1BD5 /* VisualEffectView.swift in Sources */,
 				F5878EB6293C8FA1006B8A75 /* RoleView.swift in Sources */,
@@ -795,6 +802,7 @@
 				F5AD9E1B2934708700E33AD6 /* Competition.swift in Sources */,
 				F5AD9DF62933B86500E33AD6 /* Formatter.swift in Sources */,
 				F5AD9DD92933B7E100E33AD6 /* APIRequestDelegate.swift in Sources */,
+				F5474B102948B425006F48B3 /* TeamRecruitmentEditView.swift in Sources */,
 				F5AD9DEF2933B86500E33AD6 /* EnvironmentValueExtensions.swift in Sources */,
 				F5AD9DF92933B8A700E33AD6 /* User.swift in Sources */,
 				F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */,

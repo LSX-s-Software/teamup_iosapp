@@ -30,7 +30,7 @@ class TeamService {
         if let role = role, !role.isEmpty {
             params["role"] = role
         }
-        return try await APIRequest().url("/home/teams").params(params).pagedRequest(page: page, pageSize: pageSize)
+        return try await APIRequest().url("/home/teams/").params(params).pagedRequest(page: page, pageSize: pageSize)
     }
     
     /// 获取团队详情
@@ -45,5 +45,49 @@ class TeamService {
     /// - Returns: 新团队
     class func createTeam(team: TeamViewModel) async throws -> Team {
         return try await APIRequest().url("/teams/").method(.post).params(team.team.toJSON()).request()
+    }
+    
+    // MARK: - 招募
+    
+    /// 获取队伍招募
+    /// - Parameter id: 队伍ID
+    /// - Returns: 队伍招募
+    class func getTeamRecruit(id: Int) async throws -> Recruitment {
+        return try await APIRequest().url("/teams/\(id)/recruitments/").request()
+    }
+    
+    /// 添加招募
+    /// - Parameters:
+    ///   - teamId: 团队ID
+    ///   - recruitment: 招募ViewModel
+    /// - Returns: 新招募
+    class func addRecruitment(teamId: Int, recruitment: RecruitmentViewModel) async throws -> Recruitment {
+        return try await APIRequest()
+            .url("/teams/\(teamId)/recruitments/")
+            .method(.post)
+            .params(recruitment.recruitment.toJSON())
+            .request()
+    }
+
+    /// 更新招募
+    /// - Parameters:
+    ///  - teamId: 团队ID
+    ///  - recruitmentId: 招募ID
+    ///  - recruitment: 招募ViewModel
+    /// - Returns: 更新后的招募
+    class func updateRecruitment(teamId: Int, recruitmentId: Int, recruitment: RecruitmentViewModel) async throws -> Recruitment {
+        return try await APIRequest()
+            .url("/teams/\(teamId)/recruitments/\(recruitmentId)")
+            .method(.put)
+            .params(recruitment.recruitment.toJSON())
+            .request()
+    }
+    
+    /// 删除招募
+    /// - Parameters:
+    ///   - teamId: 团队ID
+    ///   - recruitmentId: 招募ID
+    class func removeRecruitment(teamId: Int, recruitmentId: Int) async throws {
+        try await APIRequest().url("/teams/\(teamId)/recruitments/\(recruitmentId)").method(.delete).requestIgnoringResponse()
     }
 }

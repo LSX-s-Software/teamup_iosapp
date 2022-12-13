@@ -7,8 +7,8 @@
 
 import Foundation
 
-class RecruitmentViewModel: ObservableObject, Identifiable {
-    var id = UUID()
+class RecruitmentViewModel: ObservableObject {
+    @Published var id = 0
 
     /// 招募人数
     @Published var count = 1
@@ -22,12 +22,13 @@ class RecruitmentViewModel: ObservableObject, Identifiable {
     init() { }
     
     init(recruitment: Recruitment) {
+        self.id = recruitment.id
         self.count = recruitment.count
         self.role = RoleViewModel(role: recruitment.role)
         self.requirements = recruitment.requirements
     }
 
     var recruitment: Recruitment {
-        return Recruitment(role: role.role, count: count, requirements: requirements)
+        return Recruitment(id: id > 0 ? id : nil, role: role.role, count: count, requirements: requirements)
     }
 }

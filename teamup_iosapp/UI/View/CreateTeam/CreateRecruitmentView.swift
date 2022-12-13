@@ -9,12 +9,14 @@ import SwiftUI
 
 struct CreateRecruitmentView: View {
     @Environment(\.dismiss) var dismiss
-    
+
+    var teamId: Int
     @ObservedObject var recruitmentVM: RecruitmentViewModel
     @State var roleViewShown = false
     @State var editingRequirement = false
     @State var newRequirement = ""
     @State var editingRequirementIndex = -1
+    @State var submitting = false
     
     /// 新建操作
     var create = true
@@ -86,11 +88,14 @@ struct CreateRecruitmentView: View {
             .interactiveDismissDisabled()
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(create ? "添加" : "修改") {
-                        didUpdate(recruitmentVM)
-                        dismiss()
+                    if submitting {
+                        ProgressView()
+                    } else {
+                        Button(create ? "添加" : "修改") {
+                            submit()
+                        }
+                        .disabled(recruitmentVM.role.id == 0 || recruitmentVM.requirements.isEmpty)
                     }
-                    .disabled(recruitmentVM.role.id == 0 || recruitmentVM.requirements.isEmpty)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("取消") {
@@ -102,8 +107,32 @@ struct CreateRecruitmentView: View {
     }
 }
 
+extension CreateRecruitmentView {
+    func submit() {
+        submitting = true
+        Task {
+            do {
+                if create {
+                    let result = try await TeamService.addRecruitment(teamId: teamId, recruitment: recruitmentVM)
+                    recruitmentVM.id = result.id
+                } else {
+                    _ = try await TeamService.updateRecruitment(teamId: teamId,
+                                                                recruitmentId: recruitmentVM.id,
+                                                                recruitment: recruitmentVM)
+                }
+                didUpdate(recruitmentVM)
+                submitting = false
+                dismiss()
+            } catch {
+                submitting = false
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
+
 struct CreateRecruitmentView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateRecruitmentView(recruitmentVM: RecruitmentViewModel()) { _ in }
+        CreateRecruitmentView(teamId: PreviewData.team.id, recruitmentVM: RecruitmentViewModel()) { _ in }
     }
 }

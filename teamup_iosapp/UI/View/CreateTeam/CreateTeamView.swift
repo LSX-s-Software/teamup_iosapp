@@ -9,6 +9,13 @@ import SwiftUI
 import SwiftUIFlow
 
 struct CreateTeamView: View {
+    enum Status {
+        case initial
+        case submitting
+        case success
+        case fail
+    }
+    
     @Environment(\.dismiss) var dismiss
 
     @StateObject var teamVM = TeamViewModel()
@@ -16,15 +23,28 @@ struct CreateTeamView: View {
     // Member Sheet
     @State var memberViewShown = false
     @State var editingTeamMember = -1
-    // Recruitment Sheet
-    @State var recruitmentViewShown = false
-    @State var editingRecruitment = -1
     // Competition Sheet
     @State var competitionAppViewShown = false
+    // Submission state
+    @State var pageStatus = Status.initial
+    @State var errorMsg: String?
     
     var body: some View {
         NavigationView {
             Form {
+                if pageStatus == .fail {
+                    VStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 32)
+                            .foregroundColor(.red)
+                        Text(errorMsg ?? "发生未知错误")
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                }
+                
                 Section("队伍名称") {
                     TextField("队伍名称", text: $teamVM.name)
                 }
@@ -113,38 +133,6 @@ struct CreateTeamView: View {
                     }
                 }
 
-                Section("招募信息") {
-                    ForEach(Array(teamVM.recruitments.enumerated()), id: \.offset) { index, recruitment in
-                        Button {
-                            editingRecruitment = index
-                            recruitmentViewShown.toggle()
-                        } label: {
-                            RecruitmentInfoView(recruitment: recruitment.recruitment)
-                                .foregroundColor(.primary)
-                        }
-                    }
-                    .onDelete { teamVM.recruitments.remove(atOffsets: $0) }
-                    .onMove { teamVM.recruitments.move(fromOffsets: $0, toOffset: $1) }
-                    Button("添加招募信息") {
-                        editingRecruitment = -1
-                        recruitmentViewShown.toggle()
-                    }
-                    .sheet(isPresented: $recruitmentViewShown) {
-                        CreateRecruitmentView(
-                            recruitmentVM: editingRecruitment >= 0 ? teamVM.recruitments[editingRecruitment] : RecruitmentViewModel(),
-                            create: editingRecruitment == -1
-                        ) { newRecruitment in
-                            if editingRecruitment >= 0 {
-                                teamVM.recruitments[editingRecruitment] = newRecruitment
-                                editingRecruitment = -1
-                            } else {
-                                teamVM.recruitments.append(newRecruitment)
-                            }
-                        }
-                        .interactiveDismissDisabled()
-                    }
-                }
-
                 Section {
                     Toggle("允许报名", isOn: $teamVM.recruiting)
                 } header: {
@@ -157,10 +145,19 @@ struct CreateTeamView: View {
             .interactiveDismissDisabled()
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("创建") {
-                        submit()
+                    switch pageStatus {
+                    case .initial, .fail:
+                        Button(pageStatus == .initial ? "创建" : "重试") {
+                            submit()
+                        }
+                        .disabled(!formValid)
+                    case .submitting:
+                        ProgressView()
+                    case .success:
+                        NavigationLink("下一步", isActive: .constant(pageStatus == .success)) {
+                            TeamRecruitmentEditView(teamVM: teamVM)
+                        }
                     }
-                    .disabled(!formValid)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("取消") {
@@ -181,16 +178,23 @@ struct CreateTeamView: View {
 
 extension CreateTeamView {
     var formValid: Bool {
-        return !(teamVM.name.isEmpty || teamVM.description.isEmpty || teamVM.competitionId == 0 || teamVM.recruitments.isEmpty)
+        return !(teamVM.name.isEmpty || teamVM.description.isEmpty || teamVM.competitionId == 0)
     }
     
     func submit() {
+        pageStatus = .submitting
         Task {
             do {
-                try await TeamService.createTeam(team: teamVM)
-                dismiss()
+                let newTeam = try await TeamService.createTeam(team: teamVM)
+                teamVM.id = newTeam.id
+                withAnimation {
+                    pageStatus = .success
+                }
             } catch {
-                print(error.localizedDescription)
+                withAnimation {
+                    pageStatus = .fail
+                    errorMsg = error.localizedDescription
+                }
             }
         }
     }

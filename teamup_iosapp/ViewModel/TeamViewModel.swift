@@ -8,6 +8,8 @@
 import Foundation
 
 class TeamViewModel: ObservableObject {
+    var id = 0
+    
     /// 名称
     @Published var name = ""
 
@@ -29,6 +31,7 @@ class TeamViewModel: ObservableObject {
     init() { }
 
     init(team: Team) {
+        self.id = team.id
         self.name = team.name
         self.competitionId = team.competition!.id
         self.description = team.description!
