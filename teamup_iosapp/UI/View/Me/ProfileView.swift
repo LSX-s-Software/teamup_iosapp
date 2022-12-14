@@ -112,6 +112,7 @@ struct ProfileView: View {
             
             Section("自我介绍") {
                 TextEditor(text: $userInfo.introduction)
+                    .disabled(!editing)
             }
             
             Section("获奖经历") {
