@@ -37,9 +37,10 @@ struct CreateTeamView: View {
                         Image(systemName: "exclamationmark.triangle")
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 32)
+                            .frame(height: 36)
                             .foregroundColor(.red)
                         Text(errorMsg ?? "发生未知错误")
+                            .fontWeight(.medium)
                     }
                     .padding()
                     .frame(maxWidth: .infinity)

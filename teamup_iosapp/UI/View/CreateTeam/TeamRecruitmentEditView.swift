@@ -16,6 +16,23 @@ struct TeamRecruitmentEditView: View {
     
     var body: some View {
         Form {
+            if teamVM.recruitments.isEmpty {
+                VStack(alignment: .center) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 36)
+                        .foregroundColor(.green)
+                    Text("团队创建成功")
+                        .fontWeight(.medium)
+                    Text("快来填写招募信息吧")
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+            }
+            
             ForEach(Array(teamVM.recruitments.enumerated()), id: \.offset) { index, recruitment in
                 Section("招募信息\(index + 1)") {
                     Button {
