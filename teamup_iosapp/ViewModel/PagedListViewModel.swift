@@ -9,6 +9,6 @@ import UIKit
 
 class PagedListViewModel: ObservableObject {
     var currentPage = 0
-    var hasNextPage = true
+    @Published var hasNextPage = true
     @Published var loading = false
 }

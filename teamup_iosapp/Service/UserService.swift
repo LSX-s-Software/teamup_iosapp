@@ -108,6 +108,8 @@ class UserService {
         NotificationCenter.default.post(name: NSNotification.UserInfoUpdated, object: nil)
     }
     
+    /// 上传头像
+    /// - Parameter data: 头像数据
     class func uploadAvatar(data: Data) async throws {
         if !AuthService.registered || userId == nil {
             throw UserServiceError.UserNotLoggedin
@@ -121,8 +123,17 @@ class UserService {
         userInfo?.avatar = newUserInfo.avatar
     }
     
+    /// 获取用户信息
+    /// - Parameter id: 用户ID
+    /// - Returns: 用户信息
     class func getUserInfo(id: Int) async throws -> User {
         return try await APIRequest().url("/users/\(id)").request()
+    }
+    
+    /// 获取用户创建的队伍
+    /// - Returns: 用户创建的队伍
+    class func getUserTeam(page: Int, pageSize: Int = 20) async throws -> (data: [Team], hasNext: Bool) {
+        return try await APIRequest().url("/teams/").pagedRequest(page: page, pageSize: pageSize)
     }
     
     /*

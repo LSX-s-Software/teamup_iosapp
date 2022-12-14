@@ -109,10 +109,10 @@ struct MeView: View {
                                     .modifier(NavLinkStyle())
                                 }
                                 NavigationLink {
-                                    EmptyView()
+                                    UserTeamView()
                                 } label: {
                                     HStack {
-                                        Label("发布的招募", systemImage: "person.wave.2")
+                                        Label("我的队伍", systemImage: "person.2")
                                             .font(.title3)
                                         Spacer()
                                         Image(systemName: "chevron.right")

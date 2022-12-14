@@ -28,6 +28,8 @@ struct CreateTeamView: View {
     // Submission state
     @State var pageStatus = Status.initial
     @State var errorMsg: String?
+    // Callback
+    var didCreateTeam: ((Team) -> Void)?
     
     var body: some View {
         NavigationView {
@@ -188,6 +190,7 @@ extension CreateTeamView {
             do {
                 let newTeam = try await TeamService.createTeam(team: teamVM)
                 teamVM.id = newTeam.id
+                didCreateTeam?(newTeam)
                 withAnimation {
                     pageStatus = .success
                 }

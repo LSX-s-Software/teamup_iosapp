@@ -30,6 +30,7 @@
 		F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528B5292935CF9C00FC7C9C /* Academy.swift */; };
 		F5474B102948B425006F48B3 /* TeamRecruitmentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5474B0F2948B425006F48B3 /* TeamRecruitmentEditView.swift */; };
 		F5474B122948BC28006F48B3 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5474B112948BC28006F48B3 /* EnvironmentValues.swift */; };
+		F5474B1629496D1D006F48B3 /* UserTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5474B1529496D1D006F48B3 /* UserTeamView.swift */; };
 		F5579F5229402DDE008371B2 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F5129402DDE008371B2 /* PreviewData.swift */; };
 		F5579F562940D213008371B2 /* CompetitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F552940D213008371B2 /* CompetitionDetailView.swift */; };
 		F5579F582940F9CE008371B2 /* CompetitionServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5579F572940F9CE008371B2 /* CompetitionServiceError.swift */; };
@@ -134,6 +135,7 @@
 		F528B5292935CF9C00FC7C9C /* Academy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.swift; sourceTree = "<group>"; };
 		F5474B0F2948B425006F48B3 /* TeamRecruitmentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentEditView.swift; sourceTree = "<group>"; };
 		F5474B112948BC28006F48B3 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
+		F5474B1529496D1D006F48B3 /* UserTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTeamView.swift; sourceTree = "<group>"; };
 		F5579F5129402DDE008371B2 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		F5579F552940D213008371B2 /* CompetitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionDetailView.swift; sourceTree = "<group>"; };
 		F5579F572940F9CE008371B2 /* CompetitionServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionServiceError.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			children = (
 				F50CF7B12934C92200264013 /* MeView.swift */,
 				F528B5262935C0EB00FC7C9C /* ProfileView.swift */,
+				F5474B1529496D1D006F48B3 /* UserTeamView.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -804,6 +807,7 @@
 				F5AD9DD92933B7E100E33AD6 /* APIRequestDelegate.swift in Sources */,
 				F5474B102948B425006F48B3 /* TeamRecruitmentEditView.swift in Sources */,
 				F5AD9DEF2933B86500E33AD6 /* EnvironmentValueExtensions.swift in Sources */,
+				F5474B1629496D1D006F48B3 /* UserTeamView.swift in Sources */,
 				F5AD9DF92933B8A700E33AD6 /* User.swift in Sources */,
 				F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */,
 				F5AD9E152934708700E33AD6 /* Message.swift in Sources */,
