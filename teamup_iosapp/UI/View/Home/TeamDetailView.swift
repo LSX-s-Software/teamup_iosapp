@@ -18,12 +18,15 @@ struct SectionTitleStyle: ViewModifier {
 }
 
 struct TeamDetailView: View {
+    @Environment(\.tabBarSelection) var tabbarSelection
+    
     var teamId: Int
     @State var team = Team()
     // Alert
     @State var alertShown = false
     @State var alertTitle = ""
     @State var alertMsg: String?
+    @State var loginAlertShown = false
     // Sheet
     @State var teamMemberSheetShown = false
     @State var leaderSheetShown = false
@@ -33,7 +36,7 @@ struct TeamDetailView: View {
             VStack(alignment: .leading, spacing: 16) {
                 // MARK: - 比赛信息
                 CompetitionInfoView(competition: team.competition ?? Competition())
-                
+
                 // MARK: - 队长信息
                 VStack(alignment: .leading) {
                     Text("队长信息")
@@ -86,14 +89,14 @@ struct TeamDetailView: View {
                         .presentationDetents([.medium, .large])
                     }
                 }
-                
+
                 // MARK: - 队伍介绍
                 VStack(alignment: .leading, spacing: 4) {
                     Text("队伍介绍")
                         .modifier(SectionTitleStyle())
                     Text(team.description ?? "")
                 }
-                
+
                 // MARK: - 队伍成员
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
@@ -147,7 +150,7 @@ struct TeamDetailView: View {
                         .cornerRadius(10)
                     }
                 }
-                
+
                 // MARK: - 招募信息
                 VStack(alignment: .leading, spacing: 12) {
                     Text("招募信息")
@@ -163,6 +166,21 @@ struct TeamDetailView: View {
                             .foregroundColor(.secondary)
                     }
                 }
+
+                // MARK: - 感兴趣/不感兴趣
+                Divider()
+                HStack {
+                    Button {
+                        toggleLike()
+                    } label: {
+                        Label("感兴趣", systemImage: "hand.thumbsup\(team.interested ? ".fill" : "")")
+                    }
+                    Button {
+                        toggleDislike()
+                    } label: {
+                        Label("不感兴趣", systemImage: "hand.thumbsdown\(team.uninterested ? ".fill" : "")")
+                    }
+                }
             }
             .padding()
         }
@@ -170,19 +188,19 @@ struct TeamDetailView: View {
         .safeAreaInset(edge: .bottom) {
             HStack {
                 Button {
-                    
+                    toggleLike()
                 } label: {
-                    Label("点赞", systemImage: "hand.thumbsup")
+                    Label("感兴趣", systemImage: "hand.thumbsup\(team.interested ? ".fill" : "")")
                 }
                 Button {
-                    
+                    toggleFavorite()
                 } label: {
-                    Label("收藏", systemImage: "star")
+                    Label("收藏", systemImage: team.favorite ? "star.fill" : "star")
                 }
                 Spacer()
                     .frame(width: 12)
                 Button {
-                    
+
                 } label: {
                     Text("立即报名")
                         .fontWeight(.medium)
@@ -197,6 +215,16 @@ struct TeamDetailView: View {
         }
         .alert(isPresented: $alertShown) {
             Alert(title: Text(alertTitle), message: Text(alertMsg ?? ""), dismissButton: .default(Text("确定")))
+        }
+        .alert("您还未注册", isPresented: $loginAlertShown) {
+            Button("立即注册") {
+                tabbarSelection.wrappedValue = Tab.me
+            }
+            Button("取消", role: .cancel) {
+                loginAlertShown = false
+            }
+        } message: {
+            Text("立即加入赛道友你，解锁所有功能")
         }
         .task {
             do {
@@ -213,6 +241,72 @@ extension TeamDetailView {
         alertTitle = title
         alertMsg = msg
         alertShown = true
+    }
+    
+    func toggleFavorite() {
+        if !AuthService.registered {
+            loginAlertShown = true
+            return
+        }
+        team.favorite.toggle()
+        Task {
+            do {
+                if team.favorite {
+                    try await TeamService.favorite(id: teamId)
+                } else {
+                    try await TeamService.unfavorite(id: teamId)
+                }
+            } catch {
+                team.favorite.toggle()
+                showAlert(title: "收藏失败", msg: error.localizedDescription)
+            }
+        }
+    }
+
+    func toggleLike() {
+        if !AuthService.registered {
+            loginAlertShown = true
+            return
+        }
+        team.interested.toggle()
+        if team.interested && team.uninterested {
+            team.uninterested = false
+        }
+        Task {
+            do {
+                if team.interested {
+                    try await TeamService.like(id: teamId)
+                } else {
+                    try await TeamService.cancelLike(id: teamId)
+                }
+            } catch {
+                team.interested.toggle()
+                showAlert(title: "设置感兴趣失败", msg: error.localizedDescription)
+            }
+        }
+    }
+
+    func toggleDislike() {
+        if !AuthService.registered {
+            loginAlertShown = true
+            return
+        }
+        team.uninterested.toggle()
+        if team.interested && team.uninterested {
+            team.interested = false
+        }
+        Task {
+            do {
+                if team.uninterested {
+                    try await TeamService.dislike(id: teamId)
+                } else {
+                    try await TeamService.cancelDislike(id: teamId)
+                }
+            } catch {
+                team.uninterested.toggle()
+                showAlert(title: "设置不感兴趣失败", msg: error.localizedDescription)
+            }
+        }
     }
 }
 

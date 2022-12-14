@@ -46,6 +46,44 @@ class TeamService {
     class func createTeam(team: TeamViewModel) async throws -> Team {
         return try await APIRequest().url("/teams/").method(.post).params(team.team.toJSON()).request()
     }
+
+    // MARK: - 喜欢/收藏
+    
+    /// 对团队感兴趣
+    /// - Parameter id: 团队ID
+    class func like(id: Int) async throws {
+        try await APIRequest().url("/users/interests/teams/\(id)/").method(.post).requestIgnoringResponse()
+    }
+    
+    /// 取消对团队感兴趣
+    /// - Parameter id: 团队ID
+    class func cancelLike(id: Int) async throws {
+        try await APIRequest().url("/users/interests/teams/\(id)/").method(.delete).requestIgnoringResponse()
+    }
+
+    /// 对团队不感兴趣
+    /// - Parameter id: 团队ID
+    class func dislike(id: Int) async throws {
+        try await APIRequest().url("/users/disinterests/teams/\(id)/").method(.post).requestIgnoringResponse()
+    }
+
+    /// 取消对团队不感兴趣
+    /// - Parameter id: 团队ID
+    class func cancelDislike(id: Int) async throws {
+        try await APIRequest().url("/users/disinterests/teams/\(id)/").method(.delete).requestIgnoringResponse()
+    }
+
+    /// 收藏团队
+    /// - Parameter id: 团队ID
+    class func favorite(id: Int) async throws {
+        try await APIRequest().url("/users/favorites/teams/\(id)/").method(.post).requestIgnoringResponse()
+    }
+
+    /// 取消收藏团队
+    /// - Parameter id: 团队ID
+    class func unfavorite(id: Int) async throws {
+        try await APIRequest().url("/users/favorites/teams/\(id)/").delete()
+    }
     
     // MARK: - 招募
     

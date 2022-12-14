@@ -31,4 +31,13 @@ struct Team: HandyJSON {
 
     /// 是否招募中
     var recruiting: Bool!
+    
+    /// 是否收藏
+    var favorite: Bool!
+    
+    /// 是否感兴趣
+    var interested: Bool!
+    
+    /// 是否不感兴趣
+    var uninterested: Bool!
 }

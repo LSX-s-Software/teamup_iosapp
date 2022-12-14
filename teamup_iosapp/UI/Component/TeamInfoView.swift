@@ -20,12 +20,14 @@ struct TeamInfoView: View {
                     Text(team.name)
                         .font(.system(size: 20))
                         .foregroundColor(.primary)
-                    Spacer()
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "star")
-                            .foregroundColor(.yellow)
+                    if AuthService.registered {
+                        Spacer()
+                        Button {
+                            toggleFavorite()
+                        } label: {
+                            Image(systemName: team.favorite ? "star.fill" : "star")
+                                .foregroundColor(.yellow)
+                        }
                     }
                 }
                 
@@ -66,6 +68,22 @@ struct TeamInfoView: View {
                 Divider()
             }
             .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
+        }
+    }
+
+    func toggleFavorite() {
+        team.favorite.toggle()
+        Task {
+            do {
+                if team.favorite {
+                    try await TeamService.favorite(id: team.id)
+                } else {
+                    try await TeamService.unfavorite(id: team.id)
+                }
+            } catch {
+                team.favorite.toggle()
+                print(error.localizedDescription)
+            }
         }
     }
 }
