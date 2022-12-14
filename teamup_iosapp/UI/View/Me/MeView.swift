@@ -109,7 +109,7 @@ struct MeView: View {
                                     .modifier(NavLinkStyle())
                                 }
                                 NavigationLink {
-                                    UserTeamView()
+                                    UserTeamView(type: .myTeam)
                                 } label: {
                                     HStack {
                                         Label("我的队伍", systemImage: "person.2")
@@ -120,7 +120,7 @@ struct MeView: View {
                                     .modifier(NavLinkStyle())
                                 }
                                 NavigationLink {
-                                    EmptyView()
+                                    UserTeamView(type: .favorite)
                                 } label: {
                                     HStack {
                                         Label("我的收藏", systemImage: "star")

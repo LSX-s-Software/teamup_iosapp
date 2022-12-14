@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct UserTeamView: View {
+    enum ViewType {
+        case myTeam
+        case favorite
+    }
+    
+    let type: ViewType
     @StateObject var pagedListVM = PagedListViewModel()
     @State var teams = [Team]()
     @State var createTeamSheetShown = false
     
     var body: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 0) {
                 ForEach(teams, id: \.id) { team in
                     TeamInfoView(team: team)
                         .onAppear {
@@ -23,6 +29,7 @@ struct UserTeamView: View {
                             }
                         }
                 }
+                
                 HStack(spacing: 4) {
                     if pagedListVM.loading {
                         ProgressView()
@@ -32,14 +39,25 @@ struct UserTeamView: View {
                     } else {
                         if teams.isEmpty {
                             VStack(spacing: 16) {
-                                Image("Team2")
-                                    .resizable()
-                                    .scaledToFit()
-                                Text("还没有创建队伍，快去创建一个吧")
-                                Button("创建队伍") {
-                                    createTeamSheetShown.toggle()
+                                if type == .myTeam {
+                                    Image("Team2")
+                                        .resizable()
+                                        .scaledToFit()
+                                    Text("还没有创建队伍，快去创建一个吧")
+                                    Button("创建队伍") {
+                                        createTeamSheetShown.toggle()
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                } else {
+                                    Image(systemName: "star")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 48)
+                                        .foregroundColor(.yellow)
+                                    Text("点击团队卡片右上角的星号\n即可快速收藏队伍")
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(.secondary)
                                 }
-                                .buttonStyle(.borderedProminent)
                             }
                             .padding(.vertical, 20)
                             .padding(.horizontal, 40)
@@ -63,13 +81,15 @@ struct UserTeamView: View {
         .onAppear {
             loadTeamList()
         }
-        .navigationTitle("我的队伍")
+        .navigationTitle(type == .myTeam ? "我的队伍" : "我的收藏")
         .toolbar {
-            ToolbarItem {
-                Button {
-                    createTeamSheetShown.toggle()
-                } label: {
-                    Label("创建队伍", systemImage: "plus")
+            if type == .myTeam {
+                ToolbarItem {
+                    Button {
+                        createTeamSheetShown.toggle()
+                    } label: {
+                        Label("创建队伍", systemImage: "plus")
+                    }
                 }
             }
         }
@@ -80,7 +100,12 @@ struct UserTeamView: View {
         pagedListVM.loading = true
         Task {
             do {
-                let response = try await UserService.getUserTeam(page: pagedListVM.currentPage + 1)
+                let response: (data: [Team], hasNext: Bool)
+                if type == .myTeam {
+                    response = try await UserService.getUserTeam(page: pagedListVM.currentPage + 1)
+                } else {
+                    response = try await UserService.getUserFavoriteTeam(page: pagedListVM.currentPage + 1)
+                }
                 teams.append(contentsOf: response.data)
                 pagedListVM.currentPage += 1
                 pagedListVM.hasNextPage = response.hasNext
@@ -95,7 +120,13 @@ struct UserTeamView: View {
 struct UserTeamView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserTeamView()
+            UserTeamView(type: .myTeam)
         }
+        .previewDisplayName("我的队伍")
+        
+        NavigationView {
+            UserTeamView(type: .favorite)
+        }
+        .previewDisplayName("我的收藏")
     }
 }

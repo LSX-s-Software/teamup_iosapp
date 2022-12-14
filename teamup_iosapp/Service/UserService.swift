@@ -127,13 +127,28 @@ class UserService {
     /// - Parameter id: 用户ID
     /// - Returns: 用户信息
     class func getUserInfo(id: Int) async throws -> User {
+        if !AuthService.registered {
+            throw UserServiceError.UserNotLoggedin
+        }
         return try await APIRequest().url("/users/\(id)").request()
     }
     
     /// 获取用户创建的队伍
     /// - Returns: 用户创建的队伍
     class func getUserTeam(page: Int, pageSize: Int = 20) async throws -> (data: [Team], hasNext: Bool) {
+        if !AuthService.registered {
+            throw UserServiceError.UserNotLoggedin
+        }
         return try await APIRequest().url("/teams/").pagedRequest(page: page, pageSize: pageSize)
+    }
+
+    /// 获取用户收藏的队伍
+    /// - Returns: 用户收藏的队伍
+    class func getUserFavoriteTeam(page: Int, pageSize: Int = 20) async throws -> (data: [Team], hasNext: Bool) {
+        if !AuthService.registered {
+            throw UserServiceError.UserNotLoggedin
+        }
+        return try await APIRequest().url("/users/favorites/teams/").pagedRequest(page: page, pageSize: pageSize)
     }
     
     /*
