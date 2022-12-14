@@ -40,4 +40,7 @@ struct Team: HandyJSON {
     
     /// 是否不感兴趣
     var uninterested: Bool!
+    
+    /// 创建时间
+    var createTime: Date!
 }

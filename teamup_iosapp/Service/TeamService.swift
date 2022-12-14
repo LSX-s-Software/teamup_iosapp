@@ -47,6 +47,13 @@ class TeamService {
         return try await APIRequest().url("/teams/").method(.post).params(team.team.toJSON()).request()
     }
 
+    /// 更新团队
+    /// - Parameter team: 团队ViewModel
+    /// - Returns: 更新后的团队
+    class func updateTeam(team: TeamViewModel) async throws -> Team {
+        return try await APIRequest().url("/teams/\(team.id)").method(.put).params(team.team.toJSON()).request()
+    }
+
     // MARK: - 喜欢/收藏
     
     /// 对团队感兴趣

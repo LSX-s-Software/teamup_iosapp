@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct TeamRecruitmentEditView: View {
-    @Environment (\.modalMode) var modalMode
+    @Environment(\.modalMode) var modalMode
+    @Environment(\.dismiss) var dismiss
+    
+    var edit = false
     @ObservedObject var teamVM: TeamViewModel
     // Recruitment Sheet
     @State var recruitmentViewShown = false
@@ -16,7 +19,7 @@ struct TeamRecruitmentEditView: View {
     
     var body: some View {
         Form {
-            if teamVM.recruitments.isEmpty {
+            if !edit && teamVM.recruitments.isEmpty {
                 VStack(alignment: .center) {
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
@@ -85,13 +88,19 @@ struct TeamRecruitmentEditView: View {
             if !teamVM.recruitments.isEmpty {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("完成") {
-                        modalMode.wrappedValue = false
+                        if edit {
+                            dismiss()
+                        } else {
+                            modalMode.wrappedValue = false
+                        }
                     }
                 }
             }
-            ToolbarItem(placement: .cancellationAction) {
-                Button("跳过") {
-                    modalMode.wrappedValue = false
+            if !edit {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("跳过") {
+                        modalMode.wrappedValue = false
+                    }
                 }
             }
         }

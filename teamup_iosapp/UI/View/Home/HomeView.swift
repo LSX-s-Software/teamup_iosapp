@@ -120,7 +120,7 @@ struct HomeView: View {
                         Label("创建队伍", systemImage: "plus")
                     }
                     .sheet(isPresented: $createTeamSheetShown) {
-                        CreateTeamView()
+                        CreateTeamView(teamVM: TeamViewModel())
                             .environment(\.modalMode, $createTeamSheetShown)
                     }
                 }

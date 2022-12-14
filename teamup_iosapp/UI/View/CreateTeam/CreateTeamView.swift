@@ -18,7 +18,8 @@ struct CreateTeamView: View {
     
     @Environment(\.dismiss) var dismiss
 
-    @StateObject var teamVM = TeamViewModel()
+    var edit: Bool = false
+    @ObservedObject var teamVM: TeamViewModel
     @State var competitions = [Competition]()
     // Member Sheet
     @State var memberViewShown = false
@@ -144,13 +145,13 @@ struct CreateTeamView: View {
                     Text("不允许报名的队伍将不会显示在队伍列表中")
                 }
             }
-            .navigationBarTitle("创建队伍")
+            .navigationBarTitle(edit ? "编辑队伍" : "创建队伍")
             .interactiveDismissDisabled()
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     switch pageStatus {
                     case .initial, .fail:
-                        Button(pageStatus == .initial ? "创建" : "重试") {
+                        Button(edit ? "保存" : "创建") {
                             submit()
                         }
                         .disabled(!formValid)
@@ -188,11 +189,20 @@ extension CreateTeamView {
         pageStatus = .submitting
         Task {
             do {
-                let newTeam = try await TeamService.createTeam(team: teamVM)
-                teamVM.id = newTeam.id
+                let newTeam: Team
+                if edit {
+                    newTeam = try await TeamService.updateTeam(team: teamVM)
+                } else {
+                    newTeam = try await TeamService.createTeam(team: teamVM)
+                    teamVM.id = newTeam.id
+                }
                 didCreateTeam?(newTeam)
-                withAnimation {
-                    pageStatus = .success
+                if edit {
+                    dismiss()
+                } else {
+                    withAnimation {
+                        pageStatus = .success
+                    }
                 }
             } catch {
                 withAnimation {
@@ -209,7 +219,7 @@ struct CreateTeamView_Previews: PreviewProvider {
         Rectangle()
             .fill(.background)
             .sheet(isPresented: .constant(true)) {
-                CreateTeamView()
+                CreateTeamView(teamVM: TeamViewModel())
             }
     }
 }

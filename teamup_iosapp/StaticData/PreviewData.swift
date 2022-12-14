@@ -59,7 +59,10 @@ class PreviewData {
                            likeCount: 0,
                            members: [teamMember1, teamMember2],
                            recruitments: [recruitment1, recruitment2],
-                           recruiting: true)
+                           recruiting: true,
+                           favorite: false,
+                           interested: false,
+                           uninterested: false)
     
     static let teamCountHistory = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 175, 200, 220, 230]
 }

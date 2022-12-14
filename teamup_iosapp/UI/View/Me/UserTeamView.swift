@@ -73,7 +73,7 @@ struct UserTeamView: View {
             }
         }
         .sheet(isPresented: $createTeamSheetShown) {
-            CreateTeamView { newTeam in
+            CreateTeamView(teamVM: TeamViewModel()) { newTeam in
                 teams.append(newTeam)
             }
             .environment(\.modalMode, $createTeamSheetShown)

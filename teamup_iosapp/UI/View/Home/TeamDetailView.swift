@@ -30,6 +30,12 @@ struct TeamDetailView: View {
     // Sheet
     @State var teamMemberSheetShown = false
     @State var leaderSheetShown = false
+    @State var teamEditViewShown = false
+    @State var recruitmentEditViewShown = false
+    // Owner
+    var isMyTeam: Bool {
+        AuthService.registered && UserService.userId == team.leader?.id
+    }
     
     var body: some View {
         ScrollView {
@@ -168,17 +174,19 @@ struct TeamDetailView: View {
                 }
 
                 // MARK: - 感兴趣/不感兴趣
-                Divider()
-                HStack {
-                    Button {
-                        toggleLike()
-                    } label: {
-                        Label("感兴趣", systemImage: "hand.thumbsup\(team.interested ? ".fill" : "")")
-                    }
-                    Button {
-                        toggleDislike()
-                    } label: {
-                        Label("不感兴趣", systemImage: "hand.thumbsdown\(team.uninterested ? ".fill" : "")")
+                if !isMyTeam {
+                    Divider()
+                    HStack {
+                        Button {
+                            toggleLike()
+                        } label: {
+                            Label("感兴趣", systemImage: "hand.thumbsup\(team.interested ? ".fill" : "")")
+                        }
+                        Button {
+                            toggleDislike()
+                        } label: {
+                            Label("不感兴趣", systemImage: "hand.thumbsdown\(team.uninterested ? ".fill" : "")")
+                        }
                     }
                 }
             }
@@ -187,27 +195,70 @@ struct TeamDetailView: View {
         .navigationTitle(team.name ?? "")
         .safeAreaInset(edge: .bottom) {
             HStack {
-                Button {
-                    toggleLike()
-                } label: {
-                    Label("感兴趣", systemImage: "hand.thumbsup\(team.interested ? ".fill" : "")")
+                if isMyTeam {
+                    VStack {
+                        Text("创建于")
+                        Text(Formatter.formatDate(date: team.createTime, format: "yy-MM-dd"))
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer(minLength: 16)
+                    
+                    Button {
+                        teamEditViewShown.toggle()
+                    } label: {
+                        Text("编辑团队")
+                            .fontWeight(.medium)
+                            .padding(.vertical, 6)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .sheet(isPresented: $teamEditViewShown) {
+                        CreateTeamView(edit: true, teamVM: TeamViewModel(team: team)) { newTeam in
+                            withAnimation {
+                                team = newTeam
+                            }
+                        }
+                    }
+                    
+                    Button {
+                        recruitmentEditViewShown.toggle()
+                    } label: {
+                        Text("编辑招募")
+                            .fontWeight(.medium)
+                            .padding(.vertical, 6)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .sheet(isPresented: $recruitmentEditViewShown) {
+                        loadTeamDetail()
+                    } content: {
+                        NavigationView {
+                            TeamRecruitmentEditView(edit: true, teamVM: TeamViewModel(team: team))
+                        }
+                    }
+                } else {
+                    Button {
+                        toggleLike()
+                    } label: {
+                        Label("感兴趣", systemImage: "hand.thumbsup\(team.interested ? ".fill" : "")")
+                    }
+                    Button {
+                        toggleFavorite()
+                    } label: {
+                        Label("收藏", systemImage: team.favorite ? "star.fill" : "star")
+                    }
+                    Spacer()
+                        .frame(width: 12)
+                    Button {
+                        
+                    } label: {
+                        Text("立即报名")
+                            .fontWeight(.medium)
+                            .padding(.vertical, 6)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
-                Button {
-                    toggleFavorite()
-                } label: {
-                    Label("收藏", systemImage: team.favorite ? "star.fill" : "star")
-                }
-                Spacer()
-                    .frame(width: 12)
-                Button {
-
-                } label: {
-                    Text("立即报名")
-                        .fontWeight(.medium)
-                        .padding(.vertical, 6)
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
             }
             .padding()
             .background(VisualEffectView(effect: UIBlurEffect(style: .regular)).ignoresSafeArea(edges: .bottom))
@@ -226,12 +277,8 @@ struct TeamDetailView: View {
         } message: {
             Text("立即加入赛道友你，解锁所有功能")
         }
-        .task {
-            do {
-                team = try await TeamService.getTeamDetail(id: teamId)
-            } catch {
-                showAlert(title: "团队信息加载失败", msg: error.localizedDescription)
-            }
+        .onAppear {
+            loadTeamDetail()
         }
     }
 }
@@ -241,6 +288,16 @@ extension TeamDetailView {
         alertTitle = title
         alertMsg = msg
         alertShown = true
+    }
+    
+    func loadTeamDetail() {
+        Task {
+            do {
+                team = try await TeamService.getTeamDetail(id: teamId)
+            } catch {
+                showAlert(title: "团队信息加载失败", msg: error.localizedDescription)
+            }
+        }
     }
     
     func toggleFavorite() {
@@ -313,7 +370,7 @@ extension TeamDetailView {
 struct TeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            TeamDetailView(teamId: 112, team: PreviewData.team)
+            TeamDetailView(teamId: 126, team: PreviewData.team)
         }
     }
 }
