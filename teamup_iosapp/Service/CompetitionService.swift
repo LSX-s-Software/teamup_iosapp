@@ -30,9 +30,12 @@ class CompetitionService {
     /// - Parameter id: 比赛ID
     /// - Parameter scale: 时间跨度
     /// - Returns: 比赛队伍数量历史
-    class func getCompetitionTeamHistory(id: Int, scale: CompetitionTeamHistory.Scale) async throws -> [CompetitionTeamHistory] {
+    class func getCompetitionTeamHistory(
+        id: Int,
+        scale: CompetitionTeamHistory.Scale
+    ) async throws -> (history: [CompetitionTeamHistory], delta: Int) {
         do {
-            let history: [CompetitionTeamHistory] = try await APIRequest().url("/competitions/\(id)/count/").request()
+            var history: [CompetitionTeamHistory] = try await APIRequest().url("/competitions/\(id)/count/").request()
             // 筛选
             var startDate: Date
             var dateStride: Int
@@ -52,6 +55,16 @@ class CompetitionService {
                 startDate = Date(timeIntervalSinceNow: -360 * 86400)
                 dateStride = 30
             }
+            // 累加
+            var delta = 0
+            if history.count > 1 {
+                if (Date.now - Formatter.getDate(from: history.last!.date, withFormat: "yyyy-MM-dd")!).day == 0 {
+                    delta = history.last!.count
+                }
+                for i in 1..<history.count {
+                    history[i].count += history[i - 1].count
+                }
+            }
             // 取样
             var lastIndex = 0
             var nextDate = Calendar.current.date(byAdding: .day, value: dateStride, to: startDate)!
@@ -62,12 +75,11 @@ class CompetitionService {
                         && Formatter.getDate(from: history[lastIndex].date, withFormat: "yyyy-MM-dd")! <= nextDate {
                     lastIndex += 1
                 }
-
                 result[i].count = lastIndex >= 1 ? history[lastIndex - 1].count : 0
                 nextDate = Calendar.current.date(byAdding: .day, value: dateStride, to: nextDate)!
             }
 
-            return result
+            return (result, delta)
         } catch APIRequestError.RequestError(let code, let msg) {
             if code == "A0514" {
                 throw CompetitionServiceError.CompetitionNotFound

@@ -15,6 +15,7 @@ struct CompetitionDetailView: View {
     // 团队数量历史
     @State var teamCountHistory = [CompetitionTeamHistory]()
     @State var teamCountScale = CompetitionTeamHistory.Scale.quarter
+    @State var teamCountDelta = 0
     var xAxisMarkInterval: Int {
         var interval: Int
         switch teamCountScale {
@@ -105,12 +106,21 @@ struct CompetitionDetailView: View {
                             Text("队伍总数：\(competition.teamCount ?? 0)")
                             Spacer()
                                 .frame(width: 10)
-                            Group {
-                                Image(systemName: "arrow.up")
-                                    .fontWeight(.heavy)
-                                Text("10 (较昨日)")
+                            if teamCountDelta > 0 {
+                                Group {
+                                    Image(systemName: "arrow.up")
+                                        .fontWeight(.heavy)
+                                    Text("\(teamCountDelta) (较昨日)")
+                                }
+                                .foregroundColor(.green)
+                            } else {
+                                Group {
+                                    Image(systemName: "minus")
+                                        .fontWeight(.heavy)
+                                    Text("\(teamCountDelta) (较昨日)")
+                                }
+                                .foregroundColor(.secondary)
                             }
-                            .foregroundColor(.green)
                         }
                         Divider()
                         
@@ -218,7 +228,8 @@ extension CompetitionDetailView {
             do {
                 let result = try await CompetitionService.getCompetitionTeamHistory(id: competitionId, scale: teamCountScale)
                 withAnimation {
-                    teamCountHistory = result
+                    teamCountHistory = result.history
+                    teamCountDelta = result.delta
                 }
             } catch {
                 print(error.localizedDescription)
