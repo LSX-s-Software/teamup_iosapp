@@ -14,6 +14,7 @@ class PreviewData {
                              faculty: "计算机学院",
                              grade: "2020",
                              avatar: "https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/avatar/default.jpg",
+                             status: .Online,
                              lastLogin: Date.now,
                              introduction: """
 积极参加课外文体活动，各种社会实践活动和兼职工作等，以增加自己的阅历，提高自己的能力。在工作中体会办事方式，锻炼口才和人际交往能力。曾连续两午获得学院暑期社会实践积极分子荣誉称号。
@@ -66,9 +67,15 @@ class PreviewData {
     
     static let teamCountHistory = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 175, 200, 220, 230]
 
-    static let message1 = Message(id: "123", type: .Chat, content: "你好", sender: 11, createTime: Date.now)
-    static let message2 = Message(id: "124", type: .System, content: "简历", sender: 11, createTime: Date.now)
-    static let message3 = Message(id: "125", type: .Chat, content: "这是我的简历", sender: 11, createTime: Date.now, read: true)
+    static let message1 = Message(id: "123", type: .Chat, content: "你好", sender: 13, createTime: Date.now)
+    static let message2 = Message(id: "124", type: .System, content: "简历", sender: 0, createTime: Date.now)
+    static let message3 = Message(id: "125", type: .Chat, content: "这是我的简历", sender: 13, createTime: Date.now, read: true)
+    static let message4 = Message(id: "125",
+                                  type: .Chat,
+                                  content: "这是我的简历我的简历我的简历我的简历我的简历我的简历我的简历我的简历我的简历",
+                                  sender: 13,
+                                  createTime: Date.now,
+                                  read: true)
 
     static let userMessageList = [MessageListItem(id: 1,
                                                   userId: 11,

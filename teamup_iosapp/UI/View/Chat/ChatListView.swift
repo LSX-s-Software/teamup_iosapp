@@ -63,6 +63,7 @@ struct ChatListView: View {
                             ChatView(user: User(id: messageList[index].userId,
                                                 username: messageList[index].username,
                                                 avatar: messageList[index].userAvatar))
+                            .navigationBarTitleDisplayMode(.inline)
                         }
                     }
                     .listStyle(.plain)

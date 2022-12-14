@@ -42,6 +42,8 @@
 		F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */; };
 		F57741F02949FD5300696FD2 /* MessageListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57741EF2949FD5300696FD2 /* MessageListItem.swift */; };
 		F57741F2294A086900696FD2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57741F1294A086900696FD2 /* ChatView.swift */; };
+		F57741F4294A201400696FD2 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57741F3294A201400696FD2 /* MessageViewModel.swift */; };
+		F57741F6294A25B900696FD2 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57741F5294A25B900696FD2 /* MessageBubble.swift */; };
 		F5878EB4293C8C16006B8A75 /* CompetitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB3293C8C16006B8A75 /* CompetitionView.swift */; };
 		F5878EB6293C8FA1006B8A75 /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB5293C8FA1006B8A75 /* RoleView.swift */; };
 		F5878EB9293CF876006B8A75 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB8293CF876006B8A75 /* TeamDetailView.swift */; };
@@ -149,6 +151,8 @@
 		F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamMemberView.swift; sourceTree = "<group>"; };
 		F57741EF2949FD5300696FD2 /* MessageListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListItem.swift; sourceTree = "<group>"; };
 		F57741F1294A086900696FD2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		F57741F3294A201400696FD2 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		F57741F5294A25B900696FD2 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		F5878EB3293C8C16006B8A75 /* CompetitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionView.swift; sourceTree = "<group>"; };
 		F5878EB5293C8FA1006B8A75 /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		F5878EB8293CF876006B8A75 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 				F55B0C1F29417B8D006D2ECA /* TeamViewModel.swift */,
 				F55B0C1D29417B6C006D2ECA /* UserViewModel.swift */,
 				AD64C8BC77A557A39078EB8C /* CompetitionViewModel.swift */,
+				F57741F3294A201400696FD2 /* MessageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				F5B587E629384EE0007ECC2E /* TabMenu.swift */,
 				F5B587E129384582007ECC2E /* TeamInfoView.swift */,
 				F59F535E293B4D43000A1BD5 /* VisualEffectView.swift */,
+				F57741F5294A25B900696FD2 /* MessageBubble.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -749,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		FEE17A78175ABB9DCD84E9B7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -788,6 +794,7 @@
 				F59F5360293B4D43000A1BD5 /* VisualEffectView.swift in Sources */,
 				F5878EB6293C8FA1006B8A75 /* RoleView.swift in Sources */,
 				F5AD9E1C2934708700E33AD6 /* Recruitment.swift in Sources */,
+				F57741F4294A201400696FD2 /* MessageViewModel.swift in Sources */,
 				F5AD9E142934708700E33AD6 /* Team.swift in Sources */,
 				F5878EBE293D92CE006B8A75 /* CompetitionInfoView.swift in Sources */,
 				F5AD9DF22933B86500E33AD6 /* UIColorExtensions.swift in Sources */,
@@ -801,6 +808,7 @@
 				F5AD9DEE2933B86500E33AD6 /* Array.swift in Sources */,
 				7FA1BB9E2940844800B1DF25 /* TeamMemberDetailView.swift in Sources */,
 				F5AD9DF42933B86500E33AD6 /* JsonLoader.swift in Sources */,
+				F57741F6294A25B900696FD2 /* MessageBubble.swift in Sources */,
 				F5878EB9293CF876006B8A75 /* TeamDetailView.swift in Sources */,
 				7F1A02422940916C0023214D /* UserView.swift in Sources */,
 				F55B0C2029417B8D006D2ECA /* TeamViewModel.swift in Sources */,

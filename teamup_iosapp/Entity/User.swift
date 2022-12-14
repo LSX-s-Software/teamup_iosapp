@@ -32,9 +32,9 @@ struct User: HandyJSON, Codable {
 
     /// 头像
     var avatar: String?
-
-    /// 已激活
-    var active: Bool?
+    
+    /// 是否在线
+    var status: UserStatus!
 
     /// 上次在线时间
     var lastLogin: Date?
@@ -47,4 +47,9 @@ struct User: HandyJSON, Codable {
     
     /// 团队数量
     var teamCount: Int?
+}
+
+enum UserStatus: String, HandyJSONEnum, Codable {
+    case Offline
+    case Online
 }
