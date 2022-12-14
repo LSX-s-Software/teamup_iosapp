@@ -20,9 +20,17 @@ extension Formatter {
         if compact {
             let calendar = Calendar.current
             let targetYear = calendar.dateComponents([.year], from: date).year
+            let targetMonth = calendar.dateComponents([.month], from: date).month
+            let targetDay = calendar.dateComponents([.day], from: date).day
             let currentYear = calendar.dateComponents([.year], from: Date()).year
+            let currentMonth = calendar.dateComponents([.month], from: Date()).month
+            let currentDay = calendar.dateComponents([.day], from: Date()).day
             if targetYear == currentYear {
-                df.dateFormat = "MM-dd HH:mm"
+                if targetMonth == currentMonth && targetDay == currentDay {
+                    df.dateFormat = "HH:mm"
+                } else {
+                    df.dateFormat = "M-d HH:mm"
+                }
             } else {
                 df.dateFormat = format
             }

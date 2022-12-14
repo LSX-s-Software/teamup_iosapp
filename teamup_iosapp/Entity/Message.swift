@@ -1,7 +1,7 @@
 import Foundation
 import HandyJSON
 
-struct Message: HandyJSON {
+struct Message: HandyJSON, Codable {
     var id: String!
 
     /// 消息类型
@@ -15,9 +15,12 @@ struct Message: HandyJSON {
 
     /// 时间
     var createTime: Date!
+    
+    /// 是否已读
+    var read: Bool = false
 }
 
-enum MessageType: String, HandyJSONEnum {
+enum MessageType: String, HandyJSONEnum, Codable {
     /// 系统消息
     case System
     /// 普通文字消息

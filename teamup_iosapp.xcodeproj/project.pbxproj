@@ -40,6 +40,8 @@
 		F55B0C2529417FA8006D2ECA /* RecruitmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2329417FA8006D2ECA /* RecruitmentViewModel.swift */; };
 		F55B0C2629417FA8006D2ECA /* RoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2429417FA8006D2ECA /* RoleViewModel.swift */; };
 		F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */; };
+		F57741F02949FD5300696FD2 /* MessageListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57741EF2949FD5300696FD2 /* MessageListItem.swift */; };
+		F57741F2294A086900696FD2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57741F1294A086900696FD2 /* ChatView.swift */; };
 		F5878EB4293C8C16006B8A75 /* CompetitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB3293C8C16006B8A75 /* CompetitionView.swift */; };
 		F5878EB6293C8FA1006B8A75 /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB5293C8FA1006B8A75 /* RoleView.swift */; };
 		F5878EB9293CF876006B8A75 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5878EB8293CF876006B8A75 /* TeamDetailView.swift */; };
@@ -145,6 +147,8 @@
 		F55B0C2329417FA8006D2ECA /* RecruitmentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentViewModel.swift; sourceTree = "<group>"; };
 		F55B0C2429417FA8006D2ECA /* RoleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleViewModel.swift; sourceTree = "<group>"; };
 		F55B0C2729418C83006D2ECA /* CreateTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamMemberView.swift; sourceTree = "<group>"; };
+		F57741EF2949FD5300696FD2 /* MessageListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListItem.swift; sourceTree = "<group>"; };
+		F57741F1294A086900696FD2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		F5878EB3293C8C16006B8A75 /* CompetitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionView.swift; sourceTree = "<group>"; };
 		F5878EB5293C8FA1006B8A75 /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		F5878EB8293CF876006B8A75 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
@@ -263,6 +267,15 @@
 				F5474B1529496D1D006F48B3 /* UserTeamView.swift */,
 			);
 			path = Me;
+			sourceTree = "<group>";
+		};
+		F57741EE2949F42D00696FD2 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				F50CF7AF2934C91800264013 /* ChatListView.swift */,
+				F57741F1294A086900696FD2 /* ChatView.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		F5878EB7293C8FBD006B8A75 /* Home */ = {
@@ -424,6 +437,7 @@
 				F5AD9E102934708600E33AD6 /* TeamMember.swift */,
 				F5AD9E0E2934708600E33AD6 /* TeamTag.swift */,
 				F5AD9DF82933B8A700E33AD6 /* User.swift */,
+				F57741EF2949FD5300696FD2 /* MessageListItem.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -451,13 +465,13 @@
 		F5B587DF293844DB007ECC2E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F50CF7AF2934C91800264013 /* ChatListView.swift */,
+				F5474B112948BC28006F48B3 /* EnvironmentValues.swift */,
 				F50CF7AB2934C89300264013 /* MainView.swift */,
+				F57741EE2949F42D00696FD2 /* Chat */,
 				F51029ED2942024E00A357B6 /* Competition */,
 				AD64C4067A0C722C25C9F852 /* CreateTeam */,
 				F5878EB7293C8FBD006B8A75 /* Home */,
 				F528B5282935C0F100FC7C9C /* Me */,
-				F5474B112948BC28006F48B3 /* EnvironmentValues.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -765,6 +779,7 @@
 				F5AD9DF52933B86500E33AD6 /* Validator.swift in Sources */,
 				F51029EF2942027200A357B6 /* CompetitionApplicationView.swift in Sources */,
 				7F507CAA2941CC19001B8566 /* CreateRecruitmentView.swift in Sources */,
+				F57741F2294A086900696FD2 /* ChatView.swift in Sources */,
 				F5AD9E172934708700E33AD6 /* TeamTag.swift in Sources */,
 				F55B0C2829418C83006D2ECA /* CreateTeamMemberView.swift in Sources */,
 				F5AD9E192934708700E33AD6 /* TeamMember.swift in Sources */,
@@ -795,6 +810,7 @@
 				F5AD9DD72933B7E100E33AD6 /* AuthService.swift in Sources */,
 				F5AD9DED2933B86500E33AD6 /* ViewExtensions.swift in Sources */,
 				F5B587DD2937B646007ECC2E /* UserServiceError.swift in Sources */,
+				F57741F02949FD5300696FD2 /* MessageListItem.swift in Sources */,
 				F5B587E229384582007ECC2E /* TeamInfoView.swift in Sources */,
 				F5AD9DDC2933B7E100E33AD6 /* APIModel.swift in Sources */,
 				F5B587E729384EE0007ECC2E /* TabMenu.swift in Sources */,

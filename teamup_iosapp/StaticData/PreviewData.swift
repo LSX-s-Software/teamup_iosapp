@@ -65,4 +65,24 @@ class PreviewData {
                            uninterested: false)
     
     static let teamCountHistory = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 175, 200, 220, 230]
+
+    static let message1 = Message(id: "123", type: .Chat, content: "你好", sender: 11, createTime: Date.now)
+    static let message2 = Message(id: "124", type: .System, content: "简历", sender: 11, createTime: Date.now)
+    static let message3 = Message(id: "125", type: .Chat, content: "这是我的简历", sender: 11, createTime: Date.now, read: true)
+
+    static let userMessageList = [MessageListItem(id: 1,
+                                                  userId: 11,
+                                                  username: "VIP USER3",
+                                                  userAvatar: "https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/avatar/202212081814072796.png",
+                                                  latestMessage: message1),
+                                  MessageListItem(id: 2,
+                                                  userId: 12,
+                                                  username: "VIP USER4",
+                                                  userAvatar: "https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/avatar/202212081814072796.png",
+                                                  latestMessage: message2),
+                                  MessageListItem(id: 3,
+                                                  userId: 13,
+                                                  username: "VIP USER5",
+                                                  userAvatar: "https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/avatar/202212081814072796.png",
+                                                  latestMessage: message3)]
 }
