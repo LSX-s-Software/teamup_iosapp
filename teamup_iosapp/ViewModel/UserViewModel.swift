@@ -23,6 +23,10 @@ class UserViewModel: ObservableObject {
     @Published var phone: String
     /// 头像
     @Published var avatar: String
+    /// 自我介绍
+    @Published var introduction: String
+    /// 获奖经历
+    @Published var awards: [String]
 
     var jsonDict: [String: Any] {
         [
@@ -32,7 +36,9 @@ class UserViewModel: ObservableObject {
             "faculty": faculty,
             "grade": grade,
             "phone": phone,
-            "avatar": avatar
+            "avatar": avatar,
+            "introduction": introduction,
+            "awards": awards
         ]
     }
 
@@ -45,12 +51,22 @@ class UserViewModel: ObservableObject {
             grade = userInfo.grade ?? ""
             phone = userInfo.phone
             avatar = userInfo.avatar ?? ""
+            introduction = userInfo.introduction ?? ""
+            awards = userInfo.awards ?? []
         } else {
             return nil
         }
     }
 
-    init(username: String, realName: String, studentId: String, faculty: String, grade: String, phone: String, avatar: String) {
+    init(username: String,
+         realName: String,
+         studentId: String,
+         faculty: String,
+         grade: String,
+         phone: String,
+         avatar: String,
+         introduction: String,
+         awards: [String]) {
         self.username = username
         self.realName = realName
         self.studentId = studentId
@@ -58,16 +74,20 @@ class UserViewModel: ObservableObject {
         self.grade = grade
         self.phone = phone
         self.avatar = avatar
+        self.introduction = introduction
+        self.awards = awards
     }
 
-    func update(using: User) {
-        username = using.username
-        realName = using.realName
-        studentId = using.studentId ?? ""
-        faculty = using.faculty ?? ""
-        grade = using.grade ?? ""
-        phone = using.phone
-        avatar = using.avatar ?? ""
+    func update(using user: User) {
+        username = user.username
+        realName = user.realName
+        studentId = user.studentId ?? ""
+        faculty = user.faculty ?? ""
+        grade = user.grade ?? ""
+        phone = user.phone
+        avatar = user.avatar ?? ""
+        introduction = user.introduction ?? ""
+        awards = user.awards ?? []
     }
 
     func reset() {

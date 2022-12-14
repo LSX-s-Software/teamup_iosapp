@@ -20,6 +20,9 @@ struct ProfileView: View {
     @State var alertTitle = ""
     @State var alertMsg: String?
     @State var logoutConfirmShown = false
+    @State var editingAward = false
+    @State var newAward = ""
+    @State var editingAwardIndex = -1
     
     var body: some View {
         Form {
@@ -28,38 +31,38 @@ struct ProfileView: View {
                     Text("昵称")
                     if editing {
                         TextField("请输入昵称", text: $userInfo.username)
-                                .textContentType(.nickname)
-                                .multilineTextAlignment(.trailing)
+                            .textContentType(.nickname)
+                            .multilineTextAlignment(.trailing)
                     } else {
                         Spacer()
                         Text(userInfo.username)
-                                .foregroundColor(.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
                 HStack {
                     Text("真名")
                     if editing {
                         TextField("请输入真名", text: $userInfo.realName)
-                                .textContentType(.name)
-                                .multilineTextAlignment(.trailing)
+                            .textContentType(.name)
+                            .multilineTextAlignment(.trailing)
                     } else {
                         Spacer()
                         Text(userInfo.realName)
-                                .foregroundColor(.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
-
+            
             Section("教育信息") {
                 HStack {
                     Text("学号")
                     if editing {
                         TextField("请输入学号", text: $userInfo.studentId)
-                                .multilineTextAlignment(.trailing)
+                            .multilineTextAlignment(.trailing)
                     } else {
                         Spacer()
                         Text(nilOrEmpty(userInfo.studentId) ? "未填写" : userInfo.studentId)
-                                .foregroundColor(.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
                 if editing {
@@ -80,30 +83,78 @@ struct ProfileView: View {
                         Text("年级")
                         Spacer()
                         Text(nilOrEmpty(userInfo.grade) ? "未填写" : userInfo.grade)
-                                .foregroundColor(.secondary)
+                            .foregroundColor(.secondary)
                     }
                     HStack {
                         Text("学院")
                         Spacer()
                         Text(nilOrEmpty(userInfo.faculty) ? "未填写" : userInfo.faculty)
-                                .foregroundColor(.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
-
+            
             Section("联系方式") {
                 HStack {
                     Text("电话")
                     if editing {
                         TextField("请输入电话", text: $userInfo.phone)
-                                .textContentType(.telephoneNumber)
-                                .keyboardType(.numberPad)
-                                .multilineTextAlignment(.trailing)
+                            .textContentType(.telephoneNumber)
+                            .keyboardType(.numberPad)
+                            .multilineTextAlignment(.trailing)
                     } else {
                         Spacer()
                         Text(nilOrEmpty(userInfo.phone) ? "未填写" : userInfo.phone)
-                                .foregroundColor(.secondary)
+                            .foregroundColor(.secondary)
                     }
+                }
+            }
+            
+            Section("自我介绍") {
+                TextEditor(text: $userInfo.introduction)
+            }
+            
+            Section("获奖经历") {
+                if userInfo.awards.isEmpty && !editing {
+                    Text("暂无获奖经历")
+                }
+                ForEach(Array(userInfo.awards.enumerated()), id: \.offset) { index, award in
+                    HStack(spacing: 10) {
+                        if index < 50 {
+                            Image(systemName: "\(index + 1).circle")
+                        } else {
+                            Text("\(index + 1)")
+                        }
+                        Text(award)
+                    }
+                    .onTapGesture {
+                        editingAwardIndex = index
+                        newAward = award
+                        editingAward = true
+                    }
+                }
+                .onDelete { userInfo.awards.remove(atOffsets: $0) }
+                .onMove { userInfo.awards.move(fromOffsets: $0, toOffset: $1) }
+                .disabled(!editing)
+                if editing {
+                    Button("添加") {
+                        editingAwardIndex = -1
+                        newAward = ""
+                        editingAward = true
+                    }
+                    .alert("编辑获奖经历", isPresented: $editingAward, actions: {
+                        TextField("请填写奖项名", text: $newAward)
+                        Button("确定", action: {
+                            if editingAwardIndex == -1 {
+                                userInfo.awards.append(newAward)
+                            } else {
+                                userInfo.awards[editingAwardIndex] = newAward
+                            }
+                        })
+                        Button("取消", role: .cancel, action: {})
+                    }, message: {
+                        Text("请填写你的获奖经历")
+                    })
                 }
             }
             
@@ -166,7 +217,7 @@ extension ProfileView {
         alertMsg = msg
         alertShown = true
     }
-
+    
     func handleSave() {
         saving = true
         Task {
