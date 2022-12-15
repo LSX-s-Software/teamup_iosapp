@@ -7,13 +7,14 @@
 
 import SwiftUI
 import iPages
+import CachedAsyncImage
 
 struct HomeView: View {
     @Environment(\.tabBarSelection) var tabbarSelection
     // Banner
     @State var currentPage = 0
     let bannerTimer = Timer.publish(every: 7.5, on: .main, in: .common).autoconnect()
-    @State var bannerItems = [Color.red, Color.yellow, Color.blue, Color.green]
+    @State var bannerItems = ["https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/banner/1.png", "https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/banner/2.png", "https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/banner/3.png", "https://zq-teamup.oss-cn-hangzhou.aliyuncs.com/media/banner/4.png"]
     // 角色
     @State var teamRoles = ["全部角色"]
     @State var selectedRole = 0
@@ -38,7 +39,11 @@ struct HomeView: View {
                     // MARK: - banner
                     iPages(selection: $currentPage) {
                         ForEach(bannerItems, id: \.hashValue) { item in
-                            item
+                            CachedAsyncImage(url: URL(string: item)) { image in
+                                image.resizable().scaledToFill()
+                            } placeholder: {
+                                ProgressView()
+                            }
                         }
                     }
                     .wraps(true)
