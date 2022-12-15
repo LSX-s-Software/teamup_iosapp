@@ -12,6 +12,9 @@ struct Message: HandyJSON, Codable {
 
     /// 发送者ID
     var sender: Int!
+    
+    /// 接收者ID
+    var receiver: Int!
 
     /// 时间
     var createTime: Date!

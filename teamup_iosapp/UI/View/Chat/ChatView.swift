@@ -14,16 +14,25 @@ struct ChatView: View {
     @State var userId: Int
     @State var user: User
     @State var messages: [Message]
+    @ObservedObject var messageManager = MessageManager.shared
     @StateObject var newMessage: MessageViewModel
     @State var userInfoSheetShown = false
     @State var latestMessageId: String
     
-    init(userId: Int, user: User, messages: [Message] = [Message](), latestMessageId: String = "") {
+    init(userId: Int, user: User, messages: [Message]? = nil, latestMessageId: String = "") {
         self._userId = State(initialValue: userId)
         self._user = State(initialValue: user)
-        self._messages = State(initialValue: messages)
+        if messages == nil {
+            self._messages = State(initialValue: MessageManager.shared.getAllMessage(userId: userId))
+        } else {
+            self._messages = State(initialValue: messages!)
+        }
         self._newMessage = StateObject(wrappedValue: MessageViewModel(content: "", receiver: userId))
-        self._latestMessageId = State(initialValue: latestMessageId)
+        if latestMessageId.isEmpty {
+            self._latestMessageId = State(initialValue: messages?.last?.id ?? "")
+        } else {
+            self._latestMessageId = State(initialValue: latestMessageId)
+        }
     }
     
     var body: some View {
@@ -98,7 +107,7 @@ struct ChatView: View {
             
             ScrollViewReader { proxy in
                 ScrollView {
-                    LazyVStack {
+                    VStack {
                         ForEach(messages, id: \.id) { message in
                             MessageBubble(message: message).id(message.id)
                         }
@@ -110,6 +119,14 @@ struct ChatView: View {
                 .onChange(of: latestMessageId) { newValue in
                     proxy.scrollTo(newValue, anchor: .bottom)
                 }
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.NewMessageReceived)) { data in
+                    guard let userInfo = data.userInfo, let message = userInfo["message"] as? Message else { return }
+                    print(message)
+                    if message.sender == userId {
+                        messages.append(message)
+                        latestMessageId = message.id
+                    }
+                }
             }
             
             // MARK: - 下方操作区
@@ -118,11 +135,9 @@ struct ChatView: View {
                     TextField("输入消息内容", text: $newMessage.content)
                     Button {
                         MessageManager.shared.sendMessage(message: newMessage)
-                        messages.append(Message(id: UUID().uuidString,
-                                                content: newMessage.content,
-                                                sender: UserService.userId,
-                                                createTime: Date.now))
+                        messages.append(newMessage.message)
                         latestMessageId = messages.last!.id
+                        newMessage.reset()
                     } label: {
                         Image(systemName: "paperplane.fill")
                             .padding()

@@ -16,6 +16,7 @@ enum Tab: Int {
 
 struct MainView: View {
     @State var tabSelection = Tab.home
+    @ObservedObject var messageManager = MessageManager.shared
     
     var body: some View {
         TabView(selection: $tabSelection) {
@@ -35,6 +36,7 @@ struct MainView: View {
                 .tabItem {
                     Label("消息", systemImage: "bubble.left.and.bubble.right")
                 }
+                .badge(messageManager.unreadCount)
                 .tag(Tab.chat)
 
             MeView()

@@ -8,17 +8,30 @@
 import Foundation
 import StompClientLib
 
-class MessageManager: StompClientLibDelegate {
+class MessageManager: StompClientLibDelegate, ObservableObject {
     // Instance
     static let shared = MessageManager()
-
+    
     // Config
     let serverURL = URL(string: "ws://42.193.50.174:8085/ws")! // "wss://api.teamup.nagico.cn/ws")!
     let topicPublic = "/topic/public"
     let topicPrivate = "/user/topic/private"
     let messageHeaders = ["content-type": "application/json"]
-
-    private(set) var connected = false
+    
+    var messages = [Message]()
+    
+    // Published state
+    @Published private(set) var connected = false
+    @Published var messageList = [MessageListItem]()
+    var unreadCount: Int {
+        var count = 0
+        messages.forEach { message in
+            if !message.read {
+                count += 1
+            }
+        }
+        return count
+    }
 
     private var stompClient = StompClientLib()
 
@@ -36,26 +49,75 @@ class MessageManager: StompClientLibDelegate {
             stompClient.openSocketWithURLRequest(request: request, delegate: self, connectionHeaders: ["Authorization": token])
         }
     }
-    
+
     func disconnect() {
         stompClient.disconnect()
     }
-    
+
     func sendMessage(message: MessageViewModel) {
         stompClient.sendMessage(message: message.jsonString,
                                 toDestination: "/app/send",
                                 withHeaders: messageHeaders,
-                                withReceipt: message.id)
+                                withReceipt: nil)
     }
+    
+    func getLatestMessage(userId: Int) -> Message? {
+        return messages.last { $0.receiver == userId }
+    }
+    
+    func getAllMessage(userId: Int) -> [Message] {
+        return messages.filter { $0.sender == userId }
+    }
+    
+    func fetchRemoteMessage() {
+        if !AuthService.registered { return }
+        Task {
+            do {
+                let result: [Message] = try await APIRequest().url("/messages/offline/").request()
+                for i in 0..<result.count {
+                    await addMessage(message: result[i])
+                }
+            }
+        }
+    }
+    
+    func addMessage(message: Message) async {
+        messages.append(message)
+        if let index = messageList.firstIndex(where: { $0.userId == message.sender }) {
+            DispatchQueue.main.async {
+                self.messageList[index].latestMessage = message
+            }
+        } else {
+            do {
+                let user = try await UserService.getUserInfo(id: message.sender)
+                DispatchQueue.main.async {
+                    self.messageList.append(MessageListItem(id: (self.messageList.last?.id ?? 0) + 1,
+                                                            userId: message.sender,
+                                                            username: user.username,
+                                                            userAvatar: user.avatar ?? "",
+                                                            latestMessage: message))
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
 
+// MARK: - 事件处理
+extension MessageManager {
     func stompClient(client: StompClientLib!,
                      didReceiveMessageWithJSONBody jsonBody: AnyObject?,
                      akaStringBody stringBody: String?,
                      withHeader header: [String: String]?,
                      withDestination destination: String) {
-        print("DESTINATION: \(destination)")
         print("JSON BODY: \(String(describing: jsonBody))")
-        print("STRING BODY: \(stringBody ?? "nil")")
+        
+        guard let jsonDict = jsonBody as? NSDictionary, let message = Message.deserialize(from: jsonDict) else { return }
+        Task {
+            await addMessage(message: message)
+        }
+        NotificationCenter.default.post(name: NSNotification.NewMessageReceived, object: nil, userInfo: ["message": message])
     }
 
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -72,9 +134,7 @@ class MessageManager: StompClientLibDelegate {
         connected = true
     }
 
-    func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) {
-        print("Stomp Receipt Received:", receiptId)
-    }
+    func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) { }
 
     func serverDidSendError(client: StompClientLib!,
                             withErrorMessage description: String,
@@ -82,12 +142,11 @@ class MessageManager: StompClientLibDelegate {
         print(description, message ?? "")
     }
 
-    func serverDidSendPing() {
-        print("Server did send ping")
-    }
+    func serverDidSendPing() { }
 }
 
 extension NSNotification {
     static let MessageManagerConnected = Notification.Name("MessageManagerConnected")
     static let MessageManagerDisconnected = Notification.Name("MessageManagerDisconnected")
+    static let NewMessageReceived = Notification.Name("NewMessageReceived")
 }

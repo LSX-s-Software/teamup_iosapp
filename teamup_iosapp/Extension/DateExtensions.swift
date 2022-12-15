@@ -47,6 +47,8 @@ extension Date: HandyJSONCustomTransformable {
     public static func _transform(from object: Any) -> Date? {
         if let dateStr = object as? String {
             return Formatter.iso8601.date(from: dateStr) ?? Formatter.iso8601withFracSec.date(from: dateStr)
+        } else if let timestamp = object as? Int {
+            return Date(timeIntervalSince1970: TimeInterval(timestamp / 1000))
         } else {
             return nil
         }

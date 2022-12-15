@@ -9,13 +9,12 @@ import SwiftUI
 import CachedAsyncImage
 
 struct ChatListView: View {
-    @State var messageList = [MessageListItem]()
-    @State var status: UserStatus = MessageManager.shared.connected ? .Online : .Offline
+    @ObservedObject var messageManager = MessageManager.shared
     
     var body: some View {
         NavigationStack {
             Group {
-                if messageList.isEmpty {
+                if messageManager.messageList.isEmpty {
                     VStack(spacing: 12) {
                         Image(systemName: "bubble.left.and.bubble.right")
                             .resizable()
@@ -27,7 +26,7 @@ struct ChatListView: View {
                             .foregroundColor(.secondary)
                     }
                 } else {
-                    List(Array(messageList.enumerated()), id: \.offset) { index, message in
+                    List(Array(messageManager.messageList.enumerated()), id: \.offset) { index, message in
                         NavigationLink(value: index) {
                             HStack {
                                 CachedAsyncImage(url: URL(string: message.userAvatar)) { image in
@@ -61,8 +60,9 @@ struct ChatListView: View {
                             }
                         }
                         .navigationDestination(for: Int.self) { index in
-                            ChatView(userId: messageList[index].userId, user: User(username: messageList[index].username,
-                                                                                   avatar: messageList[index].userAvatar))
+                            ChatView(userId: messageManager.messageList[index].userId,
+                                     user: User(username: messageManager.messageList[index].username,
+                                                avatar: messageManager.messageList[index].userAvatar))
                             .navigationBarTitleDisplayMode(.inline)
                         }
                     }
@@ -73,25 +73,28 @@ struct ChatListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        status = MessageManager.shared.connected ? .Online : .Offline
+                        if !messageManager.connected {
+                            messageManager.connect()
+                        }
                     } label: {
                         HStack {
                             Circle()
                                 .frame(width: 10)
-                            Text(status == .Online ? "在线" : "离线")
+                            Text(messageManager.connected ? "在线" : "离线")
                         }
-                        .foregroundColor(status == .Online ? .green : .gray)
+                        .foregroundColor(messageManager.connected ? .green : .gray)
+                    }
+                }
+                ToolbarItem {
+                    Button {
+                        MessageManager.shared.fetchRemoteMessage()
+                    } label: {
+                        Label("获取新消息", systemImage: "arrow.2.circlepath")
                     }
                 }
             }
-            .onReceive(NotificationCenter.default.publisher(for: NSNotification.MessageManagerConnected)) { _ in
-                status = .Online
-            }
-            .onReceive(NotificationCenter.default.publisher(for: NSNotification.MessageManagerDisconnected)) { _ in
-                status = .Offline
-            }
             .onAppear {
-                status = MessageManager.shared.connected ? .Online : .Offline
+                MessageManager.shared.fetchRemoteMessage()
             }
         }
     }
@@ -100,7 +103,7 @@ struct ChatListView: View {
 struct ChatListView_Previews: PreviewProvider {
     static var previews: some View {
         TabView {
-            ChatListView(messageList: PreviewData.userMessageList)
+            ChatListView()
                 .tabItem {
                     Label("消息", systemImage: "bubble.left.and.bubble.right")
                 }

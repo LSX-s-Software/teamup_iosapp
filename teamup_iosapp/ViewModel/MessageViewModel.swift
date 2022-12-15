@@ -8,7 +8,7 @@
 import Foundation
 
 class MessageViewModel: ObservableObject, Identifiable {
-    let id = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased()
+    var id = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased()
 
     /// 消息类型
     var type: MessageType
@@ -29,10 +29,19 @@ class MessageViewModel: ObservableObject, Identifiable {
         }
         """
     }
+    
+    var message: Message {
+        Message(id: id, type: type, content: content, sender: UserService.userId, receiver: receiver)
+    }
 
     init(type: MessageType = .Chat, content: String, receiver: Int) {
         self.type = type
         self.content = content
         self.receiver = receiver
+    }
+    
+    func reset() {
+        id = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased()
+        content = ""
     }
 }
