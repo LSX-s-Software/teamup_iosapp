@@ -47,8 +47,10 @@ struct ChatListView: View {
                                             .foregroundColor(.secondary)
                                     }
                                     HStack(spacing: 4) {
-                                        Text("[\(message.latestMessage.read ? "已读" : "未读")]")
-                                            .foregroundColor(message.latestMessage.read ? .secondary : .accentColor)
+                                        if message.latestMessage.sender == UserService.userId! {
+                                            Text("[\(message.latestMessage.read ? "已读" : "未读")]")
+                                                .foregroundColor(message.latestMessage.read ? .secondary : .accentColor)
+                                        }
                                         if message.latestMessage.type == .System {
                                             Text("[模板消息]")
                                         }

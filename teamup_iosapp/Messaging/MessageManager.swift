@@ -59,6 +59,11 @@ class MessageManager: StompClientLibDelegate, ObservableObject {
                                 toDestination: "/app/send",
                                 withHeaders: messageHeaders,
                                 withReceipt: nil)
+        if message.type == .Chat {
+            Task {
+                await addMessage(message: message.message)
+            }
+        }
     }
     
     func getLatestMessage(userId: Int) -> Message? {
@@ -75,14 +80,24 @@ class MessageManager: StompClientLibDelegate, ObservableObject {
             do {
                 let result: [Message] = try await APIRequest().url("/messages/offline/").request()
                 for i in 0..<result.count {
-                    await addMessage(message: result[i])
+                    if result[i].type == .Chat {
+                        await addMessage(message: result[i])
+                    } else if result[i].type == .Ack {
+                        for j in 0..<messages.count {
+                            if messages[j].id == result[i].content {
+                                messages[j].read = true
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
     func addMessage(message: Message) async {
+        if messages.contains(where: { $0.id == message.id }) { return }
         messages.append(message)
+        if message.sender == UserService.userId { return }
         if let index = messageList.firstIndex(where: { $0.userId == message.sender }) {
             DispatchQueue.main.async {
                 self.messageList[index].latestMessage = message
@@ -102,6 +117,11 @@ class MessageManager: StompClientLibDelegate, ObservableObject {
             }
         }
     }
+    
+    func setRead(id: String, userId: Int) {
+        print("Ack sent:", id)
+        sendMessage(message: MessageViewModel(type: .Ack, content: id, receiver: userId))
+    }
 }
 
 // MARK: - 事件处理
@@ -114,10 +134,17 @@ extension MessageManager {
         print("JSON BODY: \(String(describing: jsonBody))")
         
         guard let jsonDict = jsonBody as? NSDictionary, let message = Message.deserialize(from: jsonDict) else { return }
-        Task {
-            await addMessage(message: message)
+        if message.type == .Chat {
+            Task {
+                await addMessage(message: message)
+            }
+            NotificationCenter.default.post(name: NSNotification.NewMessageReceived, object: nil, userInfo: ["message": message])
+        } else if message.type == .Ack {
+            NotificationCenter.default.post(name: NSNotification.MessageRead, object: nil, userInfo: ["id": message.content ?? ""])
+            if let index = messages.firstIndex(where: { $0.id == message.content }) {
+                messages[index].read = true
+            }
         }
-        NotificationCenter.default.post(name: NSNotification.NewMessageReceived, object: nil, userInfo: ["message": message])
     }
 
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -149,4 +176,5 @@ extension NSNotification {
     static let MessageManagerConnected = Notification.Name("MessageManagerConnected")
     static let MessageManagerDisconnected = Notification.Name("MessageManagerDisconnected")
     static let NewMessageReceived = Notification.Name("NewMessageReceived")
+    static let MessageRead = Notification.Name("MessageRead")
 }

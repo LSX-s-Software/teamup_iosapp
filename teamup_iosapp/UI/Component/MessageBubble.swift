@@ -50,6 +50,11 @@ struct MessageBubble: View {
         }
         .padding(.horizontal)
         .frame(maxWidth: .infinity, alignment: isMyMessage ? .trailing : .leading)
+        .onAppear {
+            if !isMyMessage && !message.read {
+                MessageManager.shared.setRead(id: message.id, userId: message.sender)
+            }
+        }
     }
 }
 

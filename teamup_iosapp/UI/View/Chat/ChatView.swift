@@ -13,24 +13,20 @@ struct ChatView: View {
     
     @State var userId: Int
     @State var user: User
-    @State var messages: [Message]
+    @State var messages = [Message]()
     @ObservedObject var messageManager = MessageManager.shared
     @StateObject var newMessage: MessageViewModel
     @State var userInfoSheetShown = false
-    @State var latestMessageId: String
+    @State var latestMessageId = ""
     
     init(userId: Int, user: User, messages: [Message]? = nil, latestMessageId: String = "") {
         self._userId = State(initialValue: userId)
         self._user = State(initialValue: user)
-        if messages == nil {
-            self._messages = State(initialValue: MessageManager.shared.getAllMessage(userId: userId))
-        } else {
+        if messages != nil {
             self._messages = State(initialValue: messages!)
         }
         self._newMessage = StateObject(wrappedValue: MessageViewModel(content: "", receiver: userId))
         if latestMessageId.isEmpty {
-            self._latestMessageId = State(initialValue: messages?.last?.id ?? "")
-        } else {
             self._latestMessageId = State(initialValue: latestMessageId)
         }
     }
@@ -122,9 +118,17 @@ struct ChatView: View {
                 .onReceive(NotificationCenter.default.publisher(for: NSNotification.NewMessageReceived)) { data in
                     guard let userInfo = data.userInfo, let message = userInfo["message"] as? Message else { return }
                     print(message)
-                    if message.sender == userId {
+                    if message.sender == userId && message.type == .Chat {
                         messages.append(message)
                         latestMessageId = message.id
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.MessageRead)) { data in
+                    guard let userInfo = data.userInfo, let messageId = userInfo["id"] as? String else { return }
+                    for i in 0..<messages.count {
+                        if messages[i].id == messageId {
+                            messages[i].read = true
+                        }
                     }
                 }
             }
@@ -134,6 +138,7 @@ struct ChatView: View {
                 HStack {
                     TextField("输入消息内容", text: $newMessage.content)
                     Button {
+                        newMessage.createTime = Date.now
                         MessageManager.shared.sendMessage(message: newMessage)
                         messages.append(newMessage.message)
                         latestMessageId = messages.last!.id
@@ -156,6 +161,10 @@ struct ChatView: View {
         }
         .background(Color.accentColor)
         .navigationBarBackButtonHidden()
+        .onAppear {
+            messages = MessageManager.shared.getAllMessage(userId: userId)
+            latestMessageId = messages.last?.id ?? ""
+        }
         .task {
             do {
                 user = try await UserService.getUserInfo(id: userId)

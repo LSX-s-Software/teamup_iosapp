@@ -18,6 +18,8 @@ class MessageViewModel: ObservableObject, Identifiable {
 
     /// 发送者ID
     var receiver: Int
+    
+    var createTime: Date
 
     var jsonString: String {
         """
@@ -31,13 +33,14 @@ class MessageViewModel: ObservableObject, Identifiable {
     }
     
     var message: Message {
-        Message(id: id, type: type, content: content, sender: UserService.userId, receiver: receiver)
+        Message(id: id, type: type, content: content, sender: UserService.userId, receiver: receiver, createTime: createTime)
     }
 
     init(type: MessageType = .Chat, content: String, receiver: Int) {
         self.type = type
         self.content = content
         self.receiver = receiver
+        self.createTime = Date.now
     }
     
     func reset() {
