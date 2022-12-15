@@ -11,9 +11,11 @@ import CachedAsyncImage
 struct CompetitionInfoView: View {
     let competition: Competition
     
+    var callback: (()->Void)?
+    
     var body: some View {
         NavigationLink {
-            CompetitionDetailView(competitionId: competition.id, competition: competition)
+            CompetitionDetailView(competitionId: competition.id, competition: competition) {callback?()}
         } label: {
             HStack(spacing: 0) {
                 CompetitionLogo(logo: competition.logo, abbreviation: competition.abbreviation)
