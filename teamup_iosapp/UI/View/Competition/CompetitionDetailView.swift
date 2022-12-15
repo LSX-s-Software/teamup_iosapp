@@ -71,7 +71,7 @@ struct CompetitionDetailView: View {
                             }
                         }
                         
-                        Button(competition.subscribed ? "取消订阅" : "订阅") {
+                        Button {
                             if (!competition.subscribed) {
                                 Task {
                                     do {
@@ -93,7 +93,10 @@ struct CompetitionDetailView: View {
                                 }
                                 competition.subscribed = false
                             }
-                        }.buttonStyle(.borderedProminent)
+                        } label: {
+                            Label(competition.subscribed ? "取消订阅" : "订阅", systemImage: competition.subscribed ? "bell.slash.fill" : "bell.fill")
+                        }
+                        .buttonStyle(.borderedProminent)
                         
 
                         Text(competition.description ?? "")

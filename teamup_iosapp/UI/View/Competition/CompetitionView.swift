@@ -12,56 +12,63 @@ struct CompetitionView: View {
     @State var competitionList = [Competition]()
     @State var subsribeCompetitionList = [Competition]()
     
-    
-    
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading,spacing: 16) {
+                LazyVStack(alignment: .leading, spacing: 16, pinnedViews: .sectionHeaders) {
                     Section {
                         if (subsribeCompetitionList.count == 0) {
-                            Text("暂无订阅比赛").padding(.horizontal)
+                            Text("暂无已订阅的比赛")
+                                .padding(.horizontal)
+                                .foregroundColor(.secondary)
                         }
                         ForEach(subsribeCompetitionList, id: \.id) { competition in
-                            CompetitionInfoView(competition: competition){
-                                Task {
-                                    do {
-                                        subsribeCompetitionList = try await CompetitionService.getSubsribeCompetitionList()
-                                    }
-                                    catch {}
-                                }
+                            CompetitionInfoView(competition: competition) {
+                                loadData()
                             }
                         }
                         .listStyle(.plain)
                         .padding(.horizontal)
                     } header: {
-                        Text("订阅").padding().fontWeight(.medium)
+                        Text("已订阅的比赛")
+                            .padding()
+                            .fontWeight(.medium)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(VisualEffectView(effect: UIBlurEffect(style: .regular)))
                     }
                     
                     Section {
                         ForEach(competitionList, id: \.id) { competition in
-                                CompetitionInfoView(competition: competition){
-                                    Task {
-                                        do {
-                                            subsribeCompetitionList = try await CompetitionService.getSubsribeCompetitionList()
-                                        }
-                                        catch {}
-                                    }
-                                }
+                            CompetitionInfoView(competition: competition) {
+                                loadData()
+                            }
                         }
                         .listStyle(.plain)
                         .padding(.horizontal)
                     } header: {
-                        Text("全部").padding().fontWeight(.medium)
+                        Text("全部")
+                            .padding()
+                            .fontWeight(.medium)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(VisualEffectView(effect: UIBlurEffect(style: .regular)))
                     }
                 }
             }
             .navigationTitle("比赛")
         }
-        .task {
+        .onAppear {
+            loadData()
+        }
+    }
+    
+    func loadData() {
+        Task {
             do {
                 competitionList = try await CompetitionService.getCompetitionList()
                 subsribeCompetitionList = try await CompetitionService.getSubsribeCompetitionList()
+                subsribeCompetitionList.forEach { competition in
+                    competitionList.removeAll { $0.id == competition.id}
+                }
             } catch {
                 
             }
