@@ -249,13 +249,26 @@ struct TeamDetailView: View {
                     }
                     Spacer()
                         .frame(width: 12)
-                    Button {
-                        
-                    } label: {
-                        Text("立即报名")
-                            .fontWeight(.medium)
-                            .padding(.vertical, 6)
-                            .frame(maxWidth: .infinity)
+                    Group {
+                        if !AuthService.registered {
+                            Button {
+                                loginAlertShown = true
+                            } label: {
+                                Text("立即报名")
+                                    .fontWeight(.medium)
+                                    .padding(.vertical, 6)
+                                    .frame(maxWidth: .infinity)
+                            }
+                        } else {
+                            NavigationLink {
+                                ChatView(userId: team.leader!.id, user: team.leader!)
+                            } label: {
+                                Text("立即报名")
+                                    .fontWeight(.medium)
+                                    .padding(.vertical, 6)
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
                     }
                     .buttonStyle(.borderedProminent)
                 }
@@ -370,7 +383,7 @@ extension TeamDetailView {
 struct TeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            TeamDetailView(teamId: 126, team: PreviewData.team)
+            TeamDetailView(teamId: 172, team: PreviewData.team)
         }
     }
 }
