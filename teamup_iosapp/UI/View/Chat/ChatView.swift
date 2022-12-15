@@ -47,11 +47,17 @@ struct ChatView: View {
                         Circle()
                             .frame(width: 10)
                             .foregroundColor(user.status == .Online ? .green : .gray)
-                        Text(user.status == .Online ? "在线" : "离线")
-                            .foregroundColor(.white.opacity(0.9))
+                        Group {
+                            Text(user.status == .Online ? "在线" : "离线")
+                            Circle()
+                                .frame(width: 5)
+                            if user.status == .Offline {
+                                Text("上次在线：\(Formatter.formatDate(date: user.lastLogin!, compact: true))")
+                            }
+                        }
+                        .foregroundColor(.white.opacity(0.9))
                     }
                     .font(.caption)
-                    .foregroundColor(.secondary)
                 }
                 Spacer()
                 
