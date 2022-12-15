@@ -127,7 +127,7 @@ struct ChatView: View {
                 .cornerRadius(50)
             }
             .padding()
-            .background(.regularMaterial)
+            .background(Color(UIColor.secondarySystemBackground))
         }
         .background(Color.accentColor)
         .navigationBarBackButtonHidden()
