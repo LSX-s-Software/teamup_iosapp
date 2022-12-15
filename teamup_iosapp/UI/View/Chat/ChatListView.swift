@@ -10,6 +10,7 @@ import CachedAsyncImage
 
 struct ChatListView: View {
     @State var messageList = [MessageListItem]()
+    @State var status: UserStatus = MessageManager.shared.connected ? .Online : .Offline
     
     var body: some View {
         NavigationStack {
@@ -60,9 +61,8 @@ struct ChatListView: View {
                             }
                         }
                         .navigationDestination(for: Int.self) { index in
-                            ChatView(user: User(id: messageList[index].userId,
-                                                username: messageList[index].username,
-                                                avatar: messageList[index].userAvatar))
+                            ChatView(userId: messageList[index].userId, user: User(username: messageList[index].username,
+                                                                                   avatar: messageList[index].userAvatar))
                             .navigationBarTitleDisplayMode(.inline)
                         }
                     }
@@ -70,6 +70,29 @@ struct ChatListView: View {
                 }
             }
             .navigationTitle("消息")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        status = MessageManager.shared.connected ? .Online : .Offline
+                    } label: {
+                        HStack {
+                            Circle()
+                                .frame(width: 10)
+                            Text(status == .Online ? "在线" : "离线")
+                        }
+                        .foregroundColor(status == .Online ? .green : .gray)
+                    }
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.MessageManagerConnected)) { _ in
+                status = .Online
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.MessageManagerDisconnected)) { _ in
+                status = .Offline
+            }
+            .onAppear {
+                status = MessageManager.shared.connected ? .Online : .Offline
+            }
         }
     }
 }

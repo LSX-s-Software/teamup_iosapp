@@ -11,11 +11,20 @@ import CachedAsyncImage
 struct ChatView: View {
     @Environment(\.dismiss) var dismiss
     
+    @State var userId: Int
     @State var user: User
-    @State var messages = [Message]()
-    @StateObject var newMessage = MessageViewModel()
+    @State var messages: [Message]
+    @StateObject var newMessage: MessageViewModel
     @State var userInfoSheetShown = false
-    @State var latestMessageId = ""
+    @State var latestMessageId: String
+    
+    init(userId: Int, user: User, messages: [Message] = [Message](), latestMessageId: String = "") {
+        self._userId = State(initialValue: userId)
+        self._user = State(initialValue: user)
+        self._messages = State(initialValue: messages)
+        self._newMessage = StateObject(wrappedValue: MessageViewModel(content: "", receiver: userId))
+        self._latestMessageId = State(initialValue: latestMessageId)
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -108,6 +117,7 @@ struct ChatView: View {
                 HStack {
                     TextField("输入消息内容", text: $newMessage.content)
                     Button {
+                        MessageManager.shared.sendMessage(message: newMessage)
                         messages.append(Message(id: UUID().uuidString,
                                                 content: newMessage.content,
                                                 sender: UserService.userId,
@@ -133,7 +143,7 @@ struct ChatView: View {
         .navigationBarBackButtonHidden()
         .task {
             do {
-                user = try await UserService.getUserInfo(id: user.id)
+                user = try await UserService.getUserInfo(id: userId)
             } catch {
                 print(error.localizedDescription)
             }
@@ -144,10 +154,10 @@ struct ChatView: View {
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ChatView(user: PreviewData.leader, messages: [PreviewData.message1,
-                                                          PreviewData.message2,
-                                                          PreviewData.message3,
-                                                          PreviewData.message4])
+            ChatView(userId: PreviewData.leader.id, user: PreviewData.leader, messages: [PreviewData.message1,
+                                                                                         PreviewData.message2,
+                                                                                         PreviewData.message3,
+                                                                                         PreviewData.message4])
         }
     }
 }

@@ -11,6 +11,10 @@ import SwiftUI
 struct TeamupApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    init() {
+        MessageManager.shared.connect()
+    }
+    
     var body: some Scene {
         WindowGroup {
             MainView()

@@ -90,6 +90,9 @@
 		F5B587E229384582007ECC2E /* TeamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B587E129384582007ECC2E /* TeamInfoView.swift */; };
 		F5B587E529384B31007ECC2E /* iPages in Frameworks */ = {isa = PBXBuildFile; productRef = F5B587E429384B31007ECC2E /* iPages */; };
 		F5B587E729384EE0007ECC2E /* TabMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B587E629384EE0007ECC2E /* TabMenu.swift */; };
+		F5FAC96A294AB212009DA05F /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAC969294AB212009DA05F /* MessageManager.swift */; };
+		F5FAC96C294AB9CC009DA05F /* MessageManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAC96B294AB9CC009DA05F /* MessageManagerError.swift */; };
+		F5FAC96F294AC540009DA05F /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = F5FAC96E294AC540009DA05F /* Atlantis */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +199,9 @@
 		F5B587DC2937B646007ECC2E /* UserServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceError.swift; sourceTree = "<group>"; };
 		F5B587E129384582007ECC2E /* TeamInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoView.swift; sourceTree = "<group>"; };
 		F5B587E629384EE0007ECC2E /* TabMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenu.swift; sourceTree = "<group>"; };
+		F5FAC969294AB212009DA05F /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		F5FAC96B294AB9CC009DA05F /* MessageManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManagerError.swift; sourceTree = "<group>"; };
+		F5FAC970294AC6BA009DA05F /* teamup-iosapp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "teamup-iosapp-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +215,7 @@
 				F5AD9E072933B97D00E33AD6 /* SwiftUIFlow in Frameworks */,
 				F5AD9E0A2933B9D800E33AD6 /* HandyJSON in Frameworks */,
 				F5AD9E042933B95F00E33AD6 /* JWTDecode in Frameworks */,
+				F5FAC96F294AC540009DA05F /* Atlantis in Frameworks */,
 				EB3E7C3CCB8D0FA9770C8867 /* Pods_teamup_iosapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,19 +341,21 @@
 		F5AD9DA32933B2FB00E33AD6 /* teamup_iosapp */ = {
 			isa = PBXGroup;
 			children = (
-				F5AD9DAA2933B2FD00E33AD6 /* Preview Content */,
-				F5AD9DE62933B86500E33AD6 /* StaticData */,
-				F5AD9DDF2933B86500E33AD6 /* Extension */,
-				F5AD9DE82933B86500E33AD6 /* Util */,
-				F5AD9DDD2933B7E900E33AD6 /* Networking */,
+				F5FAC970294AC6BA009DA05F /* teamup-iosapp-Info.plist */,
 				F5AD9DFA2933B8AC00E33AD6 /* Entity */,
-				F5AD9DDE2933B7FC00E33AD6 /* Service */,
 				F5B587D92937B5CE007ECC2E /* Exception */,
-				F59F535D293B4CFB000A1BD5 /* ViewModel */,
+				F5AD9DDF2933B86500E33AD6 /* Extension */,
+				F5FAC968294AB189009DA05F /* Messaging */,
+				F5AD9DDD2933B7E900E33AD6 /* Networking */,
+				F5AD9DAA2933B2FD00E33AD6 /* Preview Content */,
+				F5AD9DDE2933B7FC00E33AD6 /* Service */,
+				F5AD9DE62933B86500E33AD6 /* StaticData */,
 				F5AD9DFB2933B8E700E33AD6 /* UI */,
-				F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */,
-				F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */,
+				F5AD9DE82933B86500E33AD6 /* Util */,
+				F59F535D293B4CFB000A1BD5 /* ViewModel */,
 				F50CF7B32934EF2400264013 /* AppDelegate.swift */,
+				F5AD9DA42933B2FB00E33AD6 /* TeamupApp.swift */,
+				F5AD9DA82933B2FD00E33AD6 /* Assets.xcassets */,
 			);
 			path = teamup_iosapp;
 			sourceTree = "<group>";
@@ -460,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				F5AD9DD42933B7E000E33AD6 /* APIRequestError.swift */,
+				F5FAC96B294AB9CC009DA05F /* MessageManagerError.swift */,
 				F5579F572940F9CE008371B2 /* CompetitionServiceError.swift */,
 				F5B587DA2937B60B007ECC2E /* AuthServiceError.swift */,
 				F5B587DC2937B646007ECC2E /* UserServiceError.swift */,
@@ -493,6 +503,14 @@
 				F57741F5294A25B900696FD2 /* MessageBubble.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		F5FAC968294AB189009DA05F /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				F5FAC969294AB212009DA05F /* MessageManager.swift */,
+			);
+			path = Messaging;
 			sourceTree = "<group>";
 		};
 		FE1E1D60815FC772F803E8E9 /* Pods */ = {
@@ -534,6 +552,7 @@
 				F5AD9E062933B97D00E33AD6 /* SwiftUIFlow */,
 				F5AD9E092933B9D800E33AD6 /* HandyJSON */,
 				F5B587E429384B31007ECC2E /* iPages */,
+				F5FAC96E294AC540009DA05F /* Atlantis */,
 			);
 			productName = teamup_iosapp;
 			productReference = F5AD9DA12933B2FB00E33AD6 /* teamup_iosapp.app */;
@@ -617,6 +636,7 @@
 				F5AD9E052933B97D00E33AD6 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 				F5AD9E082933B9D800E33AD6 /* XCRemoteSwiftPackageReference "HandyJSON" */,
 				F5B587E329384B31007ECC2E /* XCRemoteSwiftPackageReference "iPages" */,
+				F5FAC96D294AC540009DA05F /* XCRemoteSwiftPackageReference "atlantis" */,
 			);
 			productRefGroup = F5AD9DA22933B2FB00E33AD6 /* Products */;
 			projectDirPath = "";
@@ -835,6 +855,7 @@
 				F5AD9DF92933B8A700E33AD6 /* User.swift in Sources */,
 				F5AD9DA52933B2FB00E33AD6 /* TeamupApp.swift in Sources */,
 				F5AD9E152934708700E33AD6 /* Message.swift in Sources */,
+				F5FAC96C294AB9CC009DA05F /* MessageManagerError.swift in Sources */,
 				F50CF7B02934C91800264013 /* ChatListView.swift in Sources */,
 				F528B52A2935CF9C00FC7C9C /* Academy.swift in Sources */,
 				F5AD9DDA2933B7E100E33AD6 /* APIRequestError.swift in Sources */,
@@ -844,6 +865,7 @@
 				F51029F12942116F00A357B6 /* CompetitionLogo.swift in Sources */,
 				7F507CAC2941D7DB001B8566 /* RecruitmentInfoView.swift in Sources */,
 				AD64C0EC072AA5E6F1166A85 /* CompetitionService.swift in Sources */,
+				F5FAC96A294AB212009DA05F /* MessageManager.swift in Sources */,
 				AD64C066602EC6888C51C6D5 /* TeamService.swift in Sources */,
 				F5579F562940D213008371B2 /* CompetitionDetailView.swift in Sources */,
 				F55B0C2529417FA8006D2ECA /* RecruitmentViewModel.swift in Sources */,
@@ -1013,7 +1035,9 @@
 				DEVELOPMENT_TEAM = C2A3XCXCZS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "teamup-iosapp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "赛道友你";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1048,7 +1072,9 @@
 				DEVELOPMENT_TEAM = C2A3XCXCZS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "teamup-iosapp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "赛道友你";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1241,6 +1267,14 @@
 				minimumVersion = 0.0.9;
 			};
 		};
+		F5FAC96D294AC540009DA05F /* XCRemoteSwiftPackageReference "atlantis" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ProxymanApp/atlantis.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1273,6 +1307,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F5B587E329384B31007ECC2E /* XCRemoteSwiftPackageReference "iPages" */;
 			productName = iPages;
+		};
+		F5FAC96E294AC540009DA05F /* Atlantis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5FAC96D294AC540009DA05F /* XCRemoteSwiftPackageReference "atlantis" */;
+			productName = Atlantis;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

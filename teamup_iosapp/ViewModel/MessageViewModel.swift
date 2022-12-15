@@ -7,31 +7,32 @@
 
 import Foundation
 
-class MessageViewModel: ObservableObject {
-    var id: String = ""
+class MessageViewModel: ObservableObject, Identifiable {
+    let id = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased()
 
     /// 消息类型
-    var type: MessageType = .Chat
+    var type: MessageType
 
     /// 消息内容
-    var content: String = ""
+    @Published var content: String
 
     /// 发送者ID
-    var sender: Int = UserService.userId ?? 0
+    var receiver: Int
 
-    init() { }
-
-    init(message: Message) {
-        id = message.id
-        type = message.type
-        content = message.content
-        sender = message.sender
+    var jsonString: String {
+        """
+        {
+            "id": "\(id)",
+            "type": "\(type.rawValue)",
+            "content": "\(content)",
+            "receiver": \(receiver)
+        }
+        """
     }
 
-    init(id: String, type: MessageType, content: String, sender: Int) {
-        self.id = id
+    init(type: MessageType = .Chat, content: String, receiver: Int) {
         self.type = type
         self.content = content
-        self.sender = sender
+        self.receiver = receiver
     }
 }

@@ -6,8 +6,8 @@
 //
 
 import UIKit
-#if targetEnvironment(simulator)
-import Bagel
+#if DEBUG
+    import Atlantis
 #endif
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -15,8 +15,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         // 启用网络调试
-#if targetEnvironment(simulator)
-        Bagel.start()
+#if DEBUG
+        Atlantis.start()
 #endif
         
         print("Application directory: \(NSHomeDirectory())")
