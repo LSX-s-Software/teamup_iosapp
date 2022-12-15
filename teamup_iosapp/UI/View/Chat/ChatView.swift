@@ -103,7 +103,10 @@ struct ChatView: View {
             
             ScrollViewReader { proxy in
                 ScrollView {
-                    VStack {
+                    LazyVStack {
+                        if messages.isEmpty {
+                            Spacer()
+                        }
                         ForEach(messages, id: \.id) { message in
                             MessageBubble(message: message).id(message.id)
                         }
