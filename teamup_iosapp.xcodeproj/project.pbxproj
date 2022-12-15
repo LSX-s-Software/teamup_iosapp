@@ -239,6 +239,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7FFBA002294AF851004E1821 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				F5878EB8293CF876006B8A75 /* TeamDetailView.swift */,
+				7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */,
+				7F1A02412940916C0023214D /* UserView.swift */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
 		AD64C4067A0C722C25C9F852 /* CreateTeam */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,9 +304,6 @@
 			children = (
 				F50CF7AD2934C90500264013 /* HomeView.swift */,
 				F5878EB5293C8FA1006B8A75 /* RoleView.swift */,
-				F5878EB8293CF876006B8A75 /* TeamDetailView.swift */,
-				7FA1BB9D2940844800B1DF25 /* TeamMemberDetailView.swift */,
-				7F1A02412940916C0023214D /* UserView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -486,6 +493,7 @@
 				F51029ED2942024E00A357B6 /* Competition */,
 				AD64C4067A0C722C25C9F852 /* CreateTeam */,
 				F5878EB7293C8FBD006B8A75 /* Home */,
+				7FFBA002294AF851004E1821 /* Team */,
 				F528B5282935C0F100FC7C9C /* Me */,
 			);
 			path = View;
