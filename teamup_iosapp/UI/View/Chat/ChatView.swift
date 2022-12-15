@@ -58,9 +58,9 @@ struct ChatView: View {
                             .foregroundColor(user.status == .Online ? .green : .gray)
                         Group {
                             Text(user.status == .Online ? "在线" : "离线")
-                            Circle()
-                                .frame(width: 5)
                             if user.status == .Offline {
+                                Circle()
+                                    .frame(width: 5)
                                 Text("上次在线：\(Formatter.formatDate(date: user.lastLogin!, compact: true))")
                             }
                         }
