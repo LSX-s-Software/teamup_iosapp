@@ -258,6 +258,7 @@ extension MeView {
                     stopWatch.stop()
                 }
                 userInfo = try await UserService.getUserInfoFromServer()
+                MessageManager.shared.connect()
                 withAnimation {
                     registered = true
                 }
