@@ -36,6 +36,8 @@ struct CompetitionDetailView: View {
     // Filter
     @State var sortMethod: TeamService.SortMethod = .date
     
+    var callback: (()->Void)?
+    
     var body: some View {
         ScrollView {
             ZStack {
@@ -68,6 +70,32 @@ struct CompetitionDetailView: View {
                                     .foregroundColor(.primary)
                             }
                         }
+                        
+                        Button(competition.subscribed ? "取消订阅" : "订阅") {
+                            if (!competition.subscribed) {
+                                Task {
+                                    do {
+                                        try await CompetitionService.subscribeCompetition(id: competitionId)
+                                        callback?()
+                                    } catch {
+                                        
+                                    }
+                                }
+                                competition.subscribed = true
+                            } else {
+                                Task {
+                                    do {
+                                        try await CompetitionService.unsubscribeCompetition(id: competitionId)
+                                        callback?()
+                                    } catch {
+                                        
+                                    }
+                                }
+                                competition.subscribed = false
+                            }
+                        }.buttonStyle(.borderedProminent)
+                        
+
                         Text(competition.description ?? "")
                             .fixedSize(horizontal: false, vertical: true)
                         

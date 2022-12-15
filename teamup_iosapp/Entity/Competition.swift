@@ -34,6 +34,9 @@ struct Competition: HandyJSON {
 
     /// 队伍数量
     var teamCount: Int!
+    
+    // 是否订阅
+    var subscribed: Bool!
 }
 
 struct CompetitionTeamHistory: HandyJSON {

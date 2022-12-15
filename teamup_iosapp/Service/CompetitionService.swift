@@ -26,6 +26,41 @@ class CompetitionService {
         }
     }
     
+    /// 获取用户订阅比赛列表
+    /// - Returns: 比赛列表
+    class func getSubsribeCompetitionList() async throws -> [Competition] {
+        return try await APIRequest().url("/users/subscriptions/competitions/").request()
+    }
+    
+    /// 用户订阅比赛
+    /// - Parameter id: 比赛ID
+    /// - Returns: 订阅结果
+    class func subscribeCompetition(id: Int) async throws {
+        do {
+            try await APIRequest().url("/users/subscriptions/competitions/\(id)").method(.post).requestIgnoringResponse()
+        } catch APIRequestError.RequestError(let code, let msg) {
+            if code == "A0514" {
+                throw CompetitionServiceError.CompetitionNotFound
+            } else {
+                throw APIRequestError.RequestError(code: code, msg: msg)
+            }
+        }
+    }
+    /// 用户取消订阅比赛
+    /// - Parameter id: 比赛ID
+    /// - Returns: 订阅结果
+    class func unsubscribeCompetition(id: Int) async throws {
+        do {
+            try await APIRequest().url("/users/subscriptions/competitions/\(id)").delete()
+        } catch APIRequestError.RequestError(let code, let msg) {
+            if code == "A0514" {
+                throw CompetitionServiceError.CompetitionNotFound
+            } else {
+                throw APIRequestError.RequestError(code: code, msg: msg)
+            }
+        }
+    }
+    
     /// 获取比赛队伍数量历史
     /// - Parameter id: 比赛ID
     /// - Parameter scale: 时间跨度
