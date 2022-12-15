@@ -6,7 +6,7 @@ target 'teamup_iosapp' do
   use_frameworks!
 
   # Pods for teamup_iosapp
-  pod 'Bagel', '~>  1.4.0'
+  pod "StompClientLib"
 
   target 'teamup_iosappTests' do
     inherit! :search_paths

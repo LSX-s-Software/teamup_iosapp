@@ -1,20 +1,20 @@
 PODS:
-  - Bagel (1.4.0):
-    - CocoaAsyncSocket
-  - CocoaAsyncSocket (7.6.5)
+  - SocketRocket (0.6.0)
+  - StompClientLib (1.4.1):
+    - SocketRocket
 
 DEPENDENCIES:
-  - Bagel (~> 1.4.0)
+  - StompClientLib
 
 SPEC REPOS:
   trunk:
-    - Bagel
-    - CocoaAsyncSocket
+    - SocketRocket
+    - StompClientLib
 
 SPEC CHECKSUMS:
-  Bagel: c3fa6bcbd52db9ca976edbafd7638f0553ded101
-  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
+  StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
 
-PODFILE CHECKSUM: 4f6fd744d275ed4cd27d9e818956025f67f1bd8c
+PODFILE CHECKSUM: 0e76fa702183fc3fc25e52076e45ec5797beb7fa
 
 COCOAPODS: 1.11.3
